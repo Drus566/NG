@@ -1,0 +1,39 @@
+<div><p>Тэги: <% @tags.each do |tag| %> <%= tag.name %><% end %></p></div>
+<div><p>Создать <%= link_to "пост", new_post_path %>/<%= link_to "новость", new_post_path %></p></div>
+<div>
+    <% @posts.each do |post| %>
+        <p>-----------------------------------------------------------------</p>
+        <% if post.title %>
+            <p>Новость<% unless post.tags.empty? %>, Теги: <% post.tags.each do |tag| %><%= tag.name %><% end %><% end %></p>
+            <p><%= post.title %></p>
+        <% else %>
+            <p>Пост<% unless post.tags.empty? %>, Теги: <% post.tags.each do |tag| %><%= tag.name %><% end %><% end %></p>
+        <% end %>
+        <p><%= post.content %></p>
+        <p>Создано <%= post.created_at %>, автор <%= post.user.name %></p> 
+        <p>######################Опции#################</p>
+        <p>
+            <%= link_to "Редакитровать", edit_post_path(post.id) %> 
+            <%= link_to "Удалить", post ,:method => :delete, data: { :confirm => 'Вы уверены?' } %> 
+            <%= link_to "Написать комментарий", new_post_comment_path(post.id) %>
+        </p>
+        <p>############################################</p>
+        <p>$$$$$$$$$$$$$ Карма <%= post.likes.where(vote: true).count - post.likes.where(vote: false).count %> $$$$$$$$$$$$</p>
+        <p>Понравилось: <% post.likes.where(vote: true).each do |like| %><%= like.user.name %> <% end %></p>
+        <p>Не понравилось: <% post.likes.where(vote: false).each do |like| %><%= like.user.name %><% end %></p>
+        <p>$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$</p>
+        <div> 
+            <% if post.comments.any? %>
+                <p>|||||||||||||||||||||||||||||Комментарии|||||||||||||||||||||||||</p>
+                <% post.comments.each do |comment| %>
+                    <p><%= comment.user.name %></p>
+                    <p><%= comment.content %></p>
+                    <p>- - - - - - - - - - - - - - - - - - - - - - - -</p>
+                <% end %>
+                <p>|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||</p>
+            <% end %>
+        </div>
+    <% end %>
+</div>
+
+
