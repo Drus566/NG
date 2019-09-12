@@ -2,7 +2,7 @@ class PostsController < ApplicationController
     # protect_from_forgery except: :show
 
     include TagsHelper
-    before_action :logged_in_user, only: [:create, :destroy, :new]
+    before_action :logged_in_user, only: [:create, :destroy, :new, :edit]
     before_action :get_post, only: [:destroy, :edit, :show, :update]
     # before_action :get_all_tags, only: [:edit, :new]
     before_action :valid_post_resource, only: [:destroy, :edit, :update]
@@ -31,7 +31,7 @@ class PostsController < ApplicationController
     end
 
     def new
-        @post = current_user.post.build if logged_in?
+        @post = current_user.posts.build if logged_in?
         # @tags = @all_tags
     end
 

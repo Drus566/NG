@@ -1,0 +1,5 @@
+<div class="post-comments-wrapper">
+    <% unless commentable.comments.empty? %>
+        <%= render :partial => 'comments/comment', :collection => commentable.comments.where(parent: nil), :as => :comment, spacer_template: "comments/comment_spacer" %>
+    <% end %>
+</div>

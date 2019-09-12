@@ -20,9 +20,12 @@
                 <%= link_to "У", post ,:method => :delete, data: { :confirm => 'Вы уверены?' } %> 
                 <%= link_to "K", new_post_comment_path(post.id) %>
             </div>
-            <div class="post-comments-wrapper">  
-                
-            </div>
         </div>
+        <% if post.comments.any? %>
+            <%= render 'comments/post_comments', commentable: post %> 
+            <div class="post-comment-create">
+                <%= render 'comments/form', comment: post.comments.build %>
+            </div>
+        <% end %>
     </div>
 <% end %>

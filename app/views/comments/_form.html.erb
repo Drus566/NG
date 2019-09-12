@@ -1,26 +1,11 @@
-<%= form_with(model: comment, local: true) do |form| %>
 
-  <% if comment.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@post.errors.count, "error") %> prohibited
-        this comment from being saved:
-      </h2>
-      <ul>
-        <% comment.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
+<div class="post-comment-form">
+  <%= form_for [comment.commentable, comment], remote: true do |f| %>
+      <%= f.text_area :content, label: false, placeholder: (f.object.parent_id.nil? ? 'Напишите комментарий...' : 'Ответить...') %>
+      <div class="float-right">
+          <%= f.submit class: 'post-comment-btn' %>
+          <span class='post-comment-form-close' data-reply = '<%= comment.parent_id.present? %>'>Закрыть</span>
+      </div>
   <% end %>
-  <p>
-    <%= form.label :content %><br>
-    <%= form.text_area :content %>
-  </p>
-  <%= hidden_field_tag 'commentable', commentable.id %>
-  <p>
-    <%= form.submit %>
-  </p>
+</div>
   
-<% end %>
-

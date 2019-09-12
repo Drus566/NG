@@ -1,3 +1,69 @@
 // Place all the styles related to the comments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.post-comments-wrapper{
+    font-size: 1.05em;
+    border: 0.1em solid rgb(204, 204, 204);
+    margin: 1em;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    background-color: #ebebeb;
+    .post-comment-tree {
+        
+    }
+}
+
+.post-comment-body {
+    background-color: #f5f5f5;
+    border: 0.1em solid rgb(207, 207, 207);
+    border-radius: 0.2em;   
+    margin: 1em;
+    .post-comment-info{
+        margin: 0.5em;
+    }
+    .post-comment-content{
+        background-color: white;
+        margin: 0.5em;
+        margin-right: 1em;
+        padding: 0.5em;
+        font-size: 1.1rem;
+        border: 0.1em solid rgb(230, 230, 230);
+        border-radius: 0.1em;
+    }
+    .post-comment-options{
+        margin: 0.5em;
+    }
+}
+
+.post-comment-create{
+    font-size: 1em;
+}
+
+.comments-replies {
+    padding: 0;
+    margin: 0;
+    margin-top: 1em;
+    margin-left: 1em;
+    
+}
+
+.comment-spacer{
+    height: 1.25em;
+}
+
+.post-comment-form{
+    form{
+        padding: 1em;
+        padding-top: 0;
+        padding-right: 1.4em;
+        textarea{
+            resize: none;
+            font-size: 1.2em;
+            width: 100%;
+            height: 3em;
+            border: none;
+            border: 0.1em solid rgb(196, 196, 196);
+            border-radius: 0.2em;
+        }
+    }
+}
