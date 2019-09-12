@@ -1,0 +1,15 @@
+<%= form_for(@user, html: { id: 'user-new-form' }) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div id="user-new-form-avatar"><span>Avatar</span></div>
+    <div id="user-new-form-data">
+        <%= f.text_field :name, placeholder: 'Имя' %>
+        <%= f.email_field :email, placeholder: 'Почта' %>
+        <%= f.password_field :password, placeholder: 'Пароль' %>
+        <%= f.password_field :password_confirmation, placeholder: 'Подтверждение пароля' %>
+    </div>
+    <div id="user-new-form-options">
+        <div><%= check_box_tag 'remember' %><%= label_tag "Remember?" %></div>
+        <%= link_to 'Forgot Password?' %>
+    </div>
+    <%= f.submit yield(:button_text), id: 'user-new-form-btn' %>
+<% end %>

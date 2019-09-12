@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
-        @microposts = @user.microposts
+        @posts = @user.posts
     end
 
     def new
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
         if @user.save
             log_in @user
             flash[:success] = "Добро пожаловать на сайт!"
-            redirect_to @user
+            redirect_to posts_path
         else
             render 'new'
         end

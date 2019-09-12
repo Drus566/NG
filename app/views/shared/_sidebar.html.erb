@@ -1,0 +1,16 @@
+<div id="sidebar-wrapper">
+    <input type="checkbox" id="sidebar-ticker">
+    <label id="sidebar-btn-menu" for="sidebar-ticker">
+        <span class="first">⚙</span>
+    </label>
+    <div id="sidebar-hidden-menu">
+        <ul>
+            <% unless logged_in? %>
+                <li><%= link_to 'В', login_path %></li>  
+                <li><%= link_to 'Р', signup_path %></li>  
+            <% else %>
+                <li><%= link_to 'У', logout_path, method: :delete %></li>  
+            <% end %>
+        </ul>
+    </div>
+</div>

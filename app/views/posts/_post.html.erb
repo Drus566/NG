@@ -1,0 +1,28 @@
+<% unless post.title %>
+    <div class="post-wrapper" id=<%= post.id %>>
+        <div class="post-main-wrapper">
+            <div class="post-info-tags-wrapper">
+                <div class="post-info-wrapper">A <%= post.user.name %>, <%= time_ago_in_words(post.created_at) %></div> 
+                <% if post.tags.any? %>
+                    <div class="post-tags-wrapper"><% post.tags.each do |tag| %><%= tag.name %><% end %></div> 
+                <% end %>
+            </div>
+            <div class="post-likes-content-wrapper">
+                <div class="post-likes-wrapper">
+                    ↑<br>
+                    <%= post.likes.where(vote: true).count - post.likes.where(vote: false).count %><br>
+                    ↓<br>
+                </div>
+                <div class="post-content-wrapper"><%= post.content %></div>
+            </div>
+            <div class="post-options-wrapper">
+                <%= link_to "Р", edit_post_path(post.id) %> 
+                <%= link_to "У", post ,:method => :delete, data: { :confirm => 'Вы уверены?' } %> 
+                <%= link_to "K", new_post_comment_path(post.id) %>
+            </div>
+            <div class="post-comments-wrapper">  
+                
+            </div>
+        </div>
+    </div>
+<% end %>

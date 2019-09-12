@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       # если нажали на чекбокс, то запоминаем иначе забываем дайджест запоминания 
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       # перенаправляем на предыдущую сохраненную локацию пользователя либо на дефолтную страницу 
-      redirect_back_or user
+      redirect_back_or posts_path
     else
       flash.now[:danger] = 'Неверный майл или пароль'
       render 'new'

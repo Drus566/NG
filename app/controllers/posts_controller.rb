@@ -2,10 +2,10 @@ class PostsController < ApplicationController
     # protect_from_forgery except: :show
 
     include TagsHelper
-    # before_action :logged_in_user, only: [:create, :destroy, :new]
+    before_action :logged_in_user, only: [:create, :destroy, :new]
     before_action :get_post, only: [:destroy, :edit, :show, :update]
     # before_action :get_all_tags, only: [:edit, :new]
-    # before_action :valid_post_resource, only: [:destroy, :edit, :update]
+    before_action :valid_post_resource, only: [:destroy, :edit, :update]
     
     def index 
         @posts = Post.all
@@ -31,15 +31,13 @@ class PostsController < ApplicationController
     end
 
     def new
-        @user = User.first
-        @post = @user.posts.build
-        # @post = current_user.posts.build if logged_in?
+        @post = current_user.post.build if logged_in?
         # @tags = @all_tags
     end
 
     def show
         @some_post = Post.first
-        @token = form_authenticity_token
+        # @token = form_authenticity_token
         respond_to do |format|
           if @post_layer = @post
             format.html { redirect_to action: 'index', notice: 'Пост нашелся' }
@@ -48,7 +46,7 @@ class PostsController < ApplicationController
             format.json { render json: @some_post, status: :ok }
           else
             format.html { redirect_to @posts, notice: 'Нет такого поста' }  
-            format.json { render json: @tag.errors, status: :unprocessable_entity }
+            format.json { render json: @post.errors, status: :unprocessable_entity }
           end
         end
     end

@@ -1,3 +1,84 @@
 // Place all the styles related to the Posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+//dev options
+%dev-border {
+    border: 0.1em double rgba(129, 129, 129, 0.466);
+    border-radius: 0.3em;
+}
+
+//presets
+//fonts
+$post-content-font-size: 1.25em;
+$post-author-font-size: 1em;
+$post-symbol-font-size: 1.25em;
+$post-time-font-size: 1em; 
+$post-spacer-size: 1.25em;
+
+$post-content-font-family: 1.25em;
+$post-author-font-family: 1em;
+$post-content-font-family: 1em;
+$post-symbol-font-family: 1.25em;
+$post-time-font-font-family: 1em; 
+
+$post-background-color: rgb(233, 233, 233);
+$post-likes-background-color: rgb(233, 233, 233);
+
+#posts-wrapper{
+    margin: 1em;
+    z-index: 0;
+}
+
+.post-wrapper{
+    @extend %dev-border;
+    background-color: $post-background-color;
+    border-bottom: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    .post-main-wrapper{
+        display: flex;
+        flex-direction: column;
+        .post-info-tags-wrapper{
+            display: flex;
+            flex-direction: row;
+            margin: 1em;
+            margin-bottom: 0;
+            .post-info-wrapper{
+                
+            }
+            .post-tags-wrapper{
+                margin-left: 1em;
+            }
+        }
+        .post-likes-content-wrapper{
+            display: flex;
+            flex-direction: row;
+        
+            .post-likes-wrapper{
+                display: flex;
+                align-items: center;
+                margin-left: 1em;
+            }
+            .post-content-wrapper{
+                
+                font-size: $post-content-font-size;
+                padding: 1em;
+            }
+        }
+        .post-options-wrapper{
+            margin: 1em;
+            margin-top: 0;
+            margin-left: 2em;
+        }
+    }
+    .post-comments-wrapper{
+        
+    }
+}
+
+.post-spacer{
+    height: $post-spacer-size;
+}
+
+
+

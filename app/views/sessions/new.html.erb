@@ -1,2 +1,17 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<%= render 'shared/sidebar' %> 
+<div id="session-login-form-wrapper">
+    <%= form_for(:session, url: login_path, html: { id: 'session-login-form' }) do |f| %>
+        <% flash.each do |key, value| %>
+            <%= content_tag :div, value, class: "flash #{key}" %>
+        <% end %>
+        <div id="session-login-form-data">
+            <%= f.email_field :email, placeholder: 'Почта' %>
+            <%= f.password_field :password, placeholder: 'Пароль' %>
+        </div>
+        <div id="session-login-form-options">
+            <div><%= check_box_tag 'remember' %><%= label_tag "Remember?" %></div>
+            <%= link_to 'Forgot Password?' %>
+        </div>
+        <%= f.submit "Войти", id: "session-login-form-btn" %>
+    <% end %>
+</div>
