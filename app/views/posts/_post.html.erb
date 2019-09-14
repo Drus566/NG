@@ -1,5 +1,5 @@
 <% unless post.title %>
-    <div class="post-wrapper" id=<%= post.id %>>
+    <div class="post-wrapper" id="post-<%= post.id %>">
         <div class="post-main-wrapper">
             <div class="post-info-tags-wrapper">
                 <div class="post-info-wrapper">A <%= post.user.name %>, <%= time_ago_in_words(post.created_at) %></div> 
@@ -18,7 +18,7 @@
             <div class="post-options-wrapper">
                 <%= link_to "Р", edit_post_path(post.id) %> 
                 <%= link_to "У", post ,:method => :delete, data: { :confirm => 'Вы уверены?' } %> 
-                <%= link_to "K", new_post_comment_path(post.id) %>
+                <%= link_to "K", new_post_comment_path(post.id), class: 'post-comment-create-link', remote: true %>
             </div>
         </div>
         <% if post.comments.any? %>

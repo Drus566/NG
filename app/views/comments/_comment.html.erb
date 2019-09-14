@@ -3,14 +3,14 @@
         <div class="post-comment-info"><%= link_to comment.user.name, comment.user, class: "post-comment-user" %> <%= time_ago_in_words(comment.created_at) %> назад.</div>
         <div class="post-comment-content"><%= comment.content %></div>      
         <div class="post-comment-options">
-            <%= link_to "Редактировать", edit_polymorphic_path([comment.commentable, comment]), class: 'edit-comment-link', remote: true %>
-            <%= link_to "Удалить", [comment.commentable, comment], method: :delete, class: 'delete-comment-link', data: {confirm: 'Вы уверены?'}, remote: true %>
-            <%= link_to "Ответить", polymorphic_path([:reply, comment.commentable, comment]), class: 'reply-comment-link', remote: true %>
+            <%= link_to "Редактировать", edit_polymorphic_path([comment.commentable, comment]), class: 'post-comment-edit-link', remote: true %>
+            <%= link_to "Удалить", [comment.commentable, comment], method: :delete, class: 'post-comment-delete-link', data: {confirm: 'Вы уверены?'}, remote: true %>
+            <%= link_to "Ответить", polymorphic_path([:reply, comment.commentable, comment]), class: 'post-comment-reply-link', remote: true %>
         </div>
     </div>
     <% if comment.replies.any? %>
-        <ul class="comments-replies">
-            <%= render :partial => "comments/comment", :collection => comment.replies, :as => :comment, spacer_template: "comments/comment_spacer" %>
+        <ul class="post-comments-replies">
+            <%= render :partial => "comments/comment", :collection => comment.replies, :as => :comment %>
         </ul>
     <% end %>
 </div>

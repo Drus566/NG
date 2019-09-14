@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-    before_action :set_commentable, only: [:new]
+    before_action :set_commentable, only: [:new, :create, :reply]
     before_action :set_comment, only: [:reply, :edit, :update, :destroy]
 
     def reply
@@ -7,11 +7,8 @@ class CommentsController < ApplicationController
     end
 
     def create
-        @user = User.first
-        @commentable = params[:commentable]
-        @commentable = Post.find(@commentable)
         @comment = @commentable.comments.new(comment_params)
-        @comment.user = @user
+        @comment.user = current_user
         respond_to do |format|
             if @comment.save
                 format.html { redirect_to @commentable, notice: "Comment was sucessfully created" }
@@ -43,7 +40,7 @@ class CommentsController < ApplicationController
     end
 
     def new
-        @comment = @commentable.comments.build
+        @new_comment = @commentable.comments.build
     end
 
     def destroy

@@ -1,3 +1,21 @@
 <% if @new_comment.errors.empty? %>
-    post = document.getElementById("micropost")
+
+    var post = document.getElementById("post-<%= @new_comment.commentable.id %>");
+    check_post_comment_create_div = post.querySelector(".post-comment-create");
+
+    if(!check_post_comment_create_div){
+        post.querySelector(".post-comment-create-link").removeAttribute("href");
+
+        var post_comment_create = document.createElement("div");
+        post_comment_create.className = 'post-comment-create';
+        
+        var post_comment_form = "<%=j render('comments/form', comment: @new_comment ) %>";
+        
+        post_comment_create.innerHTML = post_comment_form;
+
+        post.append(post_comment_create);
+    }
+    
+<% else %>
+    
 <% end %>
