@@ -1,0 +1,30 @@
+<% if @comment.errors.empty? %>
+    
+    var post_comment = document.getElementById('post_comment_<%= @comment.id %>');
+    console.log(post_comment);
+
+    <% if @comment.parent %>
+
+        var post_comments_replies = post_comment.parentElement;
+
+        post_comment.remove();
+
+        if (!post_comments_replies.children) {
+            post_comments_replies.remove();
+        }
+
+    <% else %>
+
+        var post_comments_wrapper = post_comment.parentElement;
+
+        post_comment.remove();
+
+        if (!post_comments_wrapper.children) {
+            post_comments_wrapper.remove();
+        }
+    
+    <% end %>
+
+<% else %>
+
+<% end %>

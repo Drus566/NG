@@ -1,32 +1,17 @@
-<%= form_with(model: post, local: true) do |form| %>
 
-  <% if post.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(post.errors.count, "error") %> prohibited
-        this post from being saved:
-      </h2>
-      <ul>
-        <% post.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
+<%= form_with(model: @post, id: 'post-form') do |f| %>
+    <%= render 'shared/error_messages', object: f.object %> 
+    <div id="post-form-tags-all">
+        <% @tags.each do |tag| %>
+            <span id=<%="#{tag.id}"%>><%= "##{tag.name}" %></span>
         <% end %>
-      </ul>
     </div>
-  <% end %>
- 
-  <p>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
-  </p>
-
-  <p>
-    <%= form.label :content %><br>
-    <%= form.text_area :content %>
-  </p>
- 
-  <p>
-    <%= form.submit %>
-  </p>
-
+    <div id="post-form-tags-active">
+        <% @post.tags.each do |tag| %>
+            <span id=<%="#{tag.id}"%>><%= "##{tag.name}" %></span>
+        <% end %>
+    </div>
+    <%= hidden_field_tag 'post_tags_active', "" %>
+    <%= f.text_area :content, placeholder: "Напишите сообщение...", id: 'post-form-textarea', maxlength: '600' %>
+    <%= f.submit yield(:button_text),  id: "post-form-btn" %>  
 <% end %>
- 

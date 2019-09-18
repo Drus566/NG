@@ -1,0 +1,23 @@
+<% if @comment.errors.empty? %>
+
+    var post_comment = document.getElementById("post_comment_<%= @comment.id %>");
+    
+    var post_comment_create = post_comment.querySelector(".post-comment-create");
+    
+    if (post_comment_create){
+        post_comment_create.remove();
+    }
+    
+    var post_comment_update = "<%= j render @comment %>";
+    
+    var post_comment_update_parse = new DOMParser().parseFromString(post_comment_update, "text/html");
+    
+    var post_comment_update_body = post_comment_update_parse.querySelector('.post-comment-body');
+    console.log(post_comment_update_body);
+
+    var post_comment_body = post_comment.querySelector('.post-comment-body');
+    post_comment_body.replaceWith(post_comment_update_body);
+
+<% else %>
+
+<% end %>

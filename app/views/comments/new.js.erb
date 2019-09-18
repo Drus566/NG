@@ -1,9 +1,11 @@
 <% if @new_comment.errors.empty? %>
 
     var post = document.getElementById("post-<%= @new_comment.commentable.id %>");
-    check_post_comment_create_div = post.querySelector(".post-comment-create");
 
-    if(!check_post_comment_create_div){
+    var post_comment_create_link = post.querySelector('.post-comment-create-link');
+    post_comment_create_link.removeAttribute("href");
+    if (post.lastElementChild.className != 'post-comment-create') {
+        
         post.querySelector(".post-comment-create-link").removeAttribute("href");
 
         var post_comment_create = document.createElement("div");
@@ -15,7 +17,7 @@
 
         post.append(post_comment_create);
     }
-    
+
 <% else %>
     
 <% end %>

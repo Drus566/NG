@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-    # protect_from_forgery except: :show
+    # protect_from_forgery 
 
     include TagsHelper
     before_action :logged_in_user, only: [:create, :destroy, :new, :edit]
@@ -13,10 +13,11 @@ class PostsController < ApplicationController
     end
 
     def create
-        @user = User.first
-        # @active_ids = params[:active_tags]
-        @post = @user.posts.build(post_params)
-        # add_tags(@active_ids, @post)
+        @post_tags_active_ids = params[:post_tags_active]
+        
+        @post = current_user.posts.build(post_params)
+        post_tags_add(@post_tags_active_ids, @post)
+
         if @post.save
             flash[:success] = "Пост создан"
             redirect_to posts_path
@@ -26,13 +27,12 @@ class PostsController < ApplicationController
     end
 
     def edit
-        # @post_tags = Post.tags
-        # @tags = elimination_exist_elems(@post_tags, @all_tags)
+        @tags = Tag.all
     end
 
     def new
         @post = current_user.posts.build if logged_in?
-        # @tags = @all_tags
+        @tags = Tag.all
     end
 
     def show
@@ -52,11 +52,8 @@ class PostsController < ApplicationController
     end
 
     def update
-        # @active_ids = params[:active_tags]
-        # @inactive_ids = params[:inactive_tags]
-        
-        # add_tags(@active_ids, @post)
-        # destroy_tags(@inactive_ids, @post)
+        @post_tags_active_ids = params[:post_tags_active]
+        post_tags_update(@post_tags_active_ids, @post)
 
         if @post.update_attributes(post_params)
           flash[:success] = "Пост обновлён" 

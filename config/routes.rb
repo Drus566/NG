@@ -20,8 +20,12 @@ Rails.application.routes.draw do
         get :reply
       end
     end
+    resources :likes
   end
   resources :comments
+
+  resources :tags
+
 
 
   # get '/handbook', to: 'welcome#handbook'

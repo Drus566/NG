@@ -1,0 +1,6 @@
+<%= render 'shared/sidebar' %> 
+<div id="tags-index-wrapper"> 
+    <% @tags.each do |tag| %>
+        <%= link_to "##{tag.name}", tag %>
+    <% end %>
+</div>

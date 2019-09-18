@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-    before_action :set_commentable, only: [:new, :create, :reply]
+    before_action :set_commentable
     before_action :set_comment, only: [:reply, :edit, :update, :destroy]
 
     def reply
@@ -23,6 +23,7 @@ class CommentsController < ApplicationController
     end
 
     def edit 
+        
     end
 
     def update 

@@ -9,7 +9,10 @@
                 <li><%= link_to 'В', login_path %></li>  
                 <li><%= link_to 'Р', signup_path %></li>  
             <% else %>
-                <li><%= link_to 'П', new_post_path %></li> 
+                <% if controller.controller_name == 'posts' || controller.controller_name == 'tags' %>
+                    <li><%= link_to 'П', new_post_path %></li>
+                    <li><%= link_to 'Т', tags_path %></li>
+                <% end %>
                 <li><%= link_to 'У', logout_path, method: :delete %></li>  
             <% end %>
         </ul>

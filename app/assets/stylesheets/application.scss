@@ -25,6 +25,13 @@ $body-background-color: rgb(96, 105, 187);
     text-decoration: none;
     a{
         text-decoration: none;
+        color: rgb(29, 32, 151);
+    }
+    a:link, a:visited, a:hover, a:active, a:focus {
+        color: rgb(29, 32, 151);
+    }
+    a:hover{
+        border: 0.1em solid rgb(59, 59, 59);
     }
 }
 

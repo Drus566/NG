@@ -1,5 +1,6 @@
-<h1>Редактировать пост</h1>
+<% provide(:button_text, "Сохранить изменения") %>
 
-<%= render 'form', post: @post %>
-
-<%= link_to 'Back', posts_path %>
+<%= render 'shared/sidebar' %> 
+<div id="post-new-wrapper">
+    <%= render 'form', collection: @tags %>
+</div>
