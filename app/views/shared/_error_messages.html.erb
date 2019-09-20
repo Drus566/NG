@@ -1,7 +1,9 @@
-<% if object.errors.any? %>
-    <div id="error-explanation">
-        <% object.errors.full_messages.each do |msg| %>
-            <%= msg %><br>
-        <% end %>
-    </div>
+<% unless object.nil? %>
+    <% if object.errors.any? %>
+        <div id="error-explanation">
+            <% object.errors.full_messages.each do |msg| %>
+                <%= msg %><br>
+            <% end %>
+        </div>
+    <% end %>
 <% end %>

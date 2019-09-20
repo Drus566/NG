@@ -1,0 +1,44 @@
+<% if @like.errors.empty? %>
+
+    var post = document.getElementById('post-<%= @like.likeable.id %>');
+    var post_likes_wrapper = post.querySelector(".post-likes-wrapper");
+
+    var like = post_likes_wrapper.firstElementChild.firstElementChild;
+    var count_like = post_likes_wrapper.firstElementChild.nextElementSibling;
+    var unlike = post_likes_wrapper.lastElementChild.firstElementChild;
+
+    <% if @like.vote == true %>
+        
+        like_path = '<%= post_likes_path(@like.likeable, like: {:vote => true}) %>';
+        like.setAttribute('href', `${like_path}`);
+        like.setAttribute('data-method', 'post');
+        like.parentElement.removeAttribute('class');
+
+        count_like_text = '<%= @like.likeable.count_likes %>';
+        count_like.innerText = count_like_text;
+
+        unlike_path = '<%= post_likes_path(@like.likeable, like: {:vote => false}) %>';
+        unlike.setAttribute('href', `${unlike_path}`);
+        unlike.setAttribute('data-method', 'post');
+
+    <% else %>
+    
+        unlike_path = '<%= post_likes_path(@like.likeable, like: {:vote => false}) %>';
+        unlike.setAttribute('href', `${unlike_path}`);
+        unlike.setAttribute('data-method', 'post');
+        unlike.parentElement.removeAttribute('class');
+
+        count_like_text = '<%= @like.likeable.count_likes %>';
+        count_like.innerText = count_like_text;
+
+        like_path = '<%= post_likes_path(@like.likeable, like: {:vote => true }) %>';
+        like.setAttribute('href', `${like_path}`);
+        like.setAttribute('data-method', 'post');
+
+    <% end %>
+
+<% else %>
+
+<% end %>
+
+   

@@ -8,17 +8,7 @@
                 <% end %>
             </div>
             <div class="post-likes-content-wrapper">
-                <div class="post-likes-wrapper">
-                    <span class="<% if post.likes.where(likeable_type: "Post", user_id: current_user, vote: true) %><%= 'post-likes-voted-true' %><% end %>">
-                        <%= link_to '↑' %>
-                    </span> 
-                    <span>
-                        <%= post.likes.where(vote: true).count - post.likes.where(vote: false).count %>
-                    </span>
-                    <span class="<% if post.likes.where(likeable_type: "Post", user_id: current_user, vote: false) %><%= 'post-likes-voted-true' %><% end %>">
-                        <%= link_to '↓' %>
-                    </span>
-                </div>
+                <%= render 'likes/post_likes', likeable: post %>
                 <div class="post-content-wrapper"><%= post.content %></div>
             </div>
             <div class="post-options-wrapper">

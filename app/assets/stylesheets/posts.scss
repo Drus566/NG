@@ -98,12 +98,15 @@ $post-likes-background-color: rgb(233, 233, 233);
                 span:nth-child(3){
                     background-color: rgb(255, 249, 249);
                 }
-                .post-likes-voted-true{
+                span.post-likes-voted-true{
                     background-color: rgb(205, 255, 205);
                 }
-                .post-likes-voted-false{
+                span.post-likes-voted-false{
                     background-color: rgb(255, 206, 206);
                 }
+                // .post-likes-checkbox-hidden{
+                //     display: none;
+                // }
             }
             .post-content-wrapper{
                 font-size: $post-content-font-size;

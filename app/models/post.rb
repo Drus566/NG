@@ -8,4 +8,16 @@ class Post < ApplicationRecord
   validates :user_id, presence: true
   validates :content, presence: true, length: { maximum: 600 }
   validates :title, length: { maximum: 100 }
+
+  def get_like(current_user)
+    self.likes.find_by(user_id: current_user)
+  end
+
+  def like?(current_user, vote)
+    self.likes.find_by(user_id: current_user, vote: vote) != nil
+  end
+
+  def count_likes
+    self.likes.where(vote: true).count - self.likes.where(vote: false).count
+  end
 end

@@ -1,9 +1,11 @@
 <%= render 'shared/sidebar' %> 
 <div id="session-login-form-wrapper">
     <%= form_for(:session, url: login_path, html: { id: 'session-login-form' }) do |f| %>
-        <% flash.each do |key, value| %>
-            <%= content_tag :div, value, class: "flash #{key}" %>
-        <% end %>
+   
+            <% flash.each do |key, value| %>
+                <%= value %>
+            <% end %>
+    
         <div id="session-login-form-data">
             <%= f.email_field :email, placeholder: 'Почта' %>
             <%= f.password_field :password, placeholder: 'Пароль' %>

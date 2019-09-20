@@ -20,9 +20,8 @@ Rails.application.routes.draw do
         get :reply
       end
     end
-    resources :likes
+    resources :likes, except: [:index, :show]
   end
-  resources :comments
 
   resources :tags
 

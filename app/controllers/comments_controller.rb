@@ -66,7 +66,7 @@ class CommentsController < ApplicationController
             rescue => e
                 logger.error "#{e.class.name} : #{e.message}"
                 @comment = @commentable.comments.build
-                @comment.errors.add(:base, :recordnotfound, message: "That record doesn't exist. Maybe, it is already destroyed")
+                @comment.errors.add(:base, :recordnotfound, message: "Эта запись не существует, возможно удалена")
             end
         end
 
