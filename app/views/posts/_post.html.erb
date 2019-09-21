@@ -2,7 +2,7 @@
     <div class="post-wrapper" id="post-<%= post.id %>">
         <div class="post-main-wrapper">
             <div class="post-info-tags-wrapper">
-                <div class="post-info-wrapper">A <%= post.user.name %>, <%= time_ago_in_words(post.created_at) %></div> 
+                <div class="post-info-wrapper">A <%= post.user.name %>, <%= time_ago_in_words(post.created_at) %> назад</div> 
                 <% if post.tags.any? %>
                     <div class="post-tags-wrapper"><% post.tags.each do |tag| %><%= link_to "##{tag.name}", tag %><% end %></div> 
                 <% end %>

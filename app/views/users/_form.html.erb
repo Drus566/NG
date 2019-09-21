@@ -8,8 +8,8 @@
         <%= f.password_field :password_confirmation, placeholder: 'Подтверждение пароля' %>
     </div>
     <div id="user-new-form-options">
-        <div><%= check_box_tag 'remember' %><%= label_tag "Remember?" %></div>
-        <%= link_to 'Forgot Password?' %>
+        <div><%= check_box_tag 'remember' %><%= label_tag "Запомнить?" %></div>
+        <%= link_to 'Забыли пароль?' %>
     </div>
     <%= f.submit yield(:button_text), id: 'user-new-form-btn' %>
 <% end %>

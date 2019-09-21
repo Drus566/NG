@@ -5,8 +5,9 @@ class User < ApplicationRecord
     has_many :comments, dependent: :destroy
     has_many :likes, dependent: :destroy
 
-    validates :name, presence: true, length: {maximum: 30}
-    validates :email, presence: true, length: { maximum: 50 }, format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i }, uniqueness: { case_sensitive: false }
+    validates :name, presence: true
+    validates :name, length: { in: 2..30 }
+    validates :email, presence: { message: "не может быть пустой" }, length: { maximum: 50 }, format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i }, uniqueness: { case_sensitive: false }
     validates :password, presence: true, length: { minimum: 6 }
 
     attr_accessor :remember_token

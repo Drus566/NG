@@ -15,9 +15,9 @@ class SessionsController < ApplicationController
         format.html { redirect_back_or posts_path }
         format.json { render json: @user }
       else
-     
+        flash[:error] = 'Неверная почта или пароль'
+        format.html { render 'new' }
         format.json { render :json => { error: 'Неверный майл или пароль', status: 400 } }
-        format.js
       end
     end
   end
