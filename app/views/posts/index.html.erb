@@ -1,4 +1,7 @@
 <%= render 'shared/sidebar' %> 
+<div class="flash">
+    <%= render 'shared/flash_messages', attribute: 'success' %>
+</div>
 <div id="posts-wrapper">
     <%= render partial: @posts, spacer_template: "posts/post_spacer" %>
 </div>

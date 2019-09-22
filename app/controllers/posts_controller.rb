@@ -4,7 +4,7 @@ class PostsController < ApplicationController
     include TagsHelper
     before_action :logged_in_user, only: [:create, :destroy, :new, :edit]
     before_action :get_post, only: [:destroy, :edit, :show, :update]
-    # before_action :get_all_tags, only: [:edit, :new]
+    before_action :get_all_tags, only: [:edit, :new, :index]
     before_action :valid_post_resource, only: [:destroy, :edit, :update]
     
     def index 
@@ -22,7 +22,9 @@ class PostsController < ApplicationController
             flash[:success] = "Пост создан"
             redirect_to posts_path
         else
-            render "posts/index"
+            flash[:error] = "Пост неверно заполнен или не заполнен"
+            @tags = Tag.all
+            render 'new'
         end
     end
 
@@ -65,7 +67,7 @@ class PostsController < ApplicationController
 
     def destroy
         @post.destroy 
-
+        flash[:success] = 'Пост удалён'
         respond_to do |format|
             format.html { redirect_to posts_url }
             format.json { head :no_content }

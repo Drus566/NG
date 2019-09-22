@@ -1,24 +1,16 @@
 <%= render 'shared/sidebar' %> 
-<div id="session-login-form-wrapper">
-    <%= form_for(:session, url: login_path, html: { id: 'session-login-form' }) do |f| %>
-        <% if flash[:error] %>
-            <div class="flash-error">
-                <p><%= flash[:error] %></p>
-            </div>
-        <% end %>
-        <% if flash[:warning] %>
-            <div class="flash-warning">
-                <p><%= flash[:warning] %></p>
-            </div>
-        <% end %>
-        <div id="session-login-form-data">
+<div id="form-wrapper">
+    <%= form_for(:session, url: login_path) do |f| %>
+        <%= render 'shared/flash_messages', attribute: 'error' %>
+        <%= render 'shared/flash_messages', attribute: 'warning' %>
+        <div id="form-data">
             <%= f.email_field :email, placeholder: 'Почта' %>
             <%= f.password_field :password, placeholder: 'Пароль' %>
         </div>
-        <div id="session-login-form-options">
+        <div id="form-options">
             <div><%= check_box_tag 'remember' %><%= label_tag "Запомнить?" %></div>
             <%= link_to 'Забыли пароль?' %>
         </div>
-        <%= f.submit "Войти", id: "session-login-form-btn" %>
+        <%= f.submit "Войти", id: "form-btn" %>
     <% end %>
 </div>

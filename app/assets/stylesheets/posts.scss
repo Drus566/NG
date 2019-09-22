@@ -59,12 +59,7 @@ $post-likes-background-color: rgb(233, 233, 233);
             .post-info-wrapper{
                 
             }
-            .post-tags-wrapper{
-                margin-left: 1em;
-                a{
-                    @extend %tags-style;
-                }
-            }
+            
         }
         .post-likes-content-wrapper{
             display: flex;
@@ -138,52 +133,5 @@ $post-likes-background-color: rgb(233, 233, 233);
 
 .post-spacer{
     height: $post-spacer-size;
-}
-
-// post create form
-
-#post-new-wrapper{
-    display: flex;
-    justify-content: center;
-    margin-top: 20vh;
-    form{
-        display: flex;
-        flex-direction: column;
-        width: 50em;
-        background-color: rgb(223, 223, 223);
-        border: 0.1em solid rgb(131, 131, 131);
-        border-radius: 0.2em;
-        #post-form-tags-all {
-            margin: 1em;
-            margin-bottom: 0;
-            padding-bottom: 0.3em;
-            border-bottom: 0.1em solid rgb(143, 143, 143);
-            span{
-                @extend %tags-style;
-            }
-        }
-        #post-form-tags-active{
-            margin: 1em;
-            margin-top: 0.7em;
-            margin-bottom: 0;
-            span{
-                @extend %tags-style;
-            }
-        }
-        textarea{
-            resize: none;
-            font-size: 1.2em;
-            margin: 1em;
-            height: 7em;
-            border: none;
-            border: 0.1em solid rgb(196, 196, 196);
-            border-radius: 0.2em;
-        }
-        #post-form-btn{
-            margin: 0.3em;
-            padding: 0.2em;
-            font-size: 1.2em;
-        }
-    }
 }
 
