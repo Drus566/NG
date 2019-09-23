@@ -25,7 +25,7 @@
         </span>
     <% else %>
         <span>
-            <%= link_to '↓', post_likes_path(likeable, like: {:vote => false}), method: :post, remote: true %>
+            <%= link_to '↓', post_likes_path(likeable, like: { :vote => false }), method: :post, remote: true %>
         </span>
     <% end %>
 </div>

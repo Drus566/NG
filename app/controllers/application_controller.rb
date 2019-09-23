@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    protect_from_forgery with: :exception
+    # protect_from_forgery with: :exception
     include SessionsHelper
 
     private 
@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
         def valid_resource(owner_resource)
             unless user_admin?
                 unless current_user?(owner_resource)
-                    flash[:danger] = "Нельзя совершить операцию!"
+                    flash[:warning] = "Нельзя совершить операцию"
                     redirect_to root_url
                 end
             end
