@@ -2,11 +2,14 @@ ru:
   activerecord:
     models: 
       user: 'Пользователь'
+      post: 'Пост'
     attributes:
       user:
         name: 'Имя'
         password: 'Пароль'
         email: 'Почта'
+      post:
+        content: 'Поле'
     errors:
       messages:
         record_invalid: 'Возникли ошибки: %{errors}'
