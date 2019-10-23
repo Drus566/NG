@@ -1,0 +1,9 @@
+<div class="preview-wrapper" id="preview-<%= article.id %>">
+    <div class="preview-main-wrapper">
+        <div class="preview-image-title-wrapper">
+            <div class="preview-title"><%= link_to article.title, article %></div>
+            <div class="preview-image"><%= article.image %>Здесь картинка</div>
+        </div>
+        <div class="preview-info-wrapper">A <%= article.user.name %>, <%= time_ago_in_words(article.created_at) %> назад</div> 
+    </div>
+</div>

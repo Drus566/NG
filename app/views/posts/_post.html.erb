@@ -1,27 +1,26 @@
-<% unless post.title %>
-    <div class="post-wrapper" id="post-<%= post.id %>">
-        <div class="post-main-wrapper">
-            <div class="post-info-tags-wrapper">
-                <div class="post-info-wrapper">A <%= post.user.name %>, <%= time_ago_in_words(post.created_at) %> назад</div> 
-                <% if post.tags.any? %>
-                    <div class="post-tags-wrapper"><% post.tags.each do |tag| %><%= link_to "##{tag.name}", tag %><% end %></div> 
-                <% end %>
-            </div>
-            <div class="post-likes-content-wrapper">
-                <%= render 'likes/post_likes', likeable: post %>
-                <div class="post-content-wrapper"><%= post.content %></div>
-            </div>
-            <div class="post-options-wrapper">
-                <%= link_to "Р", edit_post_path(post.id) %> 
-                <%= link_to "У", post ,:method => :delete, data: { :confirm => 'Вы уверены?' } %> 
-                <%= link_to "K", new_post_comment_path(post.id), class: 'post-comment-create-link', remote: true %>
-            </div>
+<div class="post-wrapper" id="post-<%= post.id %>">
+    <div class="post-main-wrapper">
+        <div class="post-info-tags-wrapper">
+            <div class="post-info-wrapper">A <%= post.user.name %>, <%= time_ago_in_words(post.created_at) %> назад</div> 
+            <% if post.tags.any? %>
+                <div class="post-tags-wrapper"><% post.tags.each do |tag| %><%= link_to "##{tag.name}", tag %><% end %></div> 
+            <% end %>
         </div>
-        <% if post.comments.any? %>
-            <%= render 'comments/post_comments', commentable: post %> 
-            <div class="post-comment-create">
-                <%= render 'comments/form', comment: post.comments.build %>
-            </div>
-        <% end %>
+        <div class="post-likes-content-wrapper">
+            <%= render 'likes/post_likes', likeable: post %>
+            <div class="post-content-wrapper"><%= post.content %></div>
+        </div>
+        <div class="post-options-wrapper">
+            <%= link_to "Р", edit_post_path(post.id) %> 
+            <%= link_to "У", post ,:method => :delete, data: { :confirm => 'Вы уверены?' } %> 
+            <%= link_to "K", new_post_comment_path(post.id), class: 'post-comment-create-link', remote: true %>
+        </div>
     </div>
-<% end %>
+    <% if post.comments.any? %>
+        <%= render 'comments/post_comments', commentable: post %> 
+        <div class="post-comment-create">
+            <%= render 'comments/form', comment: post.comments.build %>
+        </div>
+    <% end %>
+</div>
+

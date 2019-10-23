@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
+  
   resources :users
 
   resources :posts do
@@ -24,7 +25,7 @@ Rails.application.routes.draw do
   end
 
   resources :tags
-
+  resources :articles
 
 
   # get '/handbook', to: 'welcome#handbook'

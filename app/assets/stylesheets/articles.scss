@@ -1,0 +1,105 @@
+//PRESETS
+//font-size
+$article-content-font-size: 1.25em;
+$article-author-font-size: 1em;
+$article-symbol-font-size: 1.25em;
+$article-time-font-size: 1em; 
+$article-spacer-size: 1.25em;
+
+//font-family
+$article-content-font-family: 1.25em;
+$article-author-font-family: 1em;
+$article-content-font-family: 1em;
+$article-symbol-font-family: 1.25em;
+$article-time-font-font-family: 1em; 
+
+//colors
+$article-background-color: rgb(223, 223, 223);
+$article-likes-background-color: rgb(233, 233, 233);
+
+
+//-------------------------------------------PREVIEW_ARTICLE_--------------------------------------
+#previews-wrapper{
+    margin: 1em;
+    display: flex;
+    flex-direction: row;
+}
+
+.preview-wrapper {
+    margin: 1em;
+    border: 0.1em rgb(158, 158, 158) solid;
+    border-radius: 0.3em;
+    background-color: $article-background-color;
+    height: auto;
+    min-width: 20em;
+}
+
+.preview-main-wrapper{
+    
+}
+
+.preview-image-title-wrapper{
+    
+    min-height: 10em;
+    a{
+        text-decoration: none;
+    }
+}
+
+.preview-image{
+    min-height: 10em;
+    background-color: rgb(245, 250, 255);
+}
+
+.preview-title{
+    padding: 0.3em; 
+}
+
+.preview-info-wrapper{
+    padding: 0.3em;
+    text-align: end;
+}
+
+//-----------------------__ARTICLE--------------------------------------------
+
+.article-wrapper{
+    margin: 2em; 
+    margin-top:3em;   
+    border: 0.1em rgb(158, 158, 158) solid;
+    border-radius: 0.3em;
+    background-color: $article-background-color;
+    height: auto;
+}
+
+.article-main-wrapper{
+    
+}
+
+.article-image-title-wrapper{
+    
+}
+
+.article-image{
+    background-color: rgb(255, 255, 255);
+    min-height: 10em;
+    min-width: 30em;
+    border-bottom: none;
+}
+
+.article-title{
+    
+    text-align: center;
+    padding: 0.5em;
+}
+
+.article-body{
+    min-height: 5em;
+    background-color: rgb(245, 245, 245);
+    font-size: $article-content-font-size;
+    padding: 0.7em;
+}
+
+.article-info-wrapper{
+    padding: 0.5em;
+    text-align: end;
+}

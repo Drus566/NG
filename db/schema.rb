@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_12_105651) do
+ActiveRecord::Schema.define(version: 2019_09_29_050851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "articles", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "image"
+    t.index ["user_id", "created_at"], name: "index_articles_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_articles_on_user_id"
+  end
 
   create_table "catalog_items", force: :cascade do |t|
     t.string "name", null: false
@@ -63,12 +74,10 @@ ActiveRecord::Schema.define(version: 2019_09_12_105651) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string "title"
     t.text "content"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "news", default: false
     t.index ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
@@ -93,8 +102,10 @@ ActiveRecord::Schema.define(version: 2019_09_12_105651) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
     t.string "remember_digest"
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "articles", "users"
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "users"
   add_foreign_key "posts", "users"

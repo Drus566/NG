@@ -1,6 +1,4 @@
-// Place all the styles related to the Posts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
 //dev options
 %dev-border {
     border: 0.1em double rgba(129, 129, 129, 0.466);
@@ -15,20 +13,22 @@
     margin-left: 0.2em;
 }
 
-//presets
-//fonts
+//PRESETS
+//font-size
 $post-content-font-size: 1.25em;
 $post-author-font-size: 1em;
 $post-symbol-font-size: 1.25em;
 $post-time-font-size: 1em; 
 $post-spacer-size: 1.25em;
 
+//font-family
 $post-content-font-family: 1.25em;
 $post-author-font-family: 1em;
 $post-content-font-family: 1em;
 $post-symbol-font-family: 1.25em;
 $post-time-font-font-family: 1em; 
 
+//colors
 $post-background-color: rgb(223, 223, 223);
 $post-likes-background-color: rgb(233, 233, 233);
 
@@ -99,9 +99,7 @@ $post-likes-background-color: rgb(233, 233, 233);
                 span.post-likes-voted-false{
                     background-color: rgb(255, 206, 206);
                 }
-                // .post-likes-checkbox-hidden{
-                //     display: none;
-                // }
+                
             }
             .post-content-wrapper{
                 font-size: $post-content-font-size;

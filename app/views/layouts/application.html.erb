@@ -17,7 +17,7 @@
         <span>LOGO</span>
         <div id="header-nav">
             <%= link_to "Главная" %>
-            <%= link_to "Новости" %>
+            <%= link_to "Новости", controller: 'articles', action: 'index' %>
             <%= link_to "Посты", controller: 'posts', action: 'index' %>
             <%= link_to "Справочник" %>
         </div>

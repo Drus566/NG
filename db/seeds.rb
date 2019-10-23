@@ -155,6 +155,7 @@ dolphin.catalogs << sport
 
 #Create news ..mayby soon deprecated
 user = User.first
-news = user.posts.create(title: "Первая новость", content: "Это первая проверочная новость", news: true)
+user.articles.create(title: "Первая новость", body: "Это первая проверочная новость")
+user.articles.create(title: "Вторая новость", body: "Это вторая проверочная новость")
 
 puts "Database was successfull seeded"

@@ -7,7 +7,7 @@ class Post < ApplicationRecord
   default_scope -> { order(created_at: :desc) }
   validates :user_id, presence: true
   validates :content, presence: true, length: { maximum: 600 }
-  validates :title, length: { maximum: 100 }
+
 
   def get_like(current_user)
     self.likes.find_by(user_id: current_user)

@@ -1,14 +1,8 @@
 @import 'tags';
+@import 'form_body';
 
 #tags-wrapper{
-    width: 45em;
-    min-height: 10em;
-    margin: 0 auto;
-    margin-top: 20vh;
-    margin-bottom: 3em;
-    background-color: rgb(230, 230, 230);
-    border: 0.1em solid rgb(124, 124, 124);
-    border-radius: 0.4em;
+    @extend %form-body;
     #tags{
         width: 45em;
         display: flex;

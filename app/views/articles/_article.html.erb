@@ -1,0 +1,11 @@
+<div class="article-wrapper" id="article-<%= article.id %>">
+    <div class="article-main-wrapper">
+        <div class="article-image-title-wrapper">
+            <div class="article-title"><%= article.title %></div>
+            <div class="article-image"><%= article.image %>Здесь картинка</div>
+            
+        </div>
+        <div class="article-body"><%= article.body %></div>
+        <div class="article-info-wrapper">A <%= article.user.name %>, <%= time_ago_in_words(article.created_at) %> назад</div> 
+    </div>
+</div>
