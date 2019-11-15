@@ -2,3 +2,82 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+//user-show
+#user-account-wrapper{
+    margin: 2em; 
+    margin-top:1.5em;   
+    border: 0.1em rgb(158, 158, 158) solid;
+    border-radius: 0.3em;
+    background-color: rgb(224, 224, 224);
+    height: auto;
+}
+
+#user-account-info{
+    background-color: rgb(247, 247, 247);
+    padding: 1em;
+    border: 0.1em solid rgb(180, 180, 180);
+    border-radius:  0.3em;
+}
+
+#user-account-menu-actions{
+    background-color: rgb(247, 247, 247);
+    padding: 1em;
+    border: 0.1em solid rgb(180, 180, 180);
+    border-radius:  0.3em;
+    text-decoration: none;
+    ul{
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        
+    }
+}
+
+#user-account-main-wrapper{
+    display: flex;
+    margin: 1em;
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+    align-content: space-between;
+    justify-content: space-evenly;
+}
+
+#user-account-content-wrapper{
+    background-color: rgb(202, 191, 191);
+
+    border-top: 0.1em solid rgb(235, 235, 235);
+    padding-bottom: 1em;
+}
+// .article-main-wrapper{
+    
+// }
+
+// .article-image-title-wrapper{
+    
+// }
+
+// .article-image{
+//     background-color: rgb(255, 255, 255);
+//     min-height: 10em;
+//     min-width: 30em;
+//     border-bottom: none;
+// }
+
+// .article-title{
+    
+//     text-align: center;
+//     padding: 0.5em;
+// }
+
+// .article-body{
+//     min-height: 5em;
+//     background-color: rgb(245, 245, 245);
+//     font-size: $article-content-font-size;
+//     padding: 0.7em;
+// }
+
+// .article-info-wrapper{
+//     padding: 0.5em;
+//     text-align: end;
+// }

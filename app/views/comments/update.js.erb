@@ -13,7 +13,6 @@
     var post_comment_update_parse = new DOMParser().parseFromString(post_comment_update, "text/html");
     
     var post_comment_update_body = post_comment_update_parse.querySelector('.post-comment-body');
-    console.log(post_comment_update_body);
 
     var post_comment_body = post_comment.querySelector('.post-comment-body');
     post_comment_body.replaceWith(post_comment_update_body);

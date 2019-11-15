@@ -11,8 +11,14 @@ Rails.application.routes.draw do
 
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
-  
-  resources :users
+
+  resources :users do 
+    member do 
+      get :get_articles
+      get :get_liked_posts
+      get :get_posts
+    end
+  end
 
   resources :posts do
     resources :comments, except: [:index, :show] do
