@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   end
 
   resources :tags
+  # News
   resources :articles
 
 
@@ -32,8 +33,6 @@ Rails.application.routes.draw do
 
   # get '/submit_news', to: 'news_items#new'
   # get '/submit_post', to: 'microposts#new'
-
-  # resources :tags 
 
   # mount ActionCable.server => '/cable'
 end

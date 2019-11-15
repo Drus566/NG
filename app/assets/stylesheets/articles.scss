@@ -23,6 +23,9 @@ $article-likes-background-color: rgb(233, 233, 233);
     margin: 1em;
     display: flex;
     flex-direction: row;
+    flex-flow: row wrap;
+    align-content: space-between;
+    justify-content: space-evenly;
 }
 
 .preview-wrapper {
