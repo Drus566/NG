@@ -1,13 +1,17 @@
 module TagsHelper
 
+    # сплитим строку
     def split_string(str)
+        # если есть строка
         if str
+            # если строка не пустая
             unless str.empty? 
                 str = str.split(',')
             end
         end
     end
-
+    
+    # обновление постов тега
     def post_tags_update(new_tags, post)
         # находим старые теги поста
         @old_tags = post.tags
@@ -31,10 +35,14 @@ module TagsHelper
         end
     end
 
+    # добавление тегов
     def post_tags_add(tags, post)
+        # если теги не массив 
         unless tags.kind_of?(Array)
+            # то сплитим теги
             tags = split_string(tags)
         end
+        # если теги есть 
         if tags
             @adding_tags = Tag.find(tags)
             # добавляем

@@ -1,9 +1,12 @@
 module SessionsHelper
+
+    # вход пользователя
     def log_in(user)
         # Записывает в переменную сессии айди пользователя
         session[:user_id] = user.id
     end
 
+    # возвращает текущего пользователя
     def current_user
         # Если существует в переменной сессии айди пользователя, то текущий пользователь
         # равен текущему пользователю, если он существовал до этого, либо равен пользователю 
@@ -24,6 +27,7 @@ module SessionsHelper
         end
     end
 
+    # проверка пользователя на текущего
     def current_user?(user)
         user == current_user
     end
@@ -51,6 +55,7 @@ module SessionsHelper
         !current_user.nil?
     end
 
+    # проверка на админа
     def user_admin?
         current_user.email == "ahdpeu566@mail.ru"
     end
@@ -67,5 +72,25 @@ module SessionsHelper
         user.remember
         cookies.permanent.signed[:user_id] = user.id
         cookies.permanent[:remember_token] = user.remember_token
+    end
+
+    #  Проверка вошел ли пользователь? 
+    def logged_in_user
+        # 
+        unless logged_in?
+            store_location
+            flash[:warning] = "Пожалуйста залогиньтесь"
+            redirect_to login_url
+        end
+    end
+
+    # проверка пользователя имеет ли он право использовать ресурс
+    def valid_resource(owner_resource)
+        unless user_admin?
+            unless current_user?(owner_resource)
+                flash[:warning] = "Нельзя совершить операцию"
+                redirect_to root_url
+            end
+        end
     end
 end

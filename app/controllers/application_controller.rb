@@ -1,23 +1,4 @@
 class ApplicationController < ActionController::Base
-    # protect_from_forgery with: :exception
+    protect_from_forgery with: :exception
     include SessionsHelper
-
-    private 
-
-        def logged_in_user
-            unless logged_in?
-                store_location
-                flash[:warning] = "Пожалуйста залогиньтесь"
-                redirect_to login_url
-            end
-        end
-
-        def valid_resource(owner_resource)
-            unless user_admin?
-                unless current_user?(owner_resource)
-                    flash[:warning] = "Нельзя совершить операцию"
-                    redirect_to root_url
-                end
-            end
-        end
 end
