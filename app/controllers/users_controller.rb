@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
     before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
     before_action :correct_user, only: [:edit, :update]
-    before_action :set_user, only: [:get_articles, :get_liked_posts, :get_posts]
+    before_action :set_user, only: [:get_articles, :get_liked_posts, :get_posts, :get_posts_comments]
 
     def index
         @users = User.all
@@ -11,6 +11,7 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         @posts = @user.posts
         @article = @user.articles
+        @comment = @user.comments
     end
 
     def new
@@ -48,6 +49,10 @@ class UsersController < ApplicationController
 
     def get_posts
         @posts = @user.posts
+    end
+    
+    def get_posts_comments
+        @posts_comments = @user.comments
     end
 
     def get_liked_posts

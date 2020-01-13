@@ -4,6 +4,15 @@
         <%= render 'shared/flash_messages', attribute: 'success' %>
     </div>
 <% end %>
+<div id="tags-search">
+    <%= form_tag results_path, method: :get, role: 'search', remote: true do %>
+        <%= text_field_tag :query, params[:query] %>
+        <%= submit_tag "Искать", name: nil %>
+    <% end %>
+    <div id="tags-enum">
+        <%= render partial: 'tags/posts_tags', local: @tags %>
+    </div>
+</div>
 <div id="posts-wrapper">
     <%= render partial: @posts, spacer_template: "posts/post_spacer" %>
 </div>

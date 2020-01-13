@@ -38,4 +38,8 @@ class TagsController < ApplicationController
             end
         end
     end
+
+    def results
+        @tags = Tag.where("name ILIKE ?", '%' + params[:query] + '%') 
+    end
 end

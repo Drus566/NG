@@ -1,0 +1,9 @@
+<% if @tags %>
+
+    var tags_enum = document.getElementById("tags-enum");
+    var tags = "<%= j render(partial: 'tags/posts_tags', local: @tags) %>"
+    tags_enum.innerHTML = tags;
+
+<% else %>
+    
+<% end %>

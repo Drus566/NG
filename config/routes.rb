@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       get :get_articles
       get :get_liked_posts
       get :get_posts
+      get :get_posts_comments
     end
   end
 
@@ -34,6 +35,7 @@ Rails.application.routes.draw do
   # News
   resources :articles
 
+  get 'results', to: 'tags#results', as: 'results'
 
   # get '/handbook', to: 'welcome#handbook'
 

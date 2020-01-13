@@ -13,9 +13,10 @@
         </div>
         <div id="user-account-menu-actions">
             <ul>
-                <li><%= link_to 'Мои посты', [:get_posts, @user], remote: :true %></li>
-                <li><%= link_to 'Мои новости', [:get_articles, @user], remote: :true %></li>
+                <li><%= link_to 'Посты', [:get_posts, @user], remote: :true %></li>
+                <li><%= link_to 'Новости', [:get_articles, @user], remote: :true %></li>
                 <li><%= link_to 'Понравившиеся посты', [:get_liked_posts, @user], remote: :true %></li>
+                <li><%= link_to 'Комментарии', [:get_posts_comments, @user], remote: :true %></li>
             </ul>
         </div>
     </div>
