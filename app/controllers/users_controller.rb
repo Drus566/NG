@@ -43,6 +43,8 @@ class UsersController < ApplicationController
         end 
     end
 
+    # ---------- профиль -------------
+
     def get_articles 
         @articles = @user.articles
     end
@@ -61,14 +63,9 @@ class UsersController < ApplicationController
     end
 
     private 
-        
+        # параметры юзера при создании
         def user_params
             params.require(:user).permit(:name, :email, :password, :password_confirmation)
-        end
-
-        def correct_user
-            @user = User.find(params[:id])
-            redirect_to(root_url) unless current_user?(@user)
         end
 
         def set_user

@@ -1,4 +1,5 @@
 module SessionsHelper
+    include AuthorityHelper
 
     # вход пользователя
     def log_in(user)
@@ -27,11 +28,6 @@ module SessionsHelper
         end
     end
 
-    # проверка пользователя на текущего
-    def current_user?(user)
-        user == current_user
-    end
-
     # Перенаправляет на предыдущую сохраненную локацию либо на дефолтную
     def redirect_back_or(default)
         redirect_to(session[:forwarding_url] || default)
@@ -50,16 +46,6 @@ module SessionsHelper
         cookies.delete(:remember_token)
     end
 
-    # Проверка вошел ли пользователь, т.е. является ли текущем пользователем
-    def logged_in?
-        !current_user.nil?
-    end
-
-    # проверка на админа
-    def user_admin?
-        current_user.email == "ahdpeu566@mail.ru"
-    end
-
     # Выходит из сессии, удаляет запоминающий токен из бд, очищает текущего пользователя, удаляет сессию
     def log_out
         forget(current_user)
@@ -74,23 +60,15 @@ module SessionsHelper
         cookies.permanent[:remember_token] = user.remember_token
     end
 
-    #  Проверка вошел ли пользователь? 
-    def logged_in_user
-        # 
-        unless logged_in?
-            store_location
-            flash[:warning] = "Пожалуйста залогиньтесь"
-            redirect_to login_url
-        end
+    ### ------ Проверки ----------- ###
+
+    # Проверка вошел ли пользователь, т.е. является ли текущем пользователем
+    def logged_in?
+        !current_user.nil?
     end
 
-    # проверка пользователя имеет ли он право использовать ресурс
-    def valid_resource(owner_resource)
-        unless user_admin?
-            unless current_user?(owner_resource)
-                flash[:warning] = "Нельзя совершить операцию"
-                redirect_to root_url
-            end
-        end
+    # проверка пользователя на текущего
+    def current_user?(user)
+        user == current_user
     end
 end

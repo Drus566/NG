@@ -1,6 +1,8 @@
 class CommentsController < ApplicationController
     before_action :set_commentable
     before_action :set_comment, only: [:reply, :edit, :update, :destroy]
+    before_action :logged_in_user, only: [:create, :destroy, :new, :edit]
+    before_action :valid_comment_resource, only: [:destroy, :edit, :update]
 
     def reply
         @reply = @commentable.comments.build(parent: @comment)
@@ -72,5 +74,9 @@ class CommentsController < ApplicationController
 
         def comment_params
             params.require(:comment).permit(:content, :parent_id)
+        end
+
+        def valid_comment_resource
+            valid_resource(@comment.user)
         end
 end

@@ -1,11 +1,9 @@
 class ArticlesController < ApplicationController
 
-    # before_action :logged_in_user, only: [:create, :destroy, :new, :edit]
-    # before_action :get_post, only: [:destroy, :edit, :show, :update]
-    # before_action :get_all_tags, only: [:edit, :new, :index]
-    # before_action :valid_post_resource, only: [:destroy, :edit, :update]
-    
+    before_action :logged_in_user, only: [:create, :destroy, :new, :edit]
     before_action :get_article, only: [:destroy, :edit, :show, :update]
+    before_action :valid_article_resource, only: [:destroy, :edit, :update]
+
     def index
         @articles = Article.all
     end
@@ -31,12 +29,15 @@ class ArticlesController < ApplicationController
     end 
 
     def edit
+
     end
 
     def update
+
     end
     
     def destroy 
+
     end
 
     private 
@@ -49,22 +50,8 @@ class ArticlesController < ApplicationController
             params.require(:article).permit(:body, :title)
         end
 
-
-
-        # def get_post
-        #     @post = Post.find(params[:id])
-        # end
-
-        # def post_params
-        #     params.require(:post).permit(:content)
-        # end
-
-        # def valid_post_resource
-        #     valid_resource(@post.user)
-        # end
-
-        # def get_all_tags
-        #     @all_tags = Tag.all
-        # end
+        def valid_article_resource
+            valid_resource(@article.user)
+        end
 
 end
