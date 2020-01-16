@@ -1,37 +1,26 @@
-// Visit The Stimulus Handbook for more details 
-// https://stimulusjs.org/handbook/introduction
-// 
-// This example controller works with specially annotated HTML like:
-//
-// <div data-controller="hello">
-//   <h1 data-target="hello.output"></h1>
-// </div>
-
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-    static targets = [ "postCreateForm" ]
 
-    connect() {
+    // static targets = [ "commentForm" ]
 
-    }
-
-    createPostCommentForm(event) {
-        // console.log(e.target.dataset.postCreateCommentForm);
-        let [data, status, xhr] = event.detail
+    createCommentForm(event) {
         let post = this.element
-        let postCommentCreate = post.getElementsByClassName("post-comment-create")
-        if (postCommentCreate.length <= 0) {
-                
+        let postCommentForm = post.getElementsByClassName("post-comment-form")
+        if (postCommentForm.length <= 0) {
+            let [data, status, xhr] = event.detail
+            post.innerHTML += xhr.response
         } 
-        if (postCreateFormTarget != null) {
-            console.log("YAEps")
-        }else{
-            console.log("GGWP")
-        }
     }
 
-    ajaxLoad() {
-        let token = document.getElementsByName('csrf-token')[0].content
+    deleteCommentForm() {
+        let post = this.element
+        let postCommentForm = post.getElementsByClassName("post-comment-form")
+        // this.commentFormTarget.element.remove
+        if (postCommentForm.length > 0) { 
+            for (let i = 0; i < postCommentForm.length; i++){
+                postCommentForm[i].remove()
+            }
+        }
     }
 }

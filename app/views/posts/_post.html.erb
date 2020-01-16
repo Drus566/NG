@@ -1,9 +1,11 @@
-<div class="post-wrapper" data-controller="post" data-target="post.postCreateForm" id="post-<%= post.id %>">
+<div class="post-wrapper" data-controller="post" id="post-<%= post.id %>">
     <div class="post-main-wrapper">
         <div class="post-info-tags-wrapper">
             <div class="post-info-wrapper">Ⓐ <%= link_to post.user.name, post.user, class: "post-user" %>, <%= time_ago_in_words(post.created_at) %> назад</div> 
             <% if post.tags.any? %>
-                <div class="post-tags-wrapper"><% post.tags.each do |tag| %><%= link_to "#{tag.name}", tag %><% end %></div> 
+                <div class="post-tags-wrapper">
+                    <%= render partial: 'tags/tags', collection: post.tags, as: :tag %>
+                </div> 
             <% end %>
         </div>
         <div class="post-content-wrapper"><%= post.content %></div>
@@ -15,21 +17,17 @@
                     new_post_comment_path(post.id), 
                     remote: true,
                     data: { 
-                        :action => "ajax:success->post#createPostCommentForm", 
+                        :action => "ajax:success->post#createCommentForm", 
                         :type => "html"
                     }
                 %>
-                <%# <%= link_to "Ⓚ", '#', data: { :action => "click->post#createPostCommentForm" } %> %>
-                <%# <%= link_to "Ⓚ", new_post_comment_path(post.id), class: 'post-comment-create-link', remote: true %> %>
             </div>
             <%= render 'likes/likes', likeable: post %>
         </div>
     </div>
     <% if post.comments.any? %>
         <%= render 'comments/comments', commentable: post %> 
-        <div class="post-comment-form">
-            <%= render 'comments/form', comment: post.comments.build %>
-        </div>
+        <%= render template: 'comments/new', object: @new_comment = post.comments.build %>
     <% end %>
 </div>
 

@@ -1,11 +1,36 @@
-<div class="comment-tree" id="comment-<%= comment.id %>">
+<div class="comment-tree" id="comment-<%= comment.id %>" data-controller="comment">
     <div class="comment-body">
         <div class="comment-info">Ⓐ <%= link_to comment.user.name, comment.user, class: "comment-user" %> <%= time_ago_in_words(comment.created_at) %> назад</div>
         <div class="comment-content"><%= comment.content %></div>      
         <div class="comment-options">
-            <%= link_to 'Ⓟ', edit_polymorphic_path([comment.commentable, comment]), class: 'comment-edit-link', data: { disable_with: '⌛' }, remote: true %>
-            <%= link_to 'ⓨ', [comment.commentable, comment], method: :delete, class: 'comment-delete-link', data: { disable_with: '⌛' , confirm: 'Вы уверены?' }, remote: true %>
-            <%= link_to 'Ⓞ', polymorphic_path([:reply, comment.commentable, comment]), class: 'comment-create-link', data: { disable_with: '⌛' }, remote: true %>
+            <%= link_to 'Ⓟ', 
+                edit_polymorphic_path([comment.commentable, comment]), 
+                remote: true,
+                data: { 
+                    :disable_with => '⌛',
+                    :action => 'ajax:success->comment#editCommentForm', 
+                    :type => 'html'
+                } 
+            %>
+            <%= link_to 'ⓨ', 
+                [comment.commentable, comment], 
+                method: :delete,  
+                remote: true,
+                data: { 
+                    :disable_with => '⌛',
+                    :confirm => 'Вы уверены?', 
+                    :action => 'ajax:success->comment#deleteComment' 
+                } 
+            %>
+            <%= link_to 'Ⓞ', 
+                polymorphic_path([:reply, comment.commentable, comment]),  
+                remote: true,
+                data: { 
+                    :disable_with => '⌛', 
+                    :action => 'ajax:success->comment#replyCommentForm', 
+                    :type => 'html'
+                }
+            %>
             <%= hidden_field_tag :comment_link, "/posts/#{comment.commentable.id}/comments/#{comment.id}" %>
         </div>
     </div>

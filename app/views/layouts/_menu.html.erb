@@ -5,7 +5,7 @@
             <%= submit_tag "Искать", name: nil %>
         <% end %>
         <div id="tags-enum">
-            <%= render partial: 'tags/posts_tags', local: @tags %>
+            <%= render partial: 'tags/tags', collection: @tags, as: :tag %>
         </div>
     </div>
 </div>
