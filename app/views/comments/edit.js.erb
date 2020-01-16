@@ -7,7 +7,7 @@
     var post_comment_form = "<%= j render('comments/edit_form', comment: @comment) %>";
 
     var post_comment_create = document.createElement('div');
-    post_comment_create.className = 'post-comment-create';
+    post_comment_create.className = 'post-comment-reply';
     post_comment_create.innerHTML = post_comment_form;
 
     var post_comment_body = post_comment.querySelector('.post-comment-body');

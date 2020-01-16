@@ -1,0 +1,11 @@
+<div id="menu">
+    <div id="tags-search">
+        <%= form_tag results_path, method: :get, role: 'search', remote: true do %>
+            <%= text_field_tag :query, params[:query] %>
+            <%= submit_tag "Искать", name: nil %>
+        <% end %>
+        <div id="tags-enum">
+            <%= render partial: 'tags/posts_tags', local: @tags %>
+        </div>
+    </div>
+</div>

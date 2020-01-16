@@ -1,11 +1,10 @@
-
-<div class="post-comment-form">
+<div class="comment-form">
   <%= form_for [comment.commentable, comment], remote: true do |f| %>
     <%= f.hidden_field :parent_id %>
     <%= f.text_area :content, label: false, placeholder: (f.object.parent_id.nil? ? 'Напишите комментарий...' : 'Ответить...') %>
-    <div class="float-right">
-        <%= f.submit class: 'post-comment-btn', data: { disable_with: 'Загрузка' } %>
-        <span class='post-comment-form-close' data-reply = '<%= comment.parent_id.present? %>'>Закрыть</span>
+    <div class="comment-options">
+        <%= f.submit class: 'comment-btn', data: { disable_with: 'Загрузка' } %>
+        <span class='comment-form-close' data-reply = '<%= comment.parent_id.present? %>'>✖</span>
     </div>
   <% end %>
 </div>

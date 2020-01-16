@@ -1,36 +1,36 @@
-%post-tag{
-    margin-left: 0.1em;
-    background-color: white;
-    border: 0.1em solid rgb(177, 177, 177);
-}
+// %post-tag{
+//     margin-left: 0.1em;
+//     background-color: white;
+//     border: 0.1em solid rgb(177, 177, 177);
+// }
 
-%post-tags{
-    margin: 1em;
-    margin-bottom: 0;
-    padding-bottom: 0.3em;
-}
+// %post-tags{
+//     margin: 1em;
+//     margin-bottom: 0;
+//     padding-bottom: 0.3em;
+// }
 
-#post-form-tags-all {
-    @extend %post-tags;
-    border-bottom: 0.1em solid rgb(143, 143, 143);
-    span{
-        @extend %post-tag;
-    }
-}
+// #post-form-tags-all {
+//     @extend %post-tags;
+//     border-bottom: 0.1em solid rgb(143, 143, 143);
+//     span{
+//         @extend %post-tag;
+//     }
+// }
 
-#post-form-tags-active{
-    margin-top: 0.5em;
-    @extend %post-tags;
-    span{
-        @extend %post-tag;
-    }
-}
+// #post-form-tags-active{
+//     margin-top: 0.5em;
+//     @extend %post-tags;
+//     span{
+//         @extend %post-tag;
+//     }
+// }
 
-.post-tags-wrapper{
-    margin: 0;
-    @extend %post-tags;
-    a{
-        margin-left: 0.3em;
-        @extend %post-tag;
-    }
-}
+// .post-tags-wrapper{
+//     margin: 0;
+//     @extend %post-tags;
+//     a{
+//         margin-left: 0.3em;
+//         @extend %post-tag;
+//     }
+// }

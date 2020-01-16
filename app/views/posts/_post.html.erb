@@ -1,24 +1,33 @@
-<div class="post-wrapper" id="post-<%= post.id %>">
+<div class="post-wrapper" data-controller="post" data-target="post.postCreateForm" id="post-<%= post.id %>">
     <div class="post-main-wrapper">
         <div class="post-info-tags-wrapper">
-            <div class="post-info-wrapper">A <%= link_to post.user.name, post.user, class: "post-user" %>, <%= time_ago_in_words(post.created_at) %> назад</div> 
+            <div class="post-info-wrapper">Ⓐ <%= link_to post.user.name, post.user, class: "post-user" %>, <%= time_ago_in_words(post.created_at) %> назад</div> 
             <% if post.tags.any? %>
-                <div class="post-tags-wrapper"><% post.tags.each do |tag| %><%= link_to "##{tag.name}", tag %><% end %></div> 
+                <div class="post-tags-wrapper"><% post.tags.each do |tag| %><%= link_to "#{tag.name}", tag %><% end %></div> 
             <% end %>
         </div>
-        <div class="post-likes-content-wrapper">
-            <%= render 'likes/post_likes', likeable: post %>
         <div class="post-content-wrapper"><%= post.content %></div>
-        </div>
-        <div class="post-options-wrapper">
-            <%= link_to "Р", edit_post_path(post.id) %> 
-            <%= link_to "У", post ,:method => :delete, data: { :confirm => 'Вы уверены?' } %> 
-            <%= link_to "K", new_post_comment_path(post.id), class: 'post-comment-create-link', remote: true %>
+        <div class="post-options-likes-wrapper">
+            <div class="post-options-wrapper">
+                <%= link_to "Ⓟ", edit_post_path(post.id) %> 
+                <%= link_to "ⓨ", post , :method => :delete, data: { :confirm => 'Вы уверены?' } %> 
+                <%= link_to "Ⓚ", 
+                    new_post_comment_path(post.id), 
+                    remote: true,
+                    data: { 
+                        :action => "ajax:success->post#createPostCommentForm", 
+                        :type => "html"
+                    }
+                %>
+                <%# <%= link_to "Ⓚ", '#', data: { :action => "click->post#createPostCommentForm" } %> %>
+                <%# <%= link_to "Ⓚ", new_post_comment_path(post.id), class: 'post-comment-create-link', remote: true %> %>
+            </div>
+            <%= render 'likes/likes', likeable: post %>
         </div>
     </div>
     <% if post.comments.any? %>
-        <%= render 'comments/post_comments', commentable: post %> 
-        <div class="post-comment-create">
+        <%= render 'comments/comments', commentable: post %> 
+        <div class="post-comment-form">
             <%= render 'comments/form', comment: post.comments.build %>
         </div>
     <% end %>

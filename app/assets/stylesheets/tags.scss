@@ -1,27 +1,27 @@
-// Place all the styles related to the tags controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-//presets
-$tags-font-size: 1em;
+// // Place all the styles related to the tags controller here.
+// // They will automatically be included in application.css.
+// // You can use Sass (SCSS) here: http://sass-lang.com/
+// //presets
+// $tags-font-size: 1em;
 
-#tags {
-    display: flex;
-    flex-direction: row;
-    font-size: $tags-font-size;
-}
+// #tags {
+//     display: flex;
+//     flex-direction: row;
+//     font-size: $tags-font-size;
+// }
 
-#tags-index-wrapper {
-    margin-top: 25vh;  
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    a{
-        font-size: 1.4em;
-        margin: 0.8em;
-        background-color: rgb(253, 247, 255);
-        border: 0.1em solid rgb(196, 183, 255);
-        border-radius: 0.2em;
-        color: #1d1d1d;
-    }
-}
+// #tags-index-wrapper {
+//     margin-top: 25vh;  
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: center;
+//     a{
+//         font-size: 1.4em;
+//         margin: 0.8em;
+//         background-color: rgb(253, 247, 255);
+//         border: 0.1em solid rgb(196, 183, 255);
+//         border-radius: 0.2em;
+//         color: #1d1d1d;
+//     }
+// }
     

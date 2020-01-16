@@ -1,34 +1,38 @@
 <!DOCTYPE html>
+
 <html>
-  <head>
-    <title>NG</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'post_comment', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'post_form_tags', 'data-turbolinks-track': 'reload' %>
-  </head>
+    <head>
 
-  <body>
-    <div id="common-container">
-      <div id="header-wrapper">
-        <span>LOGO</span>
-        <div id="header-nav">
-            <%= link_to "Главная" %>
-            <%= link_to "Новости", controller: 'articles', action: 'index' %>
-            <%= link_to "Посты", controller: 'posts', action: 'index' %>
-            <%= link_to "Справочник" %>
+        <title>NG</title>
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
+
+        <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_pack_tag 'post_comment', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_pack_tag 'post_form_tags', 'data-turbolinks-track': 'reload' %>
+
+    </head>
+
+    <body>
+
+        <div id="common">
+
+            <%= render 'layouts/header' %>
+
+              <main id="main">
+
+                  <%= render 'layouts/menu' %>
+
+                  <div id="content"><%= yield %></div>
+
+                  <%= render 'layouts/chat' %>
+                
+              </main>
+
         </div>
-        <div id="header-spacer-nav"></div>
-      </div>
-      <div id="content-wrapper">
-        <%= yield %>
-      </div>
-      <div id="footer-wrapper">
-        
-      </div>
-    </div>
-  </body>
+
+    </body>
+
 </html>

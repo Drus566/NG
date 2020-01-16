@@ -44,6 +44,11 @@ class CommentsController < ApplicationController
 
     def new
         @new_comment = @commentable.comments.build
+        if @new_comment.errors.any?
+            # render partial: 'error', comment: @comment, status: :bad_request
+        else 
+            render partial: 'comments/form', comment: @new_comment
+        end
     end
 
     def destroy

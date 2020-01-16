@@ -4,15 +4,15 @@
     post_comment.querySelector(".post-comment-edit-link").removeAttribute("href");
     post_comment.querySelector(".post-comment-create-link").removeAttribute("href");
    
-    var post_comment_create = document.createElement("div");
-    post_comment_create.className = 'post-comment-create';
+    var post_comment_reply = document.createElement("div");
+    post_comment_reply.className = 'post-comment-reply';
     
     var post_comment_form = "<%=j render('comments/form', comment: @reply) %>";
         
-    post_comment_create.innerHTML = post_comment_form;
+    post_comment_reply.innerHTML = post_comment_form;
 
     var post_comment_body = post_comment.querySelector('.post-comment-body');
-    post_comment_body.after(post_comment_create);
+    post_comment_body.after(post_comment_reply);
 
 <% else %>
     
