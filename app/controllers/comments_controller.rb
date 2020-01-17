@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
 
     def reply
         @reply = @commentable.comments.build(parent: @comment)
+        render layout: false
     end
 
     def create
@@ -25,7 +26,7 @@ class CommentsController < ApplicationController
     end
 
     def edit 
-        
+        render layout: false
     end
 
     def update 

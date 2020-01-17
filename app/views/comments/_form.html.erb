@@ -2,12 +2,12 @@
     <%= form_for [comment.commentable, comment], remote: true do |f| %>
         <%= f.hidden_field :parent_id %>
         <%= f.text_area :content, label: false, placeholder: (f.object.parent_id.nil? ? 'Напишите комментарий...' : 'Ответить...') %>
-        <div class="comment-options">
+        <div class="comment-options" data-target="comment.formInfo" data-info="closed">
             <%= f.submit class: 'comment-btn', data: { disable_with: 'Загрузка' } %>
-            <span <% unless f.object.parent_id.present? %>
+            <span <% if f.object.parent_id.nil? && f.object.id.nil? %>
                       data-action="click-><%= comment.commentable.class.to_s.downcase %>#deleteCommentForm">
                   <% else %>
-                      data-action="click->reply#deleteCommentForm">
+                      data-action="click->comment#deleteCommentForm">
                   <% end %>
             ✖</span>
         </div>
