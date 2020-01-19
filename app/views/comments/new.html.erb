@@ -1,3 +1,4 @@
-<div class="<%= @new_comment.commentable.class.to_s.downcase %>-comment-form">
+
+<div class="post-comment-form">
     <%= render partial: 'comments/form', locals: { comment: @new_comment } %>
 </div>

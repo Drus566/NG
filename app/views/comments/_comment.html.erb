@@ -18,8 +18,8 @@
                 remote: true,
                 data: { 
                     :disable_with => '⌛',
-                    :confirm => 'Вы уверены?', 
-                    :action => 'ajax:success->comment#deleteComment' 
+                    :confirm => 'Вы уверены?',
+                    :action => "ajax:success->#{comment.parent_id.nil? ? comment.commentable.class.to_s.downcase : "comment"}#deleteComment" 
                 } 
             %>
             <%= link_to 'Ⓞ', 
@@ -34,9 +34,12 @@
             <%= hidden_field_tag :comment_link, "/posts/#{comment.commentable.id}/comments/#{comment.id}" %>
         </div>
     </div>
-    <% if comment.replies.any? %>
-        <ul class="comments-replies">
-            <%= render :partial => "comments/comment", :collection => comment.replies, :as => :comment, spacer_template: "comments/comment_spacer" %>
-        </ul>
-    <% end %>
+    <div data-target="comment.form" data-form="closed"></div>
+    <div data-target="comment.replies" data-replies=<%= comment.replies.any? %> >
+        <% if comment.replies.any? %>
+            <ul class="comments-replies">
+                <%= render :partial => "comments/comment", :collection => comment.replies, :as => :comment, spacer_template: "comments/comment_spacer" %>
+            </ul>
+        <% end %>
+    </div>
 </div>

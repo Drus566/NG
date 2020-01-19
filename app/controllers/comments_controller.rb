@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+
     before_action :set_commentable
     before_action :set_comment, only: [:reply, :edit, :update, :destroy]
     before_action :logged_in_user, only: [:create, :destroy, :new, :edit]
@@ -12,16 +13,8 @@ class CommentsController < ApplicationController
     def create
         @comment = @commentable.comments.new(comment_params)
         @comment.user = current_user
-        respond_to do |format|
-            if @comment.save
-                format.html { redirect_to @commentable, notice: "Comment was sucessfully created" }
-                format.json { render json: @comment }
-                format.js 
-            else
-                format.html { render :back, notice: "Comment was not created." }
-                format.json { render json: @comment.errors }
-                format.js
-            end
+        if @comment.save 
+            render layout: false
         end
     end
 
@@ -30,17 +23,9 @@ class CommentsController < ApplicationController
     end
 
     def update 
-        respond_to do |format|
-            if @comment.update(comment_params)
-                format.html { redirect_to @commentable, notice: "Comment was sucessfully updated" }
-                format.json { render json: @comment }
-                format.js 
-            else
-                format.html { render :back, notice: "Comment was not updated" }
-                format.json { render json: @comment.errors }
-                format.js
-            end
-        end 
+        if @comment.update(comments_params)
+            render @comment, layout: false
+        end
     end
 
     def new
@@ -50,11 +35,7 @@ class CommentsController < ApplicationController
 
     def destroy
         @comment.destroy if @comment.errors.empty?
-        respond_to do |format|
-            format.html { redirect_to @commentable, notice: "Comments was successfully destroyed" }
-            format.json { head :no_content }
-            format.js
-        end
+        head :ok
     end
 
     private 

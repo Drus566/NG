@@ -1,3 +1,5 @@
-<div class="comment-reply-form">
+<% provide :form_controller_action, "comment#createComment" %>
+
+<div class="reply-comment-form">
     <%= render partial: 'comments/form', locals: { comment: @reply } %>
 </div>

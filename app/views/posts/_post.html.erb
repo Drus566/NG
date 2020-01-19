@@ -25,9 +25,15 @@
             <%= render 'likes/likes', likeable: post %>
         </div>
     </div>
-    <% if post.comments.any? %>
-        <%= render 'comments/comments', commentable: post %> 
-        <%= render template: 'comments/new', object: @new_comment = post.comments.build %>
-    <% end %>
+    <div data-target="post.comments" data-comments=<%= post.comments.any? %> >
+        <% if post.comments.any? %>
+            <%= render 'comments/comments', commentable: post %>
+        <% end %>
+    </div>
+    <div data-target="post.form" data-form=<%= post.comments.any? ? "open" : "closed" %> >
+        <% if post.comments.any? %>
+            <%= render template: 'comments/new', object: @new_comment = post.comments.build %>
+        <% end %>
+    </div>
 </div>
 

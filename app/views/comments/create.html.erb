@@ -1,0 +1,19 @@
+<% if @comment.parent_id.nil? %>
+    <% if @comment.commentable.comments.nil? %>
+        <div class="comments-wrapper">    
+            <%= render @comment %>
+        </div>
+    <% else %>
+        <%= render @comment %>
+        <div class="comment-spacer"></div>
+    <% end %>
+<% else %>
+    <% if @comment.replies.nil? %>
+        <ul class="comments-replies">    
+            <%= render @comment %>
+        </ul>
+    <% else %>
+        <%= render @comment %>
+        <div class="comment-spacer"></div>
+    <% end %>
+<% end %>
