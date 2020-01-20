@@ -36,13 +36,21 @@ export default class extends Controller {
     }
     
     createComment(event) {
+        this.mutationsObserver
         if (this.hasRepliesTarget) {
             let [data, status, xhr] = event.detail
             if (this.repliesTarget.dataset.replies == 'true') {
+                let spacer = document.createElement('div')
+                spacer.classList.add('comment-spacer')
+                this.repliesTarget.firstElementChild.prepend(spacer)
                 this.repliesTarget.firstElementChild.firstElementChild.insertAdjacentHTML('beforebegin', xhr.response)
             } else {
-                this.repliesTarget.innerHTML += xhr.response
+                let replies = document.createElement('ul')
+                replies.classList.add('comments-replies')
+                replies.innerHTML = xhr.response
+                this.repliesTarget.prepend(replies)
                 this.repliesTarget.dataset.replies = 'true'
+                
             }
         }
     }
@@ -51,12 +59,25 @@ export default class extends Controller {
 
     }
 
-    deleteComment() {
-        let post = this.element
-        let postCommentForm = post.getElementsByClassName("post-comment-form")
-        if (postCommentForm.length > 0) { 
-            for (let i = 0; i < postCommentForm.length; i++){
-                postCommentForm[i].remove()
+    deleteComment(event) {
+        event.preventDefault()
+        console.log("СРАБОТАЛ")
+        if (this.element && this.element.parentElement.parentElement.dataset.replies == 'true') {            
+            let comment = this.element
+            if (comment.nextElementSibling && comment.previousElementSibling
+                && comment.nextElementSibling.className == 'comment-spacer'
+                && comment.previousElementSibling.className == 'comment-spacer') {
+                comment.nextElementSibling.remove()
+                comment.remove()
+            } else if (comment.nextElementSibling && comment.nextElementSibling.className == 'comment-spacer') {
+                comment.nextElementSibling.remove()
+                comment.remove()
+            } else if (comment.previousElementSibling && comment.previousElementSibling.className == 'comment-spacer') {
+                comment.previousElementSibling.remove()
+                comment.remove()
+            } else if (comment.nextElementSibling == null && comment.previousElementSibling == null) {
+                comment.parentElement.parentElement.dataset.replies = 'false'
+                comment.parentElement.remove()
             }
         }
     }

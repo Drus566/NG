@@ -29,10 +29,15 @@ export default class extends Controller {
         if (this.hasCommentsTarget) {
             let [data, status, xhr] = event.detail
             if (this.commentsTarget.dataset.comments == 'true') {
+                let spacer = document.createElement('div')
+                spacer.classList.add('comment-spacer')
+                this.commentsTarget.firstElementChild.prepend(spacer)
                 this.commentsTarget.firstElementChild.firstElementChild.insertAdjacentHTML('beforebegin', xhr.response)
             } else {
-                console.log(xhr.response)
-                this.commentsTarget.innerHTML += xhr.response
+                let comments = document.createElement('div')
+                comments.classList.add('comments-wrapper')
+                comments.innerHTML = xhr.response
+                this.commentsTarget.prepend(comments)
                 this.commentsTarget.dataset.comments = 'true'
             }
         }
