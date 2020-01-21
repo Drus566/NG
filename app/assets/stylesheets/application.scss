@@ -93,6 +93,11 @@
 //     background-color: rgb(223, 223, 223);
 // }
 
+.turbolinks-progress-bar {
+    height: 5px;
+    background-color: rgb(79, 255, 79);
+}
+
 #common {
     display: flex;
     flex-direction: column;

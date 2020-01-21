@@ -19,7 +19,7 @@
                 data: { 
                     :disable_with => '⌛',
                     :confirm => 'Вы уверены?',
-                    :action => "ajax:success->#{comment.parent_id.nil? ? comment.commentable.class.to_s.downcase : "comment"}#deleteComment" 
+                    :action => "ajax:success->#{comment.commentable.class.to_s.downcase}#{comment.parent_id.nil? ? "#deleteComment" : "#deleteReply"}"
                 } 
             %>
             <%= link_to 'Ⓞ', 

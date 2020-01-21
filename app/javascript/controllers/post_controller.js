@@ -64,4 +64,26 @@ export default class extends Controller {
             }
         }
     }
+
+    deleteReply(event) {
+        let commentId = event.target.getAttribute('href').split('/')[4]
+        let comment = this.commentsTarget.querySelector(`#comment-${commentId}`)
+        if (comment && comment.parentElement.parentElement.dataset.replies == 'true') {            
+            if (comment.nextElementSibling && comment.previousElementSibling
+                && comment.nextElementSibling.className == 'comment-spacer'
+                && comment.previousElementSibling.className == 'comment-spacer') {
+                comment.nextElementSibling.remove()
+                comment.remove()
+            } else if (comment.nextElementSibling && comment.nextElementSibling.className == 'comment-spacer') {
+                comment.nextElementSibling.remove()
+                comment.remove()
+            } else if (comment.previousElementSibling && comment.previousElementSibling.className == 'comment-spacer') {
+                comment.previousElementSibling.remove()
+                comment.remove()
+            } else if (comment.nextElementSibling == null && comment.previousElementSibling == null) {
+                comment.parentElement.parentElement.dataset.replies = 'false'
+                comment.parentElement.remove()
+            }
+        }
+    }
 }

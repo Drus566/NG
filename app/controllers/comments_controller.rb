@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
     end
 
     def update 
-        if @comment.update(comments_params)
+        if @comment.update(comment_params)
             render @comment, layout: false
         end
     end

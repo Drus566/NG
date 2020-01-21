@@ -36,7 +36,6 @@ export default class extends Controller {
     }
     
     createComment(event) {
-        this.mutationsObserver
         if (this.hasRepliesTarget) {
             let [data, status, xhr] = event.detail
             if (this.repliesTarget.dataset.replies == 'true') {
@@ -50,35 +49,16 @@ export default class extends Controller {
                 replies.innerHTML = xhr.response
                 this.repliesTarget.prepend(replies)
                 this.repliesTarget.dataset.replies = 'true'
-                
             }
+            this.formTarget.dataset.form = 'closed'
+            this.formTarget.firstElementChild.remove()
         }
     }
 
     updateComment(event) {
-
-    }
-
-    deleteComment(event) {
-        event.preventDefault()
-        console.log("СРАБОТАЛ")
-        if (this.element && this.element.parentElement.parentElement.dataset.replies == 'true') {            
-            let comment = this.element
-            if (comment.nextElementSibling && comment.previousElementSibling
-                && comment.nextElementSibling.className == 'comment-spacer'
-                && comment.previousElementSibling.className == 'comment-spacer') {
-                comment.nextElementSibling.remove()
-                comment.remove()
-            } else if (comment.nextElementSibling && comment.nextElementSibling.className == 'comment-spacer') {
-                comment.nextElementSibling.remove()
-                comment.remove()
-            } else if (comment.previousElementSibling && comment.previousElementSibling.className == 'comment-spacer') {
-                comment.previousElementSibling.remove()
-                comment.remove()
-            } else if (comment.nextElementSibling == null && comment.previousElementSibling == null) {
-                comment.parentElement.parentElement.dataset.replies = 'false'
-                comment.parentElement.remove()
-            }
+        if (this.element) {
+            let [data, status, xhr] = event.detail
+            this.element.innerHTML = xhr.response
         }
     }
 }
