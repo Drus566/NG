@@ -8,7 +8,7 @@
                 </div> 
             <% end %>
         </div>
-        <div class="post-content-wrapper"><%= post.content %></div>
+        <div class="post-content-wrapper"><%= post.content.html_safe %></div>
         <div class="post-options-likes-wrapper">
             <div class="post-options-wrapper">
                 <%= link_to "Ⓟ", edit_post_path(post.id) %> 
