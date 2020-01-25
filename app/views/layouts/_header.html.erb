@@ -6,7 +6,10 @@
         <%= link_to "Посты", controller: 'posts', action: 'index' %>
         <%= link_to "Справочник" %>
     </nav>
+    <div id="add-section">
+        <div><%= link_to 'Новая запись', new_post_path %></div>
+    </div>
     <div id="account">
-        <p>Account</p>
+        <p>Аккаунт</p>
     </div>
 </header>

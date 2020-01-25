@@ -5,8 +5,8 @@
 // POST COMMENT BODY
 
 .comments-wrapper {
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    border-top: 1px solid rgb(177, 177, 177);
+    border-bottom: 1px solid rgb(177, 177, 177);
     padding-top: 15px;
     margin-top: 10px;
     padding-bottom: 10px;
@@ -20,6 +20,7 @@
 .comment-content {
     padding: 10px;
     padding-right: 0;
+    word-wrap: break-word;
 }
 
 .comment-options {
@@ -53,10 +54,13 @@
 }
 
 .comment-form {
-    border: 0.1em solid rgb(196, 196, 196);
+    padding-right: 5px;
+    border: 0.1em solid rgb(236, 236, 236);
     border-radius: 0.2em;
 
     textarea {
+        margin: 3px;
+        margin-right: 0;
         resize: none;
         width: 100%;
         height: 3em;
@@ -64,6 +68,13 @@
     }
 
     span {
+        cursor: pointer;
+        color: rgb(77, 77, 77);
+    }
+
+    .comment-btn {
+        border: none;
+        background-color: rgb(247, 247, 247);
         cursor: pointer;
     }
 }

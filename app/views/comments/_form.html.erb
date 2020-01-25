@@ -9,10 +9,13 @@
     <%= f.hidden_field :parent_id %>
     <%= f.text_area :content, 
                     label: false, 
-                    placeholder: (f.object.parent_id.nil? ? 'Напишите комментарий...' : 'Ответить...') 
+                    placeholder: (f.object.parent_id.nil? ? 'Напишите комментарий...' : 'Напишите ответ...') 
     %>
     <div class="comment-options">
-        <%= f.submit class: 'comment-btn', data: { disable_with: 'Загрузка' } %>
+        <%= f.submit class: 'comment-btn', 
+                     data: { disable_with: 'Загрузка' }, 
+                     value: (f.object.parent_id.nil? ? 'Создать комментарий' : 'Ответить')  
+        %>
         <span <% if f.object.parent_id.nil? && f.object.id.nil? %>
                     data-action="click-><%= comment.commentable.class.to_s.downcase %>#deleteCommentForm">
                 <% else %>

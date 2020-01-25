@@ -110,16 +110,23 @@
     border: 1px solid black;
 
     span {
-        width: 100px;
+        width: 300px;
+        text-align: center;
     }
 
     nav {
-        width: 90%;
+        width: 50%;
+        text-align: center;
+    }
+    
+    #add-section {
+        width: 30%;
         text-align: center;
     }
 
     #account {
-        width: 10%;
+        width: 20%;
+        text-align: center;
     }
 }
 
@@ -161,10 +168,11 @@
     display: flex;
     flex-direction: column;
     border: 1px solid black;
-    min-width: 750px;
+    width: 750px;
     padding: 100px;
     padding-top: 30px;
     padding-bottom: 30px;
+    background-color: rgb(244, 244, 244)
 }
 
 #chat {

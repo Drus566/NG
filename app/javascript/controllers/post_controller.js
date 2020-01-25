@@ -11,7 +11,7 @@ export default class extends Controller {
                 let [data, status, xhr] = event.detail
                 this.formTarget.innerHTML += xhr.response
             }
-        } 
+        }
     }
 
     deleteCommentForm() {
