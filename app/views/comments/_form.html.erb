@@ -7,7 +7,7 @@
               remote: true do |f| 
 %>
     <%= f.hidden_field :parent_id %>
-    <%= f.text_area :content, 
+    <%= f.rich_text_area :content, 
                     label: false, 
                     placeholder: (f.object.parent_id.nil? ? 'Напишите комментарий...' : 'Напишите ответ...') 
     %>
