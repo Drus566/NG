@@ -5,34 +5,21 @@ class LikesController < ApplicationController
     def create
         @like = @likeable.likes.new(like_params)
         @like.user = current_user
-        respond_to do |format|
-            if @like.save
-                format.json { render json: @like }
-                format.js 
-            else
-                format.json { render json: @like.errors }
-                format.js
-            end
+        if @like.save 
+            render layout: false
         end
     end
 
     def update 
-        respond_to do |format|
-            if @like.update(like_params)
-                format.json { render json: @like }
-                format.js 
-            else
-                format.json { render json: @Like.errors }
-                format.js
-            end
-        end 
+        if @like.update(like_params)
+            render layout: false
+        end
     end
 
     def destroy
-        @like.destroy if @like.errors.empty?
-        respond_to do |format|
-            format.json { head :no_content }
-            format.js
+        if @like.errors.empty?
+            @like.destroy 
+            render layout: false
         end
     end
 

@@ -2,7 +2,7 @@ import { Controller } from "stimulus"
 
 export default class extends Controller {
     
-    static targets = ["comments", "form"]
+    static targets = ["comments", "form", "like"]
 
     createCommentForm(event) {
         if (this.hasFormTarget) {
@@ -85,5 +85,12 @@ export default class extends Controller {
                 comment.parentElement.remove()
             }
         }
+    }
+
+    updateLike(event) {
+        console.log("updateLike")
+        let [data, status, xhr] = event.detail
+        let resp = new DOMParser().parseFromString(xhr.response, "text/html")
+        this.likeTarget.innerHTML = resp.firstElementChild.innerHTML
     }
 }

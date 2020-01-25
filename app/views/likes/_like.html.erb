@@ -1,0 +1,104 @@
+<div class="likes-wrapper" data-target="<%= likeable.class.to_s.downcase %>.like">
+
+    <% if likeable.like?(current_user, true) %>
+
+        <span class='likes-voted-true'>
+            <%= link_to '↑', 
+                polymorphic_path([likeable, likeable.get_like(current_user)]), 
+                data: {
+                    type: 'html',
+                    action: "ajax:success->#{likeable.class.to_s.downcase}#updateLike", 
+                },
+                method: :delete, 
+                remote: true 
+            %>
+        </span> 
+
+    <% elsif likeable.like?(current_user, false) %>
+
+        <span>
+            <%= link_to '↑', 
+                polymorphic_path([likeable, likeable.get_like(current_user)], 
+                like: { :vote => true }), 
+                data: {
+                    type: 'html',
+                    action: "ajax:success->#{likeable.class.to_s.downcase}#updateLike", 
+                },
+                method: :patch, 
+                remote: true 
+            %>
+        </span>
+        
+    <% else %>
+
+        <span>
+            <a href="<% if likeable.class.to_s.downcase == 'post' %>
+                        <%= post_likes_path(likeable, like: { :vote => true }) %>
+                    <% end %>
+                    "
+               data-type="html"
+               data-action="ajax:success-><%= likeable.class.to_s.downcase %>#updateLike"
+               data-method="post"
+               data-remote="true"
+               rel="nofollow"
+            >
+            ↑
+            </a>
+        </span>
+
+    <% end %>
+    
+    <span>
+        <%= likeable.count_likes %>
+    </span>
+
+    <% if likeable.like?(current_user, false) %>
+
+        <span class='likes-voted-false'>
+            <%= link_to '↓', 
+                polymorphic_path([likeable, likeable.get_like(current_user)]), 
+                data: {
+                    type: 'html',
+                    action: "ajax:success->#{likeable.class.to_s.downcase}#updateLike", 
+                },
+                method: :delete, 
+                remote: true 
+            %>
+        </span> 
+
+    <% elsif likeable.like?(current_user, true) %>
+
+        <span>
+            <%= link_to '↓', 
+                polymorphic_path([likeable, likeable.get_like(current_user)], 
+                like: { :vote => false }), 
+                data: {
+                    type: 'html',
+                    action: "ajax:success->#{likeable.class.to_s.downcase}#updateLike", 
+                },
+                method: :patch, 
+                remote: true 
+            %>
+        </span>
+
+    <% else %>
+
+        <span>
+            <a href="<% if likeable.class.to_s.downcase == 'post' %>
+                        <%= post_likes_path(likeable, like: { :vote => false }) %>
+                    <% end %>
+                    "
+               data-type="html"
+               data-action="ajax:success-><%= likeable.class.to_s.downcase %>#updateLike"
+               data-method="post"
+               data-remote="true"
+               rel="nofollow"
+            >
+            ↓
+            </a>
+        </span>
+
+    <% end %>
+    
+</div>
+

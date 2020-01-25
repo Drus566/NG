@@ -3,3 +3,16 @@
 // // You can use Sass (SCSS) here: http://sass-lang.com/
 // .post-likes-wrapper{
 // }
+.likes-wrapper {
+    .likes-voted-true {
+        a[data-method="delete"] {
+            color: rgb(41, 228, 41);
+        }   
+    }
+
+    .likes-voted-false {
+        a[data-method="delete"] {
+            color: red;
+        }   
+    }
+}

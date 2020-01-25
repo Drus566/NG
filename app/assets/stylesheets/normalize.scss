@@ -8,6 +8,14 @@
 
 a {
     text-decoration: none;
+    color: black;
+}
+A:visited {
+    color: black; /* Цвет посещенных ссылок */
+}
+
+A:active {
+    color: black; /* Цвет активных ссылок */
 }
 
 /**

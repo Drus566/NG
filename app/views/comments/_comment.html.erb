@@ -38,7 +38,11 @@
     <div data-target="comment.replies" data-replies=<%= comment.replies.any? %> >
         <% if comment.replies.any? %>
             <ul class="comments-replies">
-                <%= render :partial => "comments/comment", :collection => comment.replies, :as => :comment, spacer_template: "comments/comment_spacer" %>
+                <%= render :partial => "comments/comment", 
+                    :collection => comment.replies, 
+                    :as => :comment, 
+                    spacer_template: "comments/comment_spacer" 
+                %>
             </ul>
         <% end %>
     </div>
