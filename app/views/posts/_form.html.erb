@@ -10,7 +10,14 @@
         <% end %>
     </div>
     <%= hidden_field_tag 'post_tags_active', "" %>
-    <%= f.text_area :content, placeholder: "Напишите сообщение...", maxlength: '600', class: 'post-form-content' %>
-    <%= render 'shared/error_messages' , object: @post, attribute: 'content' %>
+    <%= f.rich_text_area :content, 
+        placeholder: "Напишите сообщение...", 
+        maxlength: '600', 
+        class: 'post-form-content' 
+    %>
+    <%= render 'shared/error_messages', 
+        object: @post, 
+        attribute: 'content' 
+    %>
     <%= f.submit yield(:button_text), id: "form-btn" %>  
 <% end %>

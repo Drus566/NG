@@ -41,6 +41,9 @@ export default class extends Controller {
                 this.commentsTarget.dataset.comments = 'true'
             }
         }
+        if (this.hasFormTarget) {
+            this.formTarget.querySelector('.trix-content').innerHTML = ''
+        }
     }
 
     deleteComment(event) {
@@ -88,7 +91,6 @@ export default class extends Controller {
     }
 
     updateLike(event) {
-        console.log("updateLike")
         let [data, status, xhr] = event.detail
         let resp = new DOMParser().parseFromString(xhr.response, "text/html")
         this.likeTarget.innerHTML = resp.firstElementChild.innerHTML

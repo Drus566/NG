@@ -8,8 +8,8 @@
 %>
     <%= f.hidden_field :parent_id %>
     <%= f.rich_text_area :content, 
-                    label: false, 
-                    placeholder: (f.object.parent_id.nil? ? 'Напишите комментарий...' : 'Напишите ответ...') 
+        label: false, 
+        placeholder: (f.object.parent_id.nil? ? 'Напишите комментарий...' : 'Напишите ответ...') 
     %>
     <div class="comment-options">
         <%= f.submit class: 'comment-btn', 

@@ -58,10 +58,12 @@
     border: 0.1em solid rgb(236, 236, 236);
     border-radius: 0.2em;
 
-    textarea {
-        resize: none;
-        width: 100%;
-        height: 3em;
+    trix-toolbar {
+        display: none;
+    }
+
+    .trix-content {
+        
         border: none;
         word-wrap: break-word;
         margin: 3px;
