@@ -7,14 +7,17 @@
               remote: true do |f| 
 %>
     <%= f.hidden_field :parent_id %>
-    <%= f.rich_text_area :content, 
-        label: false, 
-        placeholder: (f.object.parent_id.nil? ? 'Напишите комментарий...' : 'Напишите ответ...') 
-    %>
+    <input id="<%= f.object.commentable.class.to_s.downcase %>-<%= f.object.commentable.id %><%= f.object.parent_id.nil? ? '-new' : "-parent-#{f.object.parent_id}" %>" type="hidden" name="comment[content]">
+    <trix-editor id="comment_content"
+                 class="trix-content"
+                 placeholder="<%= f.object.parent_id.nil? ? 'Напишите комментарий...' : 'Напишите ответ...' %>"
+                 input="<%= f.object.commentable.class.to_s.downcase %>-<%= f.object.commentable.id %><%= f.object.parent_id.nil? ? '-new' : "-parent-#{f.object.parent_id}" %>"
+    >
+    </trix-editor>
     <div class="comment-options">
         <%= f.submit class: 'comment-btn', 
                      data: { disable_with: 'Загрузка' }, 
-                     value: (f.object.parent_id.nil? ? 'Создать комментарий' : 'Ответить')  
+                     value: (f.object.parent_id.nil? ? 'Отправить' : 'Ответить')  
         %>
         <span <% if f.object.parent_id.nil? && f.object.id.nil? %>
                     data-action="click-><%= comment.commentable.class.to_s.downcase %>#deleteCommentForm">

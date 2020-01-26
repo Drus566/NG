@@ -16,7 +16,7 @@ export default class extends Controller {
 
     deleteCommentForm() {
         if (this.hasFormTarget) {
-            if(this.formTarget.dataset.form == 'open') {
+            if (this.formTarget.dataset.form == 'open') {
                 for (let i = 0; i < this.formTarget.children.length; i++) {
                     this.formTarget.children[i].remove()
                 }
@@ -40,9 +40,6 @@ export default class extends Controller {
                 this.commentsTarget.prepend(comments)
                 this.commentsTarget.dataset.comments = 'true'
             }
-        }
-        if (this.hasFormTarget) {
-            this.formTarget.querySelector('.trix-content').innerHTML = ''
         }
     }
 

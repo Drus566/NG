@@ -1,6 +1,15 @@
+#posts-wrapper {
+    margin: 100px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 700px;
+}
+
 .post-wrapper {
     padding: 10px;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(219, 217, 217);
+    border-radius: 10px;
 }
 
 // POST BODY 
@@ -9,11 +18,42 @@
     
 }
 
+.post-info-wrapper {
+    color: rgb(135, 116, 110);
+    font-size: 0.95rem;
+
+    a {
+        font-size: 1rem;
+    }
+}
+
+.post-tags-wrapper {
+    margin: 6px; 
+    margin-top: 16px;
+    margin-bottom: 1px;
+
+    a {
+        background-color: rgb(27, 106, 207);
+        color: rgb(255, 255, 255);
+        padding: 3px;
+    }
+}
+
 .post-content-wrapper {
     font-size: 1.2em;
     padding: 15px;
     padding-right: 0;
     word-wrap: break-word;
+    color:  #000000;
+
+    a {
+        text-decoration: none; 
+    }
+
+    a:hover { 
+        text-decoration: underline;
+        color: rgb(27, 106, 207); 
+    } 
 }
 
 .post-options-likes-wrapper {
@@ -22,10 +62,54 @@
     justify-content: space-between;
 }
 
+.post-options-wrapper {
+    a {
+        background-color: rgb(230, 81, 50);
+        color: white;
+        border-radius: 20px;
+    }
+}
 // POST COMMENT CREATE
 
 .post-comment-form {
     margin-top: 10px;
+}
+
+// POST NEW 
+
+#post-new {
+    background-color: white;
+    width: 750px;
+    margin: 55px;
+    padding: 21px;
+
+    // POST FORM
+
+    trix-editor {
+        border: none;
+        word-wrap: break-word;
+        padding: 10px;
+    }
+
+    #post-btn {
+        border: none;
+        background-color: #FFE000;
+        color: #1D2D35;
+        cursor: pointer;
+        padding: 5px;
+        font-weight: bold;
+    }
+}
+
+.post-form-tags {
+    margin-bottom: 30px;
+
+    span {
+        background-color: rgb(27, 106, 207);
+        color: rgb(255, 255, 255);
+        padding: 3px;
+        cursor: pointer;
+    }
 }
 
 // ETC

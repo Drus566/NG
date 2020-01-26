@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
     # protect_from_forgery 
-
     include TagsHelper
+    include RinkuHelper
+
     before_action :logged_in_user, only: [:create, :destroy, :new, :edit]
     before_action :get_post, only: [:destroy, :edit, :show, :update]
     before_action :get_all_tags, only: [:edit, :new, :index]

@@ -15,17 +15,32 @@
 
 .comment-info {
     font-size: 0.95rem;
+    color: rgb(135, 116, 110);
 }
 
 .comment-content {
-    padding: 10px;
+    padding: 13px;
     padding-right: 0;
     word-wrap: break-word;
+
+    a {
+        text-decoration: none; 
+    }
+
+    a:hover { 
+        text-decoration: underline;
+        color: rgb(27, 106, 207); 
+    } 
 }
 
 .comment-options {
     font-size: 0.95rem;
 
+    a {
+        background-color: rgb(230, 81, 50);
+        color: white;
+        border-radius: 20px;
+    }
 }
 
 // POST COMMENTS FORMS
@@ -63,21 +78,26 @@
     }
 
     .trix-content {
-        
+        resize: none;
+        width: 98%;
         border: none;
         word-wrap: break-word;
         margin: 3px;
+        min-height: 1.6em;
     }
 
     span {
         cursor: pointer;
-        color: rgb(77, 77, 77);
+        color: #1D2D35;
     }
 
     .comment-btn {
         border: none;
-        background-color: rgb(247, 247, 247);
+        background-color: #FFE000;
+        color: #1D2D35;
         cursor: pointer;
+        padding: 5px;
+        font-weight: bold;
     }
 }
 

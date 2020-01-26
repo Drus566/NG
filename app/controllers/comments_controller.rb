@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
 
+    include RinkuHelper
+    
     before_action :set_commentable
     before_action :set_comment, only: [:reply, :edit, :update, :destroy]
     before_action :logged_in_user, only: [:create, :destroy, :new, :edit]
@@ -24,7 +26,7 @@ class CommentsController < ApplicationController
 
     def update 
         if @comment.update(comment_params)
-            render @comment, layout: false
+            render layout: false
         end
     end
 
