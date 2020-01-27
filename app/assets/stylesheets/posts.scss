@@ -102,13 +102,73 @@
 }
 
 .post-form-tags {
-    margin-bottom: 30px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    align-items: center;
+    user-select: none;
+}
+
+.tags-all {
 
     span {
-        background-color: rgb(27, 106, 207);
+        background-color: rgb(49, 155, 92);
         color: rgb(255, 255, 255);
         padding: 3px;
         cursor: pointer;
+    }
+
+    a {
+        pointer-events: none;
+    }
+}
+
+.tags-dropdown {
+    display: none;
+}
+
+.active-menu-tags {
+    display: block;
+    position: absolute;
+    z-index: 1;
+
+    ul { 
+        position: relative;
+        margin: 0; 
+        padding: 0;
+        background-color: white;
+        border: 1px solid rgb(167, 167, 167);
+        margin-top: 5px;
+        width: 150px;
+        max-height: 300px;
+        overflow: auto;
+        right: 35px;
+    }
+    
+    li {
+        list-style-type: none; 
+        text-align: center;
+        padding: 0;
+        margin: 0;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        color: rgb(27, 106, 207);
+        cursor: pointer;
+    }
+}
+
+.tags-active {
+    padding: 0;
+    margin: 0;
+    margin-left: 10px;
+
+    li {
+        display: inline-block;
+        list-style-type: none; 
+        text-align: center;    
+        background-color: rgb(27, 106, 207);
+        color: white;
+        padding: 3px;
     }
 }
 

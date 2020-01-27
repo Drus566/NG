@@ -34,13 +34,20 @@ User.create!(
 )
 
 # Create tags
-Tag.create(name: "Игры")
-Tag.create(name: "Просьбы")
-Tag.create(name: "Такси")
-Tag.create(name: "Магазин")
-Tag.create(name: "Товары")
-Tag.create(name: "Школа")
-Tag.create(name: "Наука")
+Tag.create(name: "Новости")
+Tag.create(name: "Подслушано")
+Tag.create(name: "Жалобы")
+Tag.create(name: "Лица города")
+Tag.create(name: "Знакомства")
+Tag.create(name: "Бесплатно")
+Tag.create(name: "Афиша")
+Tag.create(name: "Объявления")
+Tag.create(name: "Животные")
+Tag.create(name: "Бюро находок")
+Tag.create(name: "Недвижимость")
+Tag.create(name: "Работа")
+Tag.create(name: "Авторынок")
+Tag.create(name: "Спорт")
 
 #Create posts
 users = User.all
