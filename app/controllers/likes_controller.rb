@@ -1,4 +1,5 @@
 class LikesController < ApplicationController
+    
     before_action :set_likeable
     before_action :set_like, only: [:update, :destroy]
 

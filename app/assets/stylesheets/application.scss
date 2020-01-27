@@ -14,85 +14,6 @@
  *= require_self
  */
 
-// //presets
-// $font-title: "Times New Roman", Georgia, Serif;
-// $font-text: "Comic Sans MS", cursive, sans-serif;
-// $font-size: 1.25em;
-
-// $body-background-color: rgb(96, 105, 187);
-
-// %presets {
-//     text-decoration: none;
-//     a{
-//         text-decoration: none;
-//         color: rgb(29, 32, 151);
-//     }
-//     a:link, a:visited, a:hover, a:active, a:focus {
-//         color: rgb(29, 32, 151);
-//     }
-//     a:hover{
-//         border: 0.1em solid rgb(59, 59, 59);
-//     }
-// }
-
-// // common
-// body, html{
-//     margin: 0;
-//     height: 100%;
-//     width: 100%;
-//     background-color: $body-background-color;
-//     @extend %presets;
-// }
-
-// #common-container{
-//     display: grid;
-//     grid-template-columns: auto auto auto auto;
-//     grid-template-rows: auto;
-//     grid-template-areas: 
-//     "header header header header"
-//     "main main main main"
-//     "footer footer footer footer";
-    
-// }
-
-// // header
-// $header-background-color: rgb(89, 106, 255);
-// $header-height-size: 3em;
-// $header-spacer-width: $header-height-size;
-
-// #header-wrapper{
-//     grid-area: header;
-//     background-color: $header-background-color;
-//     z-index: 2;
-//     height: $header-height-size;
-//     display: flex;
-//     flex-direction: row;
-//     align-items: center;
-//     justify-content: space-between;
-    
-//     span{
-        
-//     }
-//     #header-nav{
-        
-//     }
-//     #header-spacer-nav{
-//         width: $header-spacer-width;
-//     }
-// }
-
-// // content
-// #content-wrapper{
-//     grid-area: main;
-//     width: 100%;
-// }
-
-// // footer
-// #footer-wrapper{
-//     grid-area: footer;
-//     background-color: rgb(223, 223, 223);
-// }
-
 .turbolinks-progress-bar {
     height: 5px;
     background-color: rgb(79, 255, 79);
@@ -107,9 +28,10 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    background-color: rgb(114, 94, 173);
+    background-color: rgb(40, 60, 70);
     color: white;
     height: 50px;
+    // background-image: url(assets/images/confetti.svg) center center/5rem repeat;
 
     span {
         width: 300px;
@@ -157,25 +79,27 @@
 #menu {
     display: flex;
     flex-direction: column;
-    flex: 1;
+    flex: 0.8;
     min-width: 200px;
+    background-color: rgb(246, 242, 239);
 
-    form {
+    #sections-enum {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        margin-top: 10px;
+        margin-left: 10px;
 
-        input:first-child {
-            width: 65%;
+        a {
+            color: rgb(40, 60, 70);
+            margin: 4px;
+            font-size: 20px;
+            border-bottom: 1px solid white;
         }
 
-        input:last-child {
-            width: 35%;
+        a:hover {
+            color: rgb(27, 106, 207);
+            border-color: rgb(27, 106, 207);
         }
-    }
-
-    #tags-enum {
-        display: flex;
-        flex-direction: column;    
     }
 }
 
@@ -183,7 +107,8 @@
     display: flex;
     flex-direction: column;
     min-width: 600px;
-    background-color: rgb(246, 242, 239)
+    background-color: rgb(246, 242, 239);
+    min-height: 93vh;
 }
 
 #chat {

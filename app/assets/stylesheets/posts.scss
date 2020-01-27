@@ -18,6 +18,11 @@
     
 }
 
+.post-info-section-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
 .post-info-wrapper {
     color: rgb(135, 116, 110);
     font-size: 0.95rem;
@@ -27,10 +32,8 @@
     }
 }
 
-.post-tags-wrapper {
-    margin: 6px; 
-    margin-top: 16px;
-    margin-bottom: 1px;
+.post-section {
+    margin-left: 10px;
 
     a {
         background-color: rgb(27, 106, 207);
@@ -42,7 +45,6 @@
 .post-content-wrapper {
     font-size: 1.2em;
     padding: 15px;
-    padding-right: 0;
     word-wrap: break-word;
     color:  #000000;
 
@@ -80,6 +82,7 @@
 #post-new {
     background-color: white;
     width: 750px;
+    border: 1px solid rgb(219, 217, 217);
     margin: 55px;
     padding: 21px;
 
@@ -88,7 +91,13 @@
     trix-editor {
         border: none;
         word-wrap: break-word;
+        min-height: 50vh;
         padding: 10px;
+        font-size: 20px;
+
+        .attachment__caption {
+            display: none;
+        }
     }
 
     #post-btn {
@@ -99,76 +108,61 @@
         padding: 5px;
         font-weight: bold;
     }
+
 }
 
-.post-form-tags {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 20px;
-    align-items: center;
+.post-sections {
     user-select: none;
-}
-
-.tags-all {
+    margin-bottom: 16px;
 
     span {
+        padding: 5px;
+        width: 100px;
+        font-size: 18px;
         background-color: rgb(49, 155, 92);
         color: rgb(255, 255, 255);
-        padding: 3px;
         cursor: pointer;
     }
 
-    a {
-        pointer-events: none;
+    .selected {
+        background-color: rgb(27, 106, 207)
     }
 }
 
-.tags-dropdown {
+.sections-dropdown {
     display: none;
 }
 
-.active-menu-tags {
+.active-sections {
     display: block;
     position: absolute;
     z-index: 1;
-
-    ul { 
+    
+    ul {
         position: relative;
         margin: 0; 
         padding: 0;
-        background-color: white;
-        border: 1px solid rgb(167, 167, 167);
-        margin-top: 5px;
-        width: 150px;
         max-height: 300px;
+        width: 150px;
         overflow: auto;
-        right: 35px;
-    }
-    
-    li {
-        list-style-type: none; 
-        text-align: center;
-        padding: 0;
-        margin: 0;
-        margin-top: 5px;
-        margin-bottom: 5px;
-        color: rgb(27, 106, 207);
-        cursor: pointer;
-    }
-}
+        top: 6px;
+        background-color: white;
+        border: 1px solid rgb(221, 220, 214);
 
-.tags-active {
-    padding: 0;
-    margin: 0;
-    margin-left: 10px;
+        li {
+            list-style-type: none; 
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            color: rgb(27, 106, 207);
+            cursor: pointer;
+        }        
+    }
 
-    li {
-        display: inline-block;
-        list-style-type: none; 
-        text-align: center;    
-        background-color: rgb(27, 106, 207);
-        color: white;
-        padding: 3px;
+    ul li:first-child {
+        color: rgb(49, 155, 92); 
     }
 }
 

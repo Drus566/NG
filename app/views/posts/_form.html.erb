@@ -1,24 +1,20 @@
 <%= form_with model: @post, remote: true do |f| %>
-    <div data-controller='tags' class='post-form-tags'>
-        <div class='tags-all'>
-            <span data-action='click->tags#change' data-open='false'>Разделы</span>
-            <div class='tags-dropdown' data-target='tags.menu'>
-                <ul>
-                    <%= render partial: 'tags/tags_with_id', collection: @tags, as: :tag %>
-                </ul>
-            </div>
+    <div data-controller='sections' class='post-sections'>
+        <span data-action='click->sections#change' data-open='false' data-target="sections.btn">Раздел</span>
+        <div class='sections-dropdown' data-target='sections.menu'>
+            <ul>
+                <li data-action="click->sections#removeSection">Без раздела</li>
+                <%= render partial: 'sections/sections_form', collection: @sections, as: :section %>
+            </ul>
         </div>
-        <ul class='tags-active' data-target='tags.active'>
-            <%= render partial: 'tags/tags_with_id', collection: @post.tags, as: :tag %>
-        </ul>
-        <%= hidden_field_tag 'post_tags_active', '', data: { target: 'tags.ids' } %>
+        <%= hidden_field_tag :section, '', data: { target: "sections.id "} %>
     </div>
-    
+
     <%= f.rich_text_area :content, placeholder: 'Напишите сообщение...' %>
     <%= render 'shared/error_messages', 
         object: @post, 
         attribute: 'content' 
     %>
-    <%= f.submit yield(:button_text), id: "post-btn" %>  
+    <%= f.submit yield(:button_text), id: "post-btn" %> 
 <% end %>
 

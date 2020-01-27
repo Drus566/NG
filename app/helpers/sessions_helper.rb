@@ -1,4 +1,5 @@
 module SessionsHelper
+    
     include AuthorityHelper
 
     # вход пользователя

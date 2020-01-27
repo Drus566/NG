@@ -1,12 +1,10 @@
 <div class="post-wrapper" data-controller="post" id="post-<%= post.id %>">
     <div class="post-main-wrapper">
-        <div class="post-info-tags-wrapper">
+        <div class="post-info-section-wrapper">
             <div class="post-info-wrapper">Ⓐ <%= link_to post.user.name, post.user, class: "post-user" %>, <%= time_ago_in_words(post.created_at) %> назад</div> 
-            <% if post.tags.any? %>
-                <div class="post-tags-wrapper">
-                    <%= render partial: 'tags/tags', collection: post.tags, as: :tag %>
-                </div> 
-            <% end %>
+            <% unless post.section.nil? %>
+                <div class="post-section"><%= link_to "#{post.section.name}", section_path(post.section) %></div>
+            <% end %> 
         </div>
         <div class="post-content-wrapper"><%= run_rinku(raw(post.content)) %></div>
         <div class="post-options-likes-wrapper">

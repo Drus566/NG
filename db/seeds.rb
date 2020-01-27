@@ -34,20 +34,20 @@ User.create!(
 )
 
 # Create tags
-Tag.create(name: "Новости")
-Tag.create(name: "Подслушано")
-Tag.create(name: "Жалобы")
-Tag.create(name: "Лица города")
-Tag.create(name: "Знакомства")
-Tag.create(name: "Бесплатно")
-Tag.create(name: "Афиша")
-Tag.create(name: "Объявления")
-Tag.create(name: "Животные")
-Tag.create(name: "Бюро находок")
-Tag.create(name: "Недвижимость")
-Tag.create(name: "Работа")
-Tag.create(name: "Авторынок")
-Tag.create(name: "Спорт")
+Section.create(name: "Новости")
+Section.create(name: "Подслушано")
+Section.create(name: "Жалобы")
+Section.create(name: "Лица города")
+Section.create(name: "Знакомства")
+Section.create(name: "Бесплатно")
+Section.create(name: "Афиша")
+Section.create(name: "Объявления")
+Section.create(name: "Животные")
+Section.create(name: "Бюро находок")
+Section.create(name: "Недвижимость")
+Section.create(name: "Работа")
+Section.create(name: "Авторынок")
+Section.create(name: "Спорт")
 
 #Create posts
 users = User.all
@@ -69,8 +69,8 @@ users = User.all
         end
         post = user.posts.create!(content: content)
         if (random_number_tag < 8)
-            random_tag = Tag.find(random_number_tag)
-            post.tags << random_tag
+            random_tag = Section.find(random_number_tag)
+            post.section = random_tag
         end
     end
 end

@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     resources :likes, except: [:index, :show, :edit, :new]
   end
 
-  resources :tags
+  resources :sections
   # News
   resources :articles
 
