@@ -56,6 +56,10 @@
         text-decoration: underline;
         color: rgb(27, 106, 207); 
     } 
+
+    .attachment__caption {
+        display: none;
+    }
 }
 
 .post-options-likes-wrapper {
@@ -84,6 +88,7 @@
     width: 750px;
     border: 1px solid rgb(219, 217, 217);
     margin: 55px;
+    margin-top: 30px;   
     padding: 21px;
 
     // POST FORM
@@ -97,6 +102,20 @@
 
         .attachment__caption {
             display: none;
+        }
+
+        .attachment {
+            display: inline-block;
+            position: relative;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .attachment--preview {
+            padding: 1px;
+            width: auto;
+            text-align: center;
         }
     }
 

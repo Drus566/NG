@@ -6,7 +6,7 @@
                 <div class="post-section"><%= link_to "#{post.section.name}", section_path(post.section) %></div>
             <% end %> 
         </div>
-        <div class="post-content-wrapper"><%= run_rinku(raw(post.content)) %></div>
+        <div class="post-content-wrapper"><%= run_rinku(post.content) %></div>
         <div class="post-options-likes-wrapper">
             <div class="post-options-wrapper">
                 <%= link_to "Ⓟ", edit_post_path(post.id) %> 

@@ -10,7 +10,7 @@
         <%= hidden_field_tag :section, '', data: { target: "sections.id "} %>
     </div>
 
-    <%= f.rich_text_area :content, placeholder: 'Напишите сообщение...' %>
+    <%= f.rich_text_area :content, placeholder: 'Напишите сообщение...', data: { controller: 'trix-upload-image' } %>
     <%= render 'shared/error_messages', 
         object: @post, 
         attribute: 'content' 

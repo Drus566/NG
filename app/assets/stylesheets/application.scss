@@ -79,26 +79,29 @@
 #menu {
     display: flex;
     flex-direction: column;
-    flex: 0.8;
+    flex: 0.6;
     min-width: 200px;
     background-color: rgb(246, 242, 239);
 
     #sections-enum {
         display: flex;
         flex-direction: column;
-        margin-top: 10px;
+        margin-top: 25px;
         margin-left: 10px;
+        background-color: white;
+        border: 1px solid rgb(219, 217, 217);
+        border-radius: 5px;
 
         a {
             color: rgb(40, 60, 70);
             margin: 4px;
-            font-size: 20px;
+            font-size: 18px;
             border-bottom: 1px solid white;
+            text-align: center;
         }
 
         a:hover {
             color: rgb(27, 106, 207);
-            border-color: rgb(27, 106, 207);
         }
     }
 }
