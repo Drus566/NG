@@ -10,6 +10,23 @@
         <div><%= link_to 'Новая запись', new_post_path %></div>
     </div>
     <div id="account">
-        <a href="#">Аккаунт</a>
+        <div data-controller="account">
+        <span data-action="click->account#change" data-open="false">Аккаунт</span>
+            <% if logged_in? %>
+                <div class="account-dropdown" data-target="account.dropdown">
+                    <ul>
+                        <li><%= link_to 'Профиль', current_user %></li>
+                        <li><%= link_to 'Выйти', logout_path, method: :delete %></li>
+                    </ul>
+                </div>
+            <% else %>
+                <div class="account-dropdown" data-target="account.dropdown">
+                    <ul>
+                        <li><%= link_to 'Войти', login_path %></li>
+                        <li><%= link_to 'Регистрация', signup_path %></li>
+                    </ul>
+                </div>
+            <% end %>
+        </div>
     </div>
 </header>

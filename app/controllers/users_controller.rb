@@ -11,8 +11,7 @@ class UsersController < ApplicationController
     def show
         @user = User.find(params[:id])
         @posts = @user.posts
-        @article = @user.articles
-        @comment = @user.comments
+        @sections = Section.all
     end
 
     def new
@@ -46,21 +45,20 @@ class UsersController < ApplicationController
 
     # ---------- профиль -------------
 
-    def get_articles 
-        @articles = @user.articles
-    end
-
     def get_posts
         @posts = @user.posts
+        render layout: false
     end
     
     def get_posts_comments
-        @posts_comments = @user.comments
+        @comments = @user.comments
+        render partial: 'comments/comment', colletion: @comments, as: :comment, spacer_template: 'comments/comment_spacer', layout: false
     end
 
     def get_liked_posts
         @likes_ids = @user.likes.where(likeable_type: "Post", vote: true).map(&:likeable_id)
         @liked_posts = Post.where(id: @likes_ids)
+        render layout: false
     end
 
     private 

@@ -1,27 +1,46 @@
-<%= render 'shared/sidebar' %> 
-<% if flash[:success] %>
-    <div class="flash">
-        <%= render 'shared/flash_messages', attribute: 'success' %>
-    </div>
-<% end %>
-<div id="user-account-wrapper">
+<div id="user-account-wrapper" data-controller="user-account-content">
     <div id="user-account-main-wrapper"> 
         <div id="user-account-info">
+            <div class="user-account-info-name"><%= @user.name %></div>
             <div class="user-account-info-created"> Аккаунт создан <%= time_ago_in_words(@user.created_at) %> назад </div>
-            <div class="user-account-info-name">Имя: <%= @user.name %></div>
-            <div class="user-account-info-email">Email: <%= @user.email %></div>
         </div>
         <div id="user-account-menu-actions">
             <ul>
-                <li><%= link_to 'Посты', [:get_posts, @user], remote: :true %></li>
-                <li><%= link_to 'Новости', [:get_articles, @user], remote: :true %></li>
-                <li><%= link_to 'Понравившиеся посты', [:get_liked_posts, @user], remote: :true %></li>
-                <li><%= link_to 'Комментарии', [:get_posts_comments, @user], remote: :true %></li>
+                <li>
+                    <%= link_to 'Записи', 
+                        [:get_posts, @user],
+                        data: {
+                            action: 'ajax:success->userAccountContent#setContent',
+                            type: 'html',
+                        }, 
+                        remote: :true 
+                    %>
+                </li>
+                <li>
+                    <%= link_to 'Понравилось', 
+                        [:get_liked_posts, @user], 
+                        data: {
+                            action: 'ajax:success->userAccountContent#setContent',
+                            type: 'html',
+                        },
+                        remote: :true 
+                    %>
+                </li>
+                <li>
+                    <%= link_to 'Комментарии', 
+                        [:get_posts_comments, @user], 
+                        data: {
+                            action: 'ajax:success->userAccountContent#setContent',
+                            type: 'html',
+                        },
+                        remote: :true 
+                    %>
+                </li>
             </ul>
         </div>
     </div>
-    <div id="user-account-content-wrapper">
-        <%= render @article %>
+    <div id="user-account-content-wrapper" data-target="userAccountContent.content">
+        <%= render @posts %>
     </div>
 </div>
 
