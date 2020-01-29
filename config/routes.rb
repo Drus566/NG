@@ -31,7 +31,9 @@ Rails.application.routes.draw do
   end
 
   resources :sections
+  resources :messages
 
+  get '/chat', to: 'chat#show'
   get 'results', to: 'tags#results', as: 'results'
 
   # get '/handbook', to: 'welcome#handbook'
@@ -39,5 +41,5 @@ Rails.application.routes.draw do
   # get '/submit_news', to: 'news_items#new'
   # get '/submit_post', to: 'microposts#new'
 
-  # mount ActionCable.server => '/cable'
+  mount ActionCable.server => '/cable'
 end

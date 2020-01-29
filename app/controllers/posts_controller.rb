@@ -12,6 +12,8 @@ class PostsController < ApplicationController
     def index 
         @sections = Section.all
         @posts = Post.all
+        @messages = Message.all
+        @message = Message.new
     end
 
     def create

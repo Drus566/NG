@@ -1,0 +1,15 @@
+<%= form_with model: @message,
+              class: 'message-form',
+              data: { 
+                  :action => "ajax:success->chat#addMessage", 
+                  :type => 'html'
+              }, 
+              remote: true do |f| 
+%>
+    <div class="form-group">
+        <%= f.text_area :body, class: 'form-control' %>
+        <div class="text-muted">От 2 to 200 символов</div>
+    </div>
+
+    <%= f.submit "Отправить" %>
+<% end %>

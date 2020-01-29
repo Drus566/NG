@@ -5,6 +5,7 @@ class User < ApplicationRecord
     has_many :articles
     has_many :comments, dependent: :destroy
     has_many :likes, dependent: :destroy
+    has_many :messages, dependent: :destroy
 
     validates :name, presence: true
     validates :name, length: { in: 2..30 }

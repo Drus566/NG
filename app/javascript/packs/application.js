@@ -4,6 +4,6 @@ require("@rails/activestorage").start()
 require("channels")
 require("trix")
 require("@rails/actiontext")
+require("custom/chat")
 
 import "controllers"
-

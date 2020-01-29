@@ -5,6 +5,7 @@ ruby '2.6.3'
 
 # gem 'active_storage_validations'
 # gem 'mini_magick', '>= 4.9.5'
+gem 'redis'
 gem 'rinku', '~> 2.0.6'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'

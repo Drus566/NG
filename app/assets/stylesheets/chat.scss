@@ -1,0 +1,34 @@
+// Place all the styles related to the chat controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.chat-messages {
+    overflow: scroll;
+    height: 80vh;
+    width: 300px;
+
+    .message {
+        background-color: rgb(255, 255, 255);
+        border: 1px solid rgb(219, 217, 217);
+        border-radius: 10px;
+        margin: 10px;
+        padding: 5px;
+        margin-left: 0;
+        margin-right: 0;
+
+        span {
+            font-size: 13px;
+            color: rgb(135, 116, 110)
+        }
+
+        
+    }
+
+    .message-body {
+        color: rgb(29, 45, 53);
+        padding: 3px;
+        word-wrap: break-word;
+        font-size: 14px;
+    }
+}
+
