@@ -28,35 +28,34 @@ class Post < ApplicationRecord
 
     private 
 
-        # def content_embeds
-        #     if content.embeds.any?
-        #         errors.add(:content, 'Нельзя загружать более 4 изображений') if content.embeds.size > 4
-        #         content.embeds.each do |attach|
-        #             errors.add(:content, 'Изображение не может весить > 10 мБ') if attach.byte_size > 1242880
-        #             errors.add(:content, 'Можно загружать только изображения') unless attach.image? 
-        #             errors.add(:content, 'Недопустимый формат изображения') unless attach.content_type == 'image/jpeg' || attach.content_type == 'image/png'
-        #         end
-        #     end
-        # end 
+        def content_embeds
+            if content.embeds.attached?
+                errors.add(:content, 'Нельзя загружать более 4 изображений') if content.embeds.size > 4
+                content.embeds.each do |attach|
+                    errors.add(:content, 'Изображение не может весить > 10 мБ') if attach.byte_size > 1242880
+                    errors.add(:content, 'Можно загружать только изображения') unless attach.image? 
+                    errors.add(:content, 'Недопустимый формат изображения') unless attach.content_type == 'image/jpeg' || attach.content_type == 'image/png'
+                end
+            end
+        end 
 
-        # def content_length 
-        #     max_length = 50
-        #     symbol_size = 0
-        #     puts "#{content.embeds_blobs.empty?}"
-        #     if content.embeds.any? 
-        #         content.embeds.each do |attach|
-        #             symbol_size += (attach.filename.size + 2)
-        #             puts "ATTACCCCCCCCCCCCCCCCCCCHHHHHHHHHHH  #{attach.filename.size}"
-        #         end
-        #     end
-        #     puts "ALLLLLLLLLLLLLLLLLLLLO #{symbol_size}"
-        #     puts "GGWEPPSDASPD #{content.to_plain_text.size}"
-        #     puts "GGWEPPSDASPD #{content.to_s}"
-        #     errors.add(:content, 'Слишком длинный текст') if (content.to_plain_text.size - symbol_size) > max_length
-        #     puts "CONTENT BLOB #{content.embeds_blobs}"
-        #     puts "CONTENT BLOB #{content.embeds}"
-        #     content.embeds.each { |attach| puts "ATTACH #{attach}"}
-        # end
+        def content_length 
+            max_length = 50
+            symbol_size = 0
+            puts "#{content.embeds_blobs.empty?}"
+            if content.embeds.attached? 
+                content.embeds.each do |attach|
+                    symbol_size += (attach.filename.size + 2)
+                    puts "ATTACCCCCCCCCCCCCCCCCCCHHHHHHHHHHH  #{attach.filename.size}"
+                end
+            end
+            puts "ALLLLLLLLLLLLLLLLLLLLO #{symbol_size}"
+            puts "GGWEPPSDASPD #{content.to_plain_text.size}"
+            puts "GGWEPPSDASPD #{content.to_s}"
+            errors.add(:content, 'Слишком длинный текст') if (content.to_plain_text.size - symbol_size) > max_length
+            puts "CONTENT BLOB #{content.embeds_blobs}"
+            puts "CONTENT BLOB #{content.embeds}"
+        end
 
 
     # <div>

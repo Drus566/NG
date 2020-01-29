@@ -10,7 +10,7 @@
                     <%= link_to 'Записи', 
                         [:get_posts, @user],
                         data: {
-                            action: 'ajax:success->userAccountContent#setContent',
+                            action: 'ajax:success->user-account-content#setContent',
                             type: 'html',
                         }, 
                         remote: :true 
@@ -20,7 +20,7 @@
                     <%= link_to 'Понравилось', 
                         [:get_liked_posts, @user], 
                         data: {
-                            action: 'ajax:success->userAccountContent#setContent',
+                            action: 'ajax:success->user-account-content#setContent',
                             type: 'html',
                         },
                         remote: :true 
@@ -30,7 +30,7 @@
                     <%= link_to 'Комментарии', 
                         [:get_posts_comments, @user], 
                         data: {
-                            action: 'ajax:success->userAccountContent#setContent',
+                            action: 'ajax:success->user-account-content#setContent',
                             type: 'html',
                         },
                         remote: :true 
@@ -39,8 +39,6 @@
             </ul>
         </div>
     </div>
-    <div id="user-account-content-wrapper" data-target="userAccountContent.content">
-        <%= render @posts %>
-    </div>
+    <div id="user-account-content-wrapper" data-target="user-account-content.content"></div>
 </div>
 

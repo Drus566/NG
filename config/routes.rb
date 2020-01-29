@@ -14,7 +14,6 @@ Rails.application.routes.draw do
 
   resources :users do 
     member do 
-      get :get_articles
       get :get_liked_posts
       get :get_posts
       get :get_posts_comments
@@ -32,8 +31,6 @@ Rails.application.routes.draw do
   end
 
   resources :sections
-  # News
-  resources :articles
 
   get 'results', to: 'tags#results', as: 'results'
 

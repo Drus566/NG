@@ -1,0 +1,7 @@
+<div class="content">
+    <% if @posts.any? %>
+        <%= render partial: 'posts/post', collection: @posts, spacer_template: 'posts/post_spacer' %>
+    <% else %>
+        <div class="message">Нет записей</div>
+    <% end %>
+</div>

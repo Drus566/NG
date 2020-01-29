@@ -1,0 +1,7 @@
+<div class="content">
+    <% if @comments.any? %>
+        <%= render partial: 'comments/comment', collection: @comments, as: :comment, spacer_template: 'comments/comment_spacer' %>
+    <% else %>
+        <div class="message">Нет комментариев</div>
+    <% end %>
+</div>
