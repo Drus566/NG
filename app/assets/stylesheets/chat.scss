@@ -2,33 +2,83 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#chat-wrapper {
+    margin-top: 15px;
+    margin-right: 20px;
+}
+
 .chat-messages {
-    overflow: scroll;
-    height: 80vh;
-    width: 300px;
+    overflow: auto;
+    height: 75vh;
+    border-top: 1px solid rgb(219, 217, 217);
+    border-bottom: 1px solid rgb(219, 217, 217);
+
 
     .message {
         background-color: rgb(255, 255, 255);
         border: 1px solid rgb(219, 217, 217);
         border-radius: 10px;
-        margin: 10px;
+        margin-top: 10px;
         padding: 5px;
         margin-left: 0;
         margin-right: 0;
 
         span {
             font-size: 13px;
-            color: rgb(135, 116, 110)
+            color: rgb(135, 116, 110);
+
+            a {
+                color: rgb(230, 81, 50);
+            }
         }
 
         
     }
 
     .message-body {
-        color: rgb(29, 45, 53);
-        padding: 3px;
+        color: black;
+        padding: 5px;
         word-wrap: break-word;
         font-size: 14px;
     }
 }
 
+.chat-message-form {
+    background-color: white;
+    border: 1px solid rgb(219, 217, 217);
+    margin-top: 10px;
+
+    form {
+        padding: 10px;
+
+        textarea {
+            width: 100%;
+            height: auto;
+            max-height: 4em;
+            font-size: 14px;
+            color: black;
+            resize: none;
+            border: none;
+            word-wrap: break-word;
+            border-bottom: 1px solid rgb(219, 217, 217);
+        }
+    }
+}
+
+.chat-options {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+
+    .chat-btn {
+        border: none;
+        background-color: #FFE000;
+        color: #1D2D35;
+        cursor: pointer;
+        padding: 5px;
+        font-weight: bold;
+    }
+}

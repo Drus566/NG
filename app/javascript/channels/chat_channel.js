@@ -7,7 +7,7 @@ document.addEventListener('turbolinks:load', function() {
         consumer.subscriptions.create("ChatChannel", {
 
             connected() {
-
+                console.log('connect')
             },
 
             disconnected() {
@@ -16,13 +16,13 @@ document.addEventListener('turbolinks:load', function() {
 
             received(data) {
                 let chatMessages = chat[0].querySelector('.chat-messages')
-                chatMessages.insertAdjacentHTML('afterBegin', data)
+                chatMessages.insertAdjacentHTML('beforeEnd', data)
             },
 
-            speak: function(message) {
-                console.log('i speaked')
-                return this.perform('speak', message);
-            }
+            // speak: function(message) {
+            //     console.log('i speaked')
+            //     return this.perform('speak', message);
+            // }
         });
     }
 })

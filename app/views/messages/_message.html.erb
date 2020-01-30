@@ -1,4 +1,4 @@
 <div class="message">
-    <span class="text-muted"><%= message.user.name %>: <%= message.timestamp %></span><br>
+    <span class="text-muted"><%= link_to message.user.name, message.user %>: <%= message.timestamp %></span><br>
     <div class="message-body"><%= message.body %></div>
 </div>
