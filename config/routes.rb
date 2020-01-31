@@ -33,8 +33,7 @@ Rails.application.routes.draw do
   resources :sections
   resources :messages
 
-  get '/chat', to: 'chat#show'
-  get 'results', to: 'tags#results', as: 'results'
+  # get '/chat', to: 'chat#show'
 
   # get '/handbook', to: 'welcome#handbook'
 
