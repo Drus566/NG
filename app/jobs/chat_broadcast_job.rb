@@ -8,6 +8,8 @@ class ChatBroadcastJob < ApplicationJob
     private
 
         def render_message
-            ChatController.render_chat
+            @message = Message.new
+            @messages = Message.all
+            MessagesController.render partial: 'messages/chat', locals: { message: @message, messages: @messages }
         end
 end

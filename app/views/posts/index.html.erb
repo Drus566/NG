@@ -1,5 +1,9 @@
 <div id="posts-wrapper">
-    <%= render partial: @posts, spacer_template: "posts/post_spacer" %>
+    <% if @posts.any? %>
+        <%= render partial: @posts, spacer_template: "posts/post_spacer" %>
+    <% else %>
+        <div class="message">Нет записей</div>
+    <% end %>
 </div>
 
 

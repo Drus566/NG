@@ -24,16 +24,9 @@ class SectionsController < ApplicationController
         @sections = Section.all
         @posts = @section.posts
 
-        respond_to do |format|
-            if @posts
-                format.html { render 'posts/index', notice: 'Посты по метке нашлись'}
-                format.js
-                format.json { render json: @posts, status: :ok }
-            else
-                format.html { redirect_to @posts, notice: 'Нет постов по метке' }  
-                format.json { render json: @tag.errors, status: :unprocessable_entity }
-            end
-        end
+        if @posts
+            render 'posts/index'
+        end 
     end
 
     # def results

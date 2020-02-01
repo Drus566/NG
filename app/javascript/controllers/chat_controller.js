@@ -9,25 +9,25 @@ export default class extends Controller {
         let chat = this
         this.subscription = consumer.subscriptions.create("ChatChannel", {
                 connected() {
-                    console.log('WAY')
                 },
                 disconnected() {
-                    console.log('ActionCable: Disconnect')
                 },
                 received(data) {
-                    console.log('ActionCable: Received')
-                    console.log(data)
-                    console.log(data['chat'])
                     if (data['chat']) {
                         chat.element.innerHTML = data['chat']
                     } else {
                         if (chat.hasMessagesTarget) {
                             chat.messagesTarget.insertAdjacentHTML('beforeEnd', data)
+                            if (chat.messagesTarget.scrollTop == chat.messagesTarget.scrollHeight) {
+                                chat.messagesTarget.scrollTop = chat.messagesTarget.scrollHeight
+                            }
                         }
                     }
                 }
             }
         )
+
+        
     }
 
     disconnect() {
