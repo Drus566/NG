@@ -1,5 +1,7 @@
-<div id="menu">
-    <div id="sections-enum">
-        <%= render partial: 'sections/sections', collection: @sections, as: :section %>
+<div id="menu" data-turbolinks-permanent>
+    <div id="position-wrapper-menu">
+        <div id="sections-enum">
+            <%= render partial: 'sections/sections', collection: @sections, as: :section %>
+        </div>
     </div>
 </div>

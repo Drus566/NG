@@ -1,32 +1,34 @@
-<header id="header">
-    <span>LOGO</span>
-    <nav id="navigation">
-        <%= link_to "Главная" %>
-        <%# <%= link_to "Новости", controller: 'articles', action: 'index' %> 
-        <%= link_to "Записи", controller: 'posts', action: 'index' %>
-        <%= link_to "Справочник" %>
-    </nav>
-    <div id="add-section">
-        <div><%= link_to 'Новая запись', new_post_path %></div>
-    </div>
-    <div id="account">
-        <div data-controller="account">
-        <span data-action="click->account#change" data-open="false">Аккаунт</span>
-            <% if logged_in? %>
-                <div class="account-dropdown" data-target="account.dropdown">
-                    <ul>
-                        <li><%= link_to 'Профиль', current_user %></li>
-                        <li><%= link_to 'Выйти', logout_path, method: :delete %></li>
-                    </ul>
-                </div>
-            <% else %>
-                <div class="account-dropdown" data-target="account.dropdown">
-                    <ul>
-                        <li><%= link_to 'Войти', login_path %></li>
-                        <li><%= link_to 'Регистрация', signup_path %></li>
-                    </ul>
-                </div>
-            <% end %>
+<div id='position-wrapper-header' data-turbolinks-permanent>
+    <div id="header">
+        <span>LOGO</span>
+        <nav id="navigation">
+            <%= link_to "Главная" %>
+            <%# <%= link_to "Новости", controller: 'articles', action: 'index' %> 
+            <%= link_to "Записи", controller: 'posts', action: 'index' %>
+            <%= link_to "Справочник" %>
+        </nav>
+        <div id="add-section">
+            <div><%= link_to 'Новая запись', new_post_path %></div>
+        </div>
+        <div id="account">
+            <div data-controller="account">
+            <span data-action="click->account#change" data-open="false">Аккаунт</span>
+                <% if logged_in? %>
+                    <div class="account-dropdown" data-target="account.dropdown">
+                        <ul>
+                            <li><%= link_to 'Профиль', current_user %></li>
+                            <li><%= link_to 'Выйти', logout_path, method: :delete %></li>
+                        </ul>
+                    </div>
+                <% else %>
+                    <div class="account-dropdown" data-target="account.dropdown">
+                        <ul>
+                            <li><%= link_to 'Войти', login_path %></li>
+                            <li><%= link_to 'Регистрация', signup_path %></li>
+                        </ul>
+                    </div>
+                <% end %>
+            </div>
         </div>
     </div>
-</header>
+</div>

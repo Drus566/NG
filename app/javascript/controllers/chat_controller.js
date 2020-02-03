@@ -3,7 +3,7 @@ import consumer from "../channels/consumer"
 
 export default class extends Controller {
 
-    static targets = ["messages"]
+    static targets = ["messages", "scrollDown"]
 
     initialize() {
 
@@ -11,11 +11,11 @@ export default class extends Controller {
     
     connect() {
         this.addActionCable(this)
+        console.log('ChatController: Connect')
     }
 
     disconnect() {
-        this.subscription.unsubscribe();
-        this.saveScrollPosition(this)
+        this.subscription.unsubscribe()
         console.log('ChatController: Disconnect')
     }
 
@@ -54,7 +54,7 @@ export default class extends Controller {
 
         if (chat.hasMessagesTarget) {
             chat.messagesTarget.addEventListener('scroll', function(e) {
-                let btn = document.querySelector('.btn-scroll-down')
+                let btn = chat.scrollDownTarget
                 if (!ticking) {
                     window.requestAnimationFrame(function() {
                         if (chat.messagesTarget.scrollHeight - chat.messagesTarget.scrollTop !== chat.messagesTarget.clientHeight) {
@@ -79,15 +79,15 @@ export default class extends Controller {
     }
 
     setScrollPosition(chat) {
-        let scrollPos = localStorage.getItem('scrollPosition')
-
-        if (scrollPos) {
-            chat.messagesTarget.scrollTop = scrollPos
+        if (chat.hasMessagesTarget) {
+            chat.messagesTarget.scrollTop = chat.scrollPosition
+            if (chat.messagesTarget.scrollTop == 0) {
+                chat.messagesTarget.scrollTop = chat.messagesTarget.scrollHeight
+            } 
         }
     }
 
-    saveScrollPosition(chat) {
-        let scrollPos = chat.messagesTarget.scrollTop
-        localStorage.setItem('scrollPosition', scrollPos)
+    saveScrollPosition() {
+        this.scrollPosition = this.messagesTarget.scrollTop
     }
 }

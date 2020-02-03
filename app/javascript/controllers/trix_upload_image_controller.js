@@ -6,7 +6,7 @@ export default class extends Controller {
         this.element.addEventListener("trix-file-accept", function(event) {
             const maxFileSize = 1242880 // 10485760 // 10MB 5242880 // 5 MB
             const acceptedTypes = ['image/jpeg', 'image/png']
-            const maxImg = 4
+            const maxImg = 10
             const countImg = this.querySelectorAll('img').length
 
             if (!acceptedTypes.includes(event.file.type)){
