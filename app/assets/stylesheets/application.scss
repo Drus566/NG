@@ -111,7 +111,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: rgb(246, 242, 239);
+    background-color: rgb(246, 242, 239);   
 }
 
 #menu {
@@ -155,6 +155,27 @@
     display: flex;
     background-color: rgb(246, 242, 239);
     width: 356px;
+}
+
+// body block with popup
+
+body.overflow {
+    overflow: hidden;
+}
+
+#popup {
+    
+    .popup-active {
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        background-color: rgba(0, 0, 0, 0.548);
+        z-index: 2;
+    }
+}
+
+#notify {
+
 }
 
 // fixed positions

@@ -11,10 +11,6 @@
     </div>
 
     <%= f.rich_text_area :content, placeholder: 'Напишите сообщение...', data: { controller: 'trix-upload-image' } %>
-    <%= render 'shared/error_messages', 
-        object: @post, 
-        attribute: 'content' 
-    %>
     <%= f.submit yield(:button_text), id: "post-btn" %> 
 <% end %>
 

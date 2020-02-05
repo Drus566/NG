@@ -1,6 +1,8 @@
 class Post < ApplicationRecord
+
     belongs_to :user
     belongs_to :section, optional: true
+    
     has_many :comments, -> {order(created_at: :asc)}, as: :commentable, dependent: :destroy
     has_many :likes, -> {order(created_at: :asc)}, as: :likeable, dependent: :destroy
 
@@ -29,15 +31,23 @@ class Post < ApplicationRecord
     private 
 
         def content_embeds
+            puts "#{rich_text_content.embeds.any?}"
+            puts "#{rich_text_content.embeds.attached?}"
+            puts "#{rich_text_content.embeds.blobs.any?}"
+            puts "#{rich_text_content.embeds.attachments.any?}"
+            puts "#{content.attachable_sgid}"
+            errors.add(:content, 'ggwp')
+           
             if content.embeds.attached?
-                errors.add(:content, 'Нельзя загружать более 4 изображений') if content.embeds.size > 4
-                content.embeds.each do |blob|
-                    errors.add(:content, 'Изображение не может весить > 10 мБ') if blob.attach.byte_size > 1242880
-                    errors.add(:content, 'Можно загружать только изображения') unless blob.attach.image? 
-                    errors.add(:content, 'Недопустимый формат изображения') unless blob.attach.content_type == 'image/jpeg' || attach.content_type == 'image/png'
+                errors.add(:base, 'Нельзя загружать более 4 изображений') if content.embeds.attachments.size > 4
+                content.embeds.blobs.each do |attach|
+                    errors.add(:base, 'Размер') if attach.byte_size > 124
+                    errors.add(:base, 'Можно загружать только изображения') unless attach.image? 
+                    errors.add(:base, 'Недопустимый формат изображения') unless attach.content_type == 'image/jpeg' || attach.content_type == 'image/png'
                 end
             end
         end 
+
 
         # def content_length 
         #     max_length = 50

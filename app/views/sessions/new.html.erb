@@ -1,15 +1,19 @@
-<div id="form-wrapper">
-    <%= form_for(:session, url: login_path) do |f| %>
-        <%= render 'shared/flash_messages', attribute: 'error' %>
-        <%= render 'shared/flash_messages', attribute: 'warning' %>
-        <div id="form-data">
-            <%= f.email_field :email, placeholder: 'Почта' %>
-            <%= f.password_field :password, placeholder: 'Пароль' %>
+<div id="user-form-wrapper">
+    <%= form_with model: @user, url: login_path, remote: true do |f| %>
+        <div class="content">
+            <div class='upper'>
+                <div class="description">Вход на NG</div>
+                <span class="close-form" data-action="click->popup#clear">×</span>
+            </div>
+            <div class="form-data">
+                <%= f.email_field :email, placeholder: 'Почта' %>
+                <%= f.password_field :password, placeholder: 'Пароль' %>
+            </div>
+            <div class="form-options">
+                <div><%= check_box_tag 'remember' %><%= label_tag "Запомнить?" %></div>
+                <%= link_to 'Забыли пароль?' %>
+            </div>
+            <%= f.submit "Войти", class: "user-form-btn" %>
         </div>
-        <div id="form-options">
-            <div><%= check_box_tag 'remember' %><%= label_tag "Запомнить?" %></div>
-            <%= link_to 'Забыли пароль?' %>
-        </div>
-        <%= f.submit "Войти", id: "form-btn" %>
     <% end %>
 </div>

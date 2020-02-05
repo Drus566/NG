@@ -2,4 +2,72 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// Signup and signin
 
+#user-form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    form {
+        background-color: rgb(246, 242, 239);
+        border-radius: 5px;
+
+        .content {
+            min-height: 300px;
+            width: 400px;
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .upper {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+             
+            span {
+                color: rgb(58, 58, 58);
+                user-select: none;
+                cursor: pointer;
+            }
+        }
+
+        .description {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .form-data {
+            margin: auto;
+            margin-bottom: 0;
+
+            input {
+                margin: 10px;
+                padding: 10px;
+                width: 90%;
+                border: none;
+            }
+        }
+
+        .form-options {
+            display: flex;
+            flex-direction: row;
+            width: 90%;
+            margin: auto;
+            margin-top: 10px;
+            justify-content: space-evenly;
+        }
+
+        .user-form-btn {
+            border: none;
+            background-color: #FFE000;
+            color: #1D2D35;
+            cursor: pointer;
+            padding: 5px;
+            font-weight: bold;      
+            margin-top: 10px;
+        }
+    }
+}

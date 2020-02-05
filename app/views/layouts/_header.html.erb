@@ -1,4 +1,4 @@
-<div id='position-wrapper-header' data-turbolinks-permanent>
+<div id='position-wrapper-header'>
     <div id="header">
         <span>LOGO</span>
         <nav id="navigation">
@@ -12,7 +12,7 @@
         </div>
         <div id="account">
             <div data-controller="account">
-            <span data-action="click->account#change" data-open="false">Аккаунт</span>
+                <span data-action="click->account#change" data-target='account.dataOpen' data-open="false">Аккаунт</span>
                 <% if logged_in? %>
                     <div class="account-dropdown" data-target="account.dropdown">
                         <ul>
@@ -23,8 +23,24 @@
                 <% else %>
                     <div class="account-dropdown" data-target="account.dropdown">
                         <ul>
-                            <li><%= link_to 'Войти', login_path %></li>
-                            <li><%= link_to 'Регистрация', signup_path %></li>
+                            <li>
+                                <%= link_to 'Войти', login_path, 
+                                    remote: true, 
+                                    data: {
+                                        :action => 'ajax:success->account#addContent', 
+                                        :type => 'html'
+                                    }  
+                                %>
+                            </li>
+                            <li>
+                                <%= link_to 'Регистрация', signup_path,
+                                        remote: true, 
+                                        data: {
+                                            :action => 'ajax:success->account#addContent', 
+                                            :type => 'html'
+                                        }   
+                                %>
+                            </li>
                         </ul>
                     </div>
                 <% end %>

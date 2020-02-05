@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
     
+    include UsersHelper
+
     before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
     before_action :correct_user, only: [:edit, :update]
     before_action :set_user, only: [:get_liked_posts, :get_posts, :get_posts_comments]
@@ -15,16 +17,15 @@ class UsersController < ApplicationController
 
     def new
         @user = User.new
+        render layout: false
     end
 
     def create
         @user = User.new(user_params)
         if @user.save
             log_in @user
-            flash[:success] = "Добро пожаловать на сайт!"
             redirect_to posts_path
         else
-            render 'new'
         end
     end
 
@@ -42,26 +43,8 @@ class UsersController < ApplicationController
         end 
     end
 
-    # ---------- профиль -------------
-
-    def get_posts
-        @posts = @user.posts
-        render partial: 'users/get_posts', layout: false
-    end
-    
-    def get_posts_comments
-        @comments = @user.comments
-        render partial: 'users/get_posts_comments', layout: false
-    end
-
-    def get_liked_posts
-        @likes_ids = @user.likes.where(likeable_type: "Post", vote: true).map(&:likeable_id)
-        @posts = Post.where(id: @likes_ids)
-        render partial: 'users/get_liked_posts', layout: false
-    end
-
     private 
-        # параметры юзера при создании
+
         def user_params
             params.require(:user).permit(:name, :email, :password, :password_confirmation)
         end

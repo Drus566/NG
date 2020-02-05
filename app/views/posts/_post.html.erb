@@ -7,6 +7,41 @@
             <% end %> 
         </div>
         <div class="post-content-wrapper"><%= run_rinku(post.content) %></div>
+        ----------------------------------------------
+        <%= post.rich_text_content %>
+        ------------------------------------------
+        <% post.content.embeds.blobs.each do |blob| %>
+            <%= blob.byte_size %>
+        <% end %>
+        ------------------------------------------
+        <% post.content.embeds.blobs.each do |attach| %>
+            <%= attach.byte_size %>
+            <%= attach.content_type %>
+            <%= attach.image? %>
+        <% end %>
+        ------------------------------------------
+        <% post.content.embeds.attachments.each do |attach| %>
+            <%= attach.byte_size %>
+            <%= attach.content_type %>
+            <%= attach.image? %>
+        <% end %>
+        -----------------------------------------
+        <%= post.content.embeds.attachments.methods %>
+        ----------------------------------------
+        <%= post.content.embeds.blobs %>
+        -----------------------------------------
+        <%= post.content.embeds.attachments %>
+        ---------------------------------------
+        <%= post.content.embeds.attached? %>
+        ---------------------------------------
+        <%= post.content.embeds.methods %>
+        ----------------------------------------
+        <%= post.content.methods %>
+        ----------------------------------------
+        <% post.content.embeds.each do |blob| %>
+            <%= blob.methods %>
+        <% end %>
+        ----------------------------------------
         <div class="post-options-likes-wrapper">
             <div class="post-options-wrapper">
                 <%= link_to "Ⓟ", edit_post_path(post.id) %> 

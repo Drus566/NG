@@ -29,7 +29,6 @@ module AuthorityHelper
      def logged_in_user
         unless logged_in?
             store_location
-            flash[:warning] = "Пожалуйста залогиньтесь"
             redirect_to login_url
         end
     end

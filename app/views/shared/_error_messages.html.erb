@@ -1,9 +1,0 @@
-<% unless object.nil? %>
-    <% if object.errors["#{attribute}"].any? %>
-        <div class="form-errors">
-            <% object.errors["#{attribute}"].each do |msg| %>
-                <p>&#8211 <%= msg %></p>
-            <% end %>
-        </div>
-    <% end %>
-<% end %>
