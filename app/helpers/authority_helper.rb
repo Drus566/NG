@@ -29,7 +29,10 @@ module AuthorityHelper
      def logged_in_user
         unless logged_in?
             store_location
-            redirect_to login_url
+            # redirect_to login_url
+            respond_to do |format| 
+                format.js { render partial: 'sessions/new_js' } 
+            end
         end
     end
 end

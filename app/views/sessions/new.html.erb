@@ -1,10 +1,17 @@
 <div id="user-form-wrapper">
-    <%= form_with model: @user, url: login_path, remote: true do |f| %>
+    <%= form_with model: @user, url: login_path, 
+        data: {
+            action: 'ajax:success->popup#addError',
+            type: 'html'
+        },
+        remote: true do |f| 
+    %>
         <div class="content">
             <div class='upper'>
                 <div class="description">Вход на NG</div>
                 <span class="close-form" data-action="click->popup#clear">×</span>
             </div>
+            <div data-target="popup.errors"></div>
             <div class="form-data">
                 <%= f.email_field :email, placeholder: 'Почта' %>
                 <%= f.password_field :password, placeholder: 'Пароль' %>

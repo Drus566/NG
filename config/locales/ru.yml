@@ -11,6 +11,17 @@ ru:
       post:
         content: 'Поле'
     errors:
+      models: 
+        user:
+          attributes:
+            email: 
+              blank: 'Заполните почту'
+            name: 
+              blank: 'Заполните имя'
+              lenght: 'Длина имени'
+            password: 
+              blank: 'Заполните пароль'
+              confirmation: 'Неверное подтверждение пароля'
       messages:
         record_invalid: 'Возникли ошибки: %{errors}'
         restrict_dependent_destroy:
@@ -144,7 +155,7 @@ ru:
     messages:
       accepted: нужно подтвердить
       blank: не может быть пустым
-      confirmation: не совпадает со значением поля %{attribute}
+      confirmation: Неверное подтверждение
       empty: не может быть пустым
       equal_to: может иметь лишь значение, равное %{count}
       even: может иметь лишь четное значение

@@ -16,19 +16,15 @@ export default class extends Controller {
         }
     }
 
-    addContent(event) {
+    close(event) {
         let [data, status, xhr] = event.detail
-        let popup = document.querySelector('.popup')
 
         if (this.hasDropdownTarget) {
             this.dropdownTarget.classList.remove('account-active')
             this.dataOpenTarget.dataset.open = 'false'
         }
 
-        if (popup) {
-            document.body.classList.add('overflow')
-            popup.classList.add('popup-active')
-            popup.innerHTML = xhr.response
-        }
+        let popup_event = new CustomEvent('popup', { 'detail': xhr.response })
+        document.dispatchEvent(popup_event)
     }
 }

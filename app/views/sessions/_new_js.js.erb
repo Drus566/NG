@@ -1,0 +1,2 @@
+templar = "<%= j render template: 'sessions/new', object: @user, layout: false %>"
+document.dispatchEvent(new CustomEvent('popup', { 'detail': templar }))

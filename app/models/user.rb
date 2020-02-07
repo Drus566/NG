@@ -2,15 +2,17 @@ class User < ApplicationRecord
     has_secure_password
 
     has_many :posts
-    has_many :articles
     has_many :comments, dependent: :destroy
     has_many :likes, dependent: :destroy
     has_many :messages, dependent: :destroy
 
-    validates :name, presence: true
-    validates :name, length: { in: 2..30 }
-    validates :email, presence: { message: "не может быть пустой" }, length: { maximum: 50 }, format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i }, uniqueness: { case_sensitive: false }
-    validates :password, presence: true, length: { minimum: 6 }
+    validates :name, presence: { message: 'Заполните имя' }
+    validates :name, length: { in: 2..30, message: 'Длинна имени от 2 до 30 символов' }
+    validates :email, presence: { message: "Заполните почту" }, 
+                      length: { maximum: 50, message: 'Длинна почты максимум 30 символов' }, 
+                      format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i, message: 'Неверная почта' }, 
+                      uniqueness: { case_sensitive: false, message: 'Такая почта существует' }
+    validates :password, presence: { message: 'Пароль не может быть пустым'}, length: { minimum: 6, message: 'Минимальная длинна пароля 6 символов' }
 
     attr_accessor :remember_token
 

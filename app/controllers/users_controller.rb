@@ -26,6 +26,7 @@ class UsersController < ApplicationController
             log_in @user
             redirect_to posts_path
         else
+            render html: helpers.content_tag(:div, @user.errors.first.second, class: 'errors') if @user.errors.any? 
         end
     end
 

@@ -28,6 +28,7 @@ class PostsController < ApplicationController
 
     def new
         @post = current_user.posts.build if logged_in?
+        respond_to { |format| format.js { render partial: 'posts/new_js' }}
     end
 
     def update

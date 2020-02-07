@@ -8,7 +8,7 @@
             <%= link_to "Справочник" %>
         </nav>
         <div id="add-section">
-            <div><%= link_to 'Новая запись', new_post_path %></div>
+            <div><%= link_to 'Новая запись', new_post_path, remote: true %></div>
         </div>
         <div id="account">
             <div data-controller="account">
@@ -27,18 +27,18 @@
                                 <%= link_to 'Войти', login_path, 
                                     remote: true, 
                                     data: {
-                                        :action => 'ajax:success->account#addContent', 
+                                        :action => 'ajax:success->account#close', 
                                         :type => 'html'
                                     }  
                                 %>
                             </li>
                             <li>
                                 <%= link_to 'Регистрация', signup_path,
-                                        remote: true, 
-                                        data: {
-                                            :action => 'ajax:success->account#addContent', 
-                                            :type => 'html'
-                                        }   
+                                    remote: true, 
+                                    data: {
+                                        :action => 'ajax:success->account#close', 
+                                        :type => 'html'
+                                    }   
                                 %>
                             </li>
                         </ul>

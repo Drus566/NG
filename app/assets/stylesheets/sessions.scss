@@ -22,13 +22,18 @@
             flex-direction: column;
         }
         
+        .errors {
+            margin: 10px;
+            color: rgb(230, 81, 50)
+        }
+
         .upper {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
              
             span {
-                color: rgb(58, 58, 58);
+                color: #1D2D35;
                 user-select: none;
                 cursor: pointer;
             }
@@ -37,6 +42,8 @@
         .description {
             font-size: 20px;
             margin-bottom: 10px;
+            color: #1D2D35;
+            font-weight: bold;
         }
 
         .form-data {
@@ -58,6 +65,7 @@
             margin: auto;
             margin-top: 10px;
             justify-content: space-evenly;
+            color: #1D2D35
         }
 
         .user-form-btn {
@@ -67,7 +75,7 @@
             cursor: pointer;
             padding: 5px;
             font-weight: bold;      
-            margin-top: 10px;
+            margin-top: 20px;
         }
     }
 }

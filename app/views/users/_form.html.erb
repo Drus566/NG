@@ -1,9 +1,16 @@
-<%= form_with model: @user, remote: true do |f| %>
+<%= form_with model: @user, 
+    data: {
+        action: 'ajax:success->popup#addError',
+        type: 'html',
+    },
+    remote: true do |f| 
+%>
     <div class="content">
         <div class='upper'>
             <div class="description">Регистрация на NG</div>
             <span class="close-form" data-action="click->popup#clear">×</span>
         </div>
+        <div data-target="popup.errors"></div>
         <div class="form-data">
             <%= f.text_field :name, placeholder: 'Имя' %>
             <%= f.email_field :email, placeholder: 'Почта' %>
