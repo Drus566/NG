@@ -25,12 +25,12 @@ module AuthorityHelper
         redirect_to(root_url) unless current_user?(@user)
     end
 
-     # Если пользователь не вошел, перебрасывает его на страницу входа 
-     def logged_in_user
+    def logged_in_user
         unless logged_in?
             store_location
-            # redirect_to login_url
+            @user = User.new
             respond_to do |format| 
+                format.html { render :nothing => true }
                 format.js { render partial: 'sessions/new_js' } 
             end
         end

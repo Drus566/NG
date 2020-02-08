@@ -89,6 +89,7 @@ export default class extends Controller {
 
     updateLike(event) {
         let [data, status, xhr] = event.detail
+        console.log(xhr.response)
         let resp = new DOMParser().parseFromString(xhr.response, "text/html")
         this.likeTarget.innerHTML = resp.firstElementChild.innerHTML
     }

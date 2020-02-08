@@ -1,12 +1,14 @@
 class LikesController < ApplicationController
     
+    before_action :logged_in_user
     before_action :set_likeable
     before_action :set_like, only: [:update, :destroy]
+    
 
     def create
         @like = @likeable.likes.new(like_params)
         @like.user = current_user
-        if @like.save 
+        if @like.save
             render layout: false
         end
     end

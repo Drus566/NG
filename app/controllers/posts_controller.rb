@@ -24,11 +24,18 @@ class PostsController < ApplicationController
     end
 
     def edit
+        respond_to do |format|
+            format.html { render :nothing => true }
+            format.js { render partial: 'posts/content' }
+        end
     end
 
     def new
         @post = current_user.posts.build if logged_in?
-        respond_to { |format| format.js { render partial: 'posts/new_js' }}
+        respond_to do |format|
+            format.html { render :nothing => true }
+            format.js { render partial: 'posts/content' }
+        end
     end
 
     def update
