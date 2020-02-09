@@ -30,7 +30,6 @@ module AuthorityHelper
             store_location
             @user = User.new
             respond_to do |format| 
-                format.html { render :nothing => true }
                 format.js { render partial: 'sessions/new_js' } 
             end
         end

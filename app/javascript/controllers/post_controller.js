@@ -6,10 +6,13 @@ export default class extends Controller {
 
     createCommentForm(event) {
         if (this.hasFormTarget) {
-            if(this.formTarget.dataset.form == 'closed') {
-                this.formTarget.dataset.form = "open"
-                let [data, status, xhr] = event.detail
-                this.formTarget.innerHTML += xhr.response
+            let [data, status, xhr] = event.detail
+
+            if (xhr.response.trimLeft().toLowerCase().startsWith('<div class="post-comment-form"')) {
+                if(this.formTarget.dataset.form == 'closed') {
+                    this.formTarget.dataset.form = "open"
+                    this.formTarget.innerHTML += xhr.response
+                }
             }
         }
     }
@@ -27,7 +30,9 @@ export default class extends Controller {
 
     createComment(event) {
         if (this.hasCommentsTarget) {
+
             let [data, status, xhr] = event.detail
+            
             if (this.commentsTarget.dataset.comments == 'true') {
                 let spacer = document.createElement('div')
                 spacer.classList.add('comment-spacer')
@@ -68,6 +73,7 @@ export default class extends Controller {
     deleteReply(event) {
         let commentId = event.target.getAttribute('href').split('/')[4]
         let comment = this.commentsTarget.querySelector(`#comment-${commentId}`)
+        
         if (comment && comment.parentElement.parentElement.dataset.replies == 'true') {            
             if (comment.nextElementSibling && comment.previousElementSibling
                 && comment.nextElementSibling.className == 'comment-spacer'
@@ -89,8 +95,10 @@ export default class extends Controller {
 
     updateLike(event) {
         let [data, status, xhr] = event.detail
-        console.log(xhr.response)
-        let resp = new DOMParser().parseFromString(xhr.response, "text/html")
-        this.likeTarget.innerHTML = resp.firstElementChild.innerHTML
+
+        if (xhr.response.toLowerCase().startsWith('<div class="likes-wrapper"')) {
+            let resp = new DOMParser().parseFromString(xhr.response, "text/html")
+            this.likeTarget.innerHTML = resp.firstElementChild.innerHTML
+        }
     }
 }
