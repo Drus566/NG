@@ -1,7 +1,8 @@
 <%= form_with model: [comment.commentable, comment], 
               class: "comment-form",
               data: { 
-                  :action => "ajax:success->#{ content_for?(:form_controller_action) ? yield(:form_controller_action) : "post#createComment" }", 
+                  :action => "ajax:success->#{ content_for?(:form_controller_action) ? yield(:form_controller_action) : "post#createComment" }
+                              ajax:error->comment#addError", 
                   :type => 'html'
               }, 
               remote: true do |f| 
@@ -17,7 +18,7 @@
     <div class="comment-options">
         <%= f.submit class: 'comment-btn', 
                      data: { disable_with: 'Загрузка' }, 
-                     value: (f.object.parent_id.nil? ? 'Отправить' : 'Ответить')  
+                     value: content_for?(:edit_btn_text) ? yield(:edit_btn_text) : (f.object.parent_id.nil? ? 'Отправить' : 'Ответить')
         %>
         <span <% if f.object.parent_id.nil? && f.object.id.nil? %>
                     data-action="click-><%= comment.commentable.class.to_s.downcase %>#deleteCommentForm">

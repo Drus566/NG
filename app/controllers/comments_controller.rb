@@ -1,10 +1,10 @@
 class CommentsController < ApplicationController
 
     include RinkuHelper
-    
+
+    before_action :logged_in_user, only: [:create, :destroy, :new, :edit]
     before_action :set_commentable
     before_action :set_comment, only: [:reply, :edit, :update, :destroy]
-    before_action :logged_in_user, only: [:create, :destroy, :new, :edit]
     before_action :valid_comment_resource, only: [:destroy, :edit, :update]
 
     def reply
@@ -17,6 +17,8 @@ class CommentsController < ApplicationController
         @comment.user = current_user
         if @comment.save 
             render layout: false
+        else 
+            render html: "<div class='error'>#{@comment.errors.first.second}</div>", status: :bad_request
         end
     end
 
@@ -27,6 +29,8 @@ class CommentsController < ApplicationController
     def update 
         if @comment.update(comment_params)
             render layout: false
+        else 
+            render html: "<div class='error'>#{@comment.errors.first.second}</div>", status: :bad_request
         end
     end
 

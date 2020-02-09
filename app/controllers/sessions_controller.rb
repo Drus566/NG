@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
             # если нажали на чекбокс, то запоминаем иначе забываем дайджест запоминания 
             params[:user][:remember_me] == '1' ? remember(@user) : forget(@user)
             # перенаправляем на предыдущую сохраненную локацию пользователя либо на дефолтную страницу 
-            redirect_back_or posts_path
+            redirect_to posts_path
         else
             render html: helpers.content_tag(:div, 'Неверная почта или пароль', class: 'errors')
         end

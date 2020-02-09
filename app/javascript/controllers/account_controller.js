@@ -24,7 +24,7 @@ export default class extends Controller {
             this.dataOpenTarget.dataset.open = 'false'
         }
 
-        let popup_event = new CustomEvent('popup', { 'detail': xhr.response })
-        document.dispatchEvent(popup_event)
+        let popupEvent = new CustomEvent('popup', { 'detail': xhr.response })
+        document.dispatchEvent(popupEvent)
     }
 }

@@ -1,5 +1,6 @@
 <% provide :form_controller_action, "comment#updateComment" %>
+<% provide :edit_btn_text, "Сохранить" %>
 
-<div class="edit-comment-form">
+<div class="edit-comment-form"> 
     <%= render partial: 'comments/form', locals: { comment: @comment } %>
 </div>

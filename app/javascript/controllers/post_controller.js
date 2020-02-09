@@ -32,18 +32,20 @@ export default class extends Controller {
         if (this.hasCommentsTarget) {
 
             let [data, status, xhr] = event.detail
-            
-            if (this.commentsTarget.dataset.comments == 'true') {
-                let spacer = document.createElement('div')
-                spacer.classList.add('comment-spacer')
-                this.commentsTarget.firstElementChild.prepend(spacer)
-                this.commentsTarget.firstElementChild.firstElementChild.insertAdjacentHTML('beforebegin', xhr.response)
-            } else {
-                let comments = document.createElement('div')
-                comments.classList.add('comments-wrapper')
-                comments.innerHTML = xhr.response
-                this.commentsTarget.prepend(comments)
-                this.commentsTarget.dataset.comments = 'true'
+
+            if (xhr.response.trimLeft().toLowerCase().startsWith('<div class="comment-tree"')) {
+                if (this.commentsTarget.dataset.comments == 'true') {
+                    let spacer = document.createElement('div')
+                    spacer.classList.add('comment-spacer')
+                    this.commentsTarget.firstElementChild.prepend(spacer)
+                    this.commentsTarget.firstElementChild.firstElementChild.insertAdjacentHTML('beforebegin', xhr.response)
+                } else {
+                    let comments = document.createElement('div')
+                    comments.classList.add('comments-wrapper')
+                    comments.innerHTML = xhr.response
+                    this.commentsTarget.prepend(comments)
+                    this.commentsTarget.dataset.comments = 'true'
+                }
             }
         }
     }

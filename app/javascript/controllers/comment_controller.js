@@ -6,20 +6,28 @@ export default class extends Controller {
 
     replyCommentForm(event) {
         if (this.hasFormTarget) {
-            if(this.formTarget.dataset.form == 'closed') {
-                this.formTarget.dataset.form = "open"
-                let [data, status, xhr] = event.detail
-                this.formTarget.innerHTML += xhr.response
+
+            let [data, status, xhr] = event.detail
+
+            if (xhr.response.trimLeft().toLowerCase().startsWith('<div class="reply-comment-form"')) {
+                if(this.formTarget.dataset.form == 'closed') {
+                    this.formTarget.dataset.form = "open"        
+                    this.formTarget.innerHTML += xhr.response
+                }    
             }
         }
     }
 
     editCommentForm(event) {
         if (this.hasFormTarget) {
-            if(this.formTarget.dataset.form == 'closed') {
-                this.formTarget.dataset.form = "open"
-                let [data, status, xhr] = event.detail
-                this.formTarget.innerHTML += xhr.response
+
+            let [data, status, xhr] = event.detail
+
+            if (xhr.response.trimLeft().toLowerCase().startsWith('<div class="edit-comment-form"')) {
+                if(this.formTarget.dataset.form == 'closed') {
+                    this.formTarget.dataset.form = "open"        
+                    this.formTarget.innerHTML += xhr.response
+                }
             }
         }   
     }
@@ -38,27 +46,37 @@ export default class extends Controller {
     createComment(event) {
         if (this.hasRepliesTarget) {
             let [data, status, xhr] = event.detail
-            if (this.repliesTarget.dataset.replies == 'true') {
-                let spacer = document.createElement('div')
-                spacer.classList.add('comment-spacer')
-                this.repliesTarget.firstElementChild.prepend(spacer)
-                this.repliesTarget.firstElementChild.firstElementChild.insertAdjacentHTML('beforebegin', xhr.response)
-            } else {
-                let replies = document.createElement('ul')
-                replies.classList.add('comments-replies')
-                replies.innerHTML = xhr.response
-                this.repliesTarget.prepend(replies)
-                this.repliesTarget.dataset.replies = 'true'
-            }
-            this.formTarget.dataset.form = 'closed'
-            this.formTarget.firstElementChild.remove()
+            
+            if (xhr.response.trimLeft().toLowerCase().startsWith('<div class="comment-tree"')) {    
+                if (this.repliesTarget.dataset.replies == 'true') {
+                    let spacer = document.createElement('div')
+                    spacer.classList.add('comment-spacer')
+                    this.repliesTarget.firstElementChild.prepend(spacer)
+                    this.repliesTarget.firstElementChild.firstElementChild.insertAdjacentHTML('beforebegin', xhr.response)
+                } else {
+                    let replies = document.createElement('ul')
+                    replies.classList.add('comments-replies')
+                    replies.innerHTML = xhr.response
+                    this.repliesTarget.prepend(replies)
+                    this.repliesTarget.dataset.replies = 'true'
+                }
+                this.formTarget.dataset.form = 'closed'
+                this.formTarget.firstElementChild.remove()
+            } 
         }
     }
 
     updateComment(event) {
-        if (this.element) {
-            let [data, status, xhr] = event.detail
+        let [data, status, xhr] = event.detail
+
+        if (xhr.response.trimLeft().toLowerCase().startsWith('<div class="comment-tree"')) { 
             this.element.innerHTML = xhr.response
-        }
+        } 
+    }
+
+    addError(event) {
+        let [data, status, xhr] = event.detail
+
+        console.log(xhr.response)
     }
 }

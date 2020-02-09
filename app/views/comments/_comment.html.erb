@@ -8,7 +8,8 @@
                 remote: true,
                 data: { 
                     :disable_with => '⌛',
-                    :action => 'ajax:success->comment#editCommentForm', 
+                    :action => 'ajax:success->comment#editCommentForm
+                                ajax:error->comment#addError', 
                     :type => 'html'
                 } 
             %>
@@ -19,7 +20,8 @@
                 data: { 
                     :disable_with => '⌛',
                     :confirm => 'Вы уверены?',
-                    :action => "ajax:success->#{comment.commentable.class.to_s.downcase}#{comment.parent_id.nil? ? "#deleteComment" : "#deleteReply"}"
+                    :action => "ajax:success->#{comment.commentable.class.to_s.downcase}#{comment.parent_id.nil? ? "#deleteComment" : "#deleteReply"} 
+                                ajax:error->comment#addError"
                 } 
             %>
             <%= link_to 'Ⓞ', 
@@ -27,7 +29,8 @@
                 remote: true,
                 data: { 
                     :disable_with => '⌛', 
-                    :action => 'ajax:success->comment#replyCommentForm', 
+                    :action => 'ajax:success->comment#replyCommentForm
+                                ajax:error->comment#addError', 
                     :type => 'html'
                 }
             %>
