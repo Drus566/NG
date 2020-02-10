@@ -4,19 +4,19 @@ export default class extends Controller {
     
     static targets = ["comments", "form", "like"]
 
+    // Создание формы для комментирования
     createCommentForm(event) {
         if (this.hasFormTarget) {
             let [data, status, xhr] = event.detail
 
-            if (xhr.response.trimLeft().toLowerCase().startsWith('<div class="post-comment-form"')) {
-                if(this.formTarget.dataset.form == 'closed') {
-                    this.formTarget.dataset.form = "open"
-                    this.formTarget.innerHTML += xhr.response
-                }
+            if(this.formTarget.dataset.form == 'closed') {
+                this.formTarget.dataset.form = "open"
+                this.formTarget.innerHTML += xhr.response
             }
         }
     }
 
+    // Удаление формы для комментирования
     deleteCommentForm() {
         if (this.hasFormTarget) {
             if (this.formTarget.dataset.form == 'open') {
@@ -28,28 +28,27 @@ export default class extends Controller {
         }   
     }
 
+    // Создание комментария
     createComment(event) {
         if (this.hasCommentsTarget) {
-
             let [data, status, xhr] = event.detail
 
-            if (xhr.response.trimLeft().toLowerCase().startsWith('<div class="comment-tree"')) {
-                if (this.commentsTarget.dataset.comments == 'true') {
-                    let spacer = document.createElement('div')
-                    spacer.classList.add('comment-spacer')
-                    this.commentsTarget.firstElementChild.prepend(spacer)
-                    this.commentsTarget.firstElementChild.firstElementChild.insertAdjacentHTML('beforebegin', xhr.response)
-                } else {
-                    let comments = document.createElement('div')
-                    comments.classList.add('comments-wrapper')
-                    comments.innerHTML = xhr.response
-                    this.commentsTarget.prepend(comments)
-                    this.commentsTarget.dataset.comments = 'true'
-                }
+            if (this.commentsTarget.dataset.comments == 'true') {
+                let spacer = document.createElement('div')
+                spacer.classList.add('comment-spacer')
+                this.commentsTarget.firstElementChild.prepend(spacer)
+                this.commentsTarget.firstElementChild.firstElementChild.insertAdjacentHTML('beforebegin', xhr.response)
+            } else {
+                let comments = document.createElement('div')
+                comments.classList.add('comments-wrapper')
+                comments.innerHTML = xhr.response
+                this.commentsTarget.prepend(comments)
+                this.commentsTarget.dataset.comments = 'true'
             }
         }
     }
 
+    // Удаление комментария
     deleteComment(event) {
         if (this.hasCommentsTarget && this.commentsTarget.dataset.comments == 'true') { 
             let commentId = event.target.getAttribute('href').split('/')[4]
@@ -72,6 +71,7 @@ export default class extends Controller {
         }
     }
 
+    // Удаление ответа на комментарий
     deleteReply(event) {
         let commentId = event.target.getAttribute('href').split('/')[4]
         let comment = this.commentsTarget.querySelector(`#comment-${commentId}`)
@@ -95,12 +95,22 @@ export default class extends Controller {
         }
     }
 
+    // Обновление лайка на посте
     updateLike(event) {
         let [data, status, xhr] = event.detail
 
-        if (xhr.response.toLowerCase().startsWith('<div class="likes-wrapper"')) {
-            let resp = new DOMParser().parseFromString(xhr.response, "text/html")
-            this.likeTarget.innerHTML = resp.firstElementChild.innerHTML
+        let resp = new DOMParser().parseFromString(xhr.response, "text/html")
+        this.likeTarget.innerHTML = resp.firstElementChild.innerHTML
+    }
+
+    addCommentError(event) {
+        let [data, status, xhr] = event.detail
+        console.log(status)
+        // Если это ошибка 401, то отправляем
+        if (status == '400' || status.toLowerCase() == 'bad request') {
+            console.log('Send')
+            let customEvent = new CustomEvent('notify', { detail: xhr.response })
+            document.dispatchEvent(customEvent)
         }
     }
 }

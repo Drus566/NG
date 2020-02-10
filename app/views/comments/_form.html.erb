@@ -2,7 +2,7 @@
               class: "comment-form",
               data: { 
                   :action => "ajax:success->#{ content_for?(:form_controller_action) ? yield(:form_controller_action) : "post#createComment" }
-                              ajax:error->comment#addError", 
+                              ajax:error->#{(comment.parent_id.nil? && comment.id.nil?) ? (comment.commentable.class.to_s.downcase + "#addCommentError") : "comment#addError" }",
                   :type => 'html'
               }, 
               remote: true do |f| 

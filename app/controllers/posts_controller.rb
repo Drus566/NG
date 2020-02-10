@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 
     # protect_from_forgery 
+    include ActionView::Helpers::TagHelper
     include RinkuHelper
     include SectionsHelper
 
@@ -19,7 +20,7 @@ class PostsController < ApplicationController
         if @post.save
             redirect_to posts_path
         else
-            render 'new'
+            render html: content_tag(:div, @post.errors.first.second, class: 'error'), status: 400
         end
     end
 
@@ -41,15 +42,15 @@ class PostsController < ApplicationController
     def update
         @post.section = check_section unless check_section.nil?
         if @post.update_attributes(post_params) 
-            redirect_to action: 'index'
+            redirect_to posts_path
         else
-            render 'edit'
+            render html: content_tag(:div, @post.errors.first.second, class: 'error'), status: 400
         end 
     end
 
     def destroy
         @post.destroy 
-        flash[:success] = 'Пост удалён'
+
         respond_to do |format|
             format.html { redirect_to posts_url }
             format.json { head :no_content }

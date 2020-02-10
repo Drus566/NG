@@ -3,11 +3,7 @@ import consumer from "../channels/consumer"
 
 export default class extends Controller {
 
-    static targets = ["messages", "scrollDown"]
-
-    initialize() {
-
-    }
+    static targets = ["messages", "scrollDown", "textarea"]
     
     connect() {
         this.addActionCable(this)
@@ -19,6 +15,7 @@ export default class extends Controller {
         console.log('ChatController: Disconnect')
     }
 
+    // Инициализация Action Cable
     addActionCable(chat) {
         this.subscription = consumer.subscriptions.create("ChatChannel", {
                 connected() {
@@ -32,6 +29,7 @@ export default class extends Controller {
         )
     }
 
+    // Добавление сообщения
     addMessage(chat, data) {
         if (chat.hasMessagesTarget) {
             if (chat.messagesTarget.scrollHeight - chat.messagesTarget.scrollTop === chat.messagesTarget.clientHeight) {
@@ -43,12 +41,14 @@ export default class extends Controller {
         }
     }
 
+    // Инициализация чата
     addChat(chat, data) {
         chat.element.innerHTML = data['chat']
         chat.addEventOnScroll(chat)
         chat.setScrollPosition(chat)
     }
 
+    // Добавление события появления кнопки прокрутки для скролла
     addEventOnScroll(chat) {
         let ticking = false
 
@@ -74,10 +74,12 @@ export default class extends Controller {
         }
     }
 
+    // Перемотка скролла вниз
     scrollToDown() {
         this.messagesTarget.scrollTop = this.messagesTarget.scrollHeight
     }
 
+    // Установка позиции скролла после смены страницы
     setScrollPosition(chat) {
         if (chat.hasMessagesTarget) {
             chat.messagesTarget.scrollTop = chat.scrollPosition
@@ -87,7 +89,18 @@ export default class extends Controller {
         }
     }
 
+    // Сохранение позиции скролла перед сменой страницы
     saveScrollPosition() {
         this.scrollPosition = this.messagesTarget.scrollTop
+    }
+
+    // Добавление ошибки 
+    addError(event) {
+        let [data, status, xhr] = event.detail
+
+        if (status == '400' || status.toLowerCase() == 'bad request') {
+            let customEvent = new CustomEvent('notify', { detail: xhr.response })
+            document.dispatchEvent(customEvent)
+        }
     }
 }

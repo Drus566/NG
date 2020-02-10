@@ -73,7 +73,6 @@
   
 
     span {
-       
         cursor: pointer;
         color: white;
         border: 1px solid white;
@@ -86,11 +85,9 @@
 }
 
 .account-active {
-    
     display: block;
     position: absolute;
     
-
     ul {
         background-color:  white;
         border: 1px solid rgb(173, 173, 173);
@@ -187,8 +184,8 @@ body.overflow {
         right: 5%;
         position: fixed;
         background-color: rgb(114, 94, 173);
-        z-index: 1;
         color: white;
+        z-index: 1;
     }
 }
 

@@ -4,20 +4,30 @@ export default class extends Controller {
 
     static targets = ["notify"]
 
+    connect() {
+        this.count = 0
+    }
+
     addNotify(event) {
-        if (hasNotifyTarget) {
+        console.log('notify')
+        if (this.hasNotifyTarget) {
             this.notifyTarget.classList.add('notify-active')
             this.notifyTarget.innerHTML = event.detail
-            if (this.data.has("interval")) {
-                setInterval(() => {
+            this.count += 1
+
+            if (this.notifyTarget.dataset.interval) {
+                setTimeout(() => {
                     this.clear()
-                }, this.data.get("interval"))
+                }, this.notifyTarget.dataset.interval)
             }
         }        
     }
 
     clear() {
-        this.notifyTarget.innerHTML = ""
-        this.notifyTarget.classList.remove('notify-active')
+        if (this.count <= 1){
+            this.notifyTarget.innerHTML = ""
+            this.notifyTarget.classList.remove('notify-active')
+        }
+        this.count -= 1
     }
 }

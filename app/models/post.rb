@@ -10,7 +10,7 @@ class Post < ApplicationRecord
 
     default_scope -> { order(created_at: :desc) }
 
-    validates :content, presence: true
+    validates :content, presence: { message: 'Не может быть пустым' }
     validate :content_length
     validate :content_embeds
     
@@ -35,22 +35,22 @@ class Post < ApplicationRecord
             @attachments = rich_text_content.body.attachments
 
             if @attachments.any?
-                errors.add(:base, 'Нельзя загружать более 4 изображений') if @attachments.size > 4
+                errors.add(:content, 'Нельзя загружать более 4 изображений') if @attachments.size > 4
                 @attachments.each do |attach|
-                    errors.add(:base, 'Размер') if attach.byte_size > @max_byte_size
-                    errors.add(:base, 'Можно загружать только изображения') unless attach.image? 
-                    errors.add(:base, 'Недопустимый формат изображения') unless attach.content_type == 'image/jpeg' || attach.content_type == 'image/png'
+                    errors.add(:content, 'Размер') if attach.byte_size > @max_byte_size
+                    errors.add(:content, 'Можно загружать только изображения') unless attach.image? 
+                    errors.add(:content, 'Недопустимый формат изображения') unless attach.content_type == 'image/jpeg' || attach.content_type == 'image/png'
                 end
             end
         end 
 
         def content_length 
-            @max_length = 5
+            @max_length = 1000
             @attachments = rich_text_content.body.attachments
             @total_size = rich_text_content.body.to_plain_text.length
             @unwanted = 0
             
             @unwanted = @attachments.inject(0) {|sum, elem| sum + (elem.filename.to_s.length + 2) } if @attachments.any? 
-            errors.add(:base, 'Слишком много символов') if ((@total_size - @unwanted) > @max_length) 
+            errors.add(:content, 'Слишком много символов') if ((@total_size - @unwanted) > @max_length) 
         end
 end

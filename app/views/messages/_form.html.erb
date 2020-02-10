@@ -1,4 +1,8 @@
-<%= form_with model: message, remote: true do |f| %>
+<%= form_with model: message, 
+    data: {
+        action: 'ajax:error->chat#addError'
+    },
+    remote: true do |f| %>
     <%= f.text_area :body %>
     <div class="chat-options">
         <div class="smiles">☺</div>
