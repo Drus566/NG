@@ -110,4 +110,31 @@
         padding: 5px;
         font-weight: bold;
     }
+    
+    #chat-smiles-btn {
+        cursor: pointer;
+    }
+
+    .chat-smiles-dropdown {
+        display: none;
+    }
+
+    .chat-smiles-active {
+        display: flex;
+        flex-direction: row;
+        position: fixed;
+        overflow: auto;
+        flex-wrap: wrap;
+        max-width: 200px;
+        max-height: 150px;
+        background-color: white;
+        border: 1px solid rgb(219, 217, 217);
+        bottom: 70px;
+    }
+
+    .smile {
+        position: relative;
+        cursor: pointer;
+        padding: 5px;
+    }
 }

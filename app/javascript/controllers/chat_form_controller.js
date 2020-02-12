@@ -10,7 +10,7 @@ const PATTERN = new RegExp(Object.keys(CODES).join("|"))
 
 export default class extends Controller {
     
-    static targets = ["editor", "countSymbols"]
+    static targets = ["editor", "countSymbols", "smilesDropdown"]
 
     convert() {
         this.text.replace(PATTERN, (code, offset) => {
@@ -31,6 +31,10 @@ export default class extends Controller {
 
     sendForm() {
         document.querySelector('#chat-btn').click()
+        this.clearText()
+    }
+
+    clearText() {
         this.editor.setSelectedRange([0,9999])
         this.editor.deleteInDirection("forward")
     }
@@ -38,6 +42,23 @@ export default class extends Controller {
     showError(event, error) {
         event.preventDefault()
         console.log(error)
+    }
+
+    dropSmiles() {
+        if (this.data.get('dropdown-smiles') == 'close') {
+            this.data.set('dropdown-smiles', 'open')
+            this.smilesDropdownTarget.classList.add('chat-smiles-active')
+        } else {
+            this.data.set('dropdown-smiles', 'close')
+            this.smilesDropdownTarget.classList.remove('chat-smiles-active')
+        }
+    }
+
+    setSmile(event) {
+        console.log('setsmile')
+        let smileCode = event.target.dataset.code
+        this.editor.insertString(smileCode)
+        this.dropSmiles()
     }
 
     get countSymbols() {
