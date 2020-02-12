@@ -1,4 +1,4 @@
 <div class="message">
     <span class="text-muted"><%= link_to message.user.name, message.user %>: <%= message.timestamp %></span><br>
-    <div class="message-body"><%= message.body %></div>
+    <div class="message-body"><%= sanitize(message.body) %></div>
 </div>

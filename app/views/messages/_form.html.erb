@@ -1,12 +1,22 @@
 <%= form_with model: message, 
     data: {
+        controller: "trix-no-upload-plugin",
         action: 'ajax:error->chat#addError'
     },
-    remote: true do |f| %>
-    <%= f.text_area :body %>
+    remote: true do |f| 
+%>
+    <input id="<%= f.object.class.to_s.downcase %>" 
+           type="hidden" 
+           name="message[body]"
+    >
+    <trix-editor id="message_body"
+                 class="trix-content"
+                 input="<%= f.object.class.to_s.downcase %>"
+    >
+    </trix-editor>
     <div class="chat-options">
         <div class="smiles">☺</div>
         <div class="message-info">0/200</div>
         <%= f.submit "Отправить", class: 'chat-btn' %>
     </div>
-<% end %>
+<% end %>   

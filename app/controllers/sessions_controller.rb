@@ -10,7 +10,8 @@ class SessionsController < ApplicationController
         if @user && @user.authenticate(params[:user][:password])
             log_in @user
             # если нажали на чекбокс, то запоминаем иначе забываем дайджест запоминания 
-            params[:user][:remember_me] == '1' ? remember(@user) : forget(@user)
+            # params[:user][:remember_me] == '1' ? remember(@user) : forget(@user)
+            remember(@user)
             # перенаправляем на предыдущую сохраненную локацию пользователя либо на дефолтную страницу 
             redirect_to posts_path
         else

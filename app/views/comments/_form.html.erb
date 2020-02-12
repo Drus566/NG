@@ -8,9 +8,13 @@
               remote: true do |f| 
 %>
     <%= f.hidden_field :parent_id %>
-    <input id="<%= f.object.commentable.class.to_s.downcase %>-<%= f.object.commentable.id %><%= f.object.parent_id.nil? ? '-new' : "-parent-#{f.object.parent_id}" %>" type="hidden" name="comment[content]">
+    <input id="<%= f.object.commentable.class.to_s.downcase %>-<%= f.object.commentable.id %><%= f.object.parent_id.nil? ? '-new' : "-parent-#{f.object.parent_id}" %>" 
+           type="hidden" 
+           name="comment[content]"
+    >
     <trix-editor id="comment_content"
                  class="trix-content"
+                 data-controller="trix-no-upload-plugin"
                  placeholder="<%= f.object.parent_id.nil? ? 'Напишите комментарий...' : 'Напишите ответ...' %>"
                  input="<%= f.object.commentable.class.to_s.downcase %>-<%= f.object.commentable.id %><%= f.object.parent_id.nil? ? '-new' : "-parent-#{f.object.parent_id}" %>"
     >

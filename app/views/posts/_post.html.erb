@@ -10,7 +10,7 @@
         <div class="post-options-likes-wrapper">
             <div class="post-options-wrapper">
                 <%= link_to "Ⓟ", edit_post_path(post.id), remote: true %> 
-                <%= link_to "ⓨ", post , :method => :delete, data: { :confirm => 'Вы уверены?' } %> 
+                <%= link_to "ⓨ", post , :method => :delete, data: { :confirm => 'Вы уверены?' }, remote: true %> 
                 <%= link_to "Ⓚ", 
                     new_post_comment_path(post.id), 
                     remote: true,

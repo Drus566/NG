@@ -9,7 +9,8 @@
 
 .chat-messages {
     overflow: auto;
-    height: 75vh;
+    height: auto;
+    max-height: 70vh;
     border-top: 1px solid rgb(219, 217, 217);
     border-bottom: 1px solid rgb(219, 217, 217);
     max-width:  346px;
@@ -73,18 +74,20 @@
 
     form {
         padding: 10px;
+    }
 
-        textarea {
-            width: 100%;
-            height: auto;
-            max-height: 4em;
-            font-size: 14px;
-            color: black;
-            resize: none;
-            border: none;
-            word-wrap: break-word;
-            border-bottom: 1px solid rgb(219, 217, 217);
-        }
+    trix-toolbar {
+        display: none;
+    }
+
+    .trix-content {
+        resize: none;
+        border: none;
+        border-bottom: 1px solid rgb(219, 217, 217);
+        word-wrap: break-word;
+        color: black;
+        margin: 0;
+        padding: 0;
     }
 }
 
