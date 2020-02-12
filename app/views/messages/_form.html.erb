@@ -1,6 +1,6 @@
 <%= form_with model: message, 
     data: {
-        controller: "trix-no-upload-plugin",
+        controller: "trix-no-upload-plugin chat-form",
         action: 'ajax:error->chat#addError'
     },
     remote: true do |f| 
@@ -11,12 +11,16 @@
     >
     <trix-editor id="message_body"
                  class="trix-content"
+                 data-target="chat-form.editor"
+                 data-action="trix-change->chat-form#convert
+                              trix-change->chat-form#showCountSymbols
+                              keydown->chat-form#inputKeyword"
                  input="<%= f.object.class.to_s.downcase %>"
     >
     </trix-editor>
     <div class="chat-options">
         <div class="smiles">☺</div>
-        <div class="message-info">0/200</div>
-        <%= f.submit "Отправить", class: 'chat-btn' %>
+        <div class="message-info" data-target="chat-form.countSymbols">0/200</div>
+        <%= f.submit "Отправить", class: 'chat-btn', id: 'chat-btn'%>
     </div>
 <% end %>   

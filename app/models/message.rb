@@ -18,7 +18,7 @@ class Message < ApplicationRecord
         end
 
         def body_length 
-            @max_length = 255
+            @max_length = 200
             errors.add(:body, 'Сообщение чата длиннее 255 символов') if ActionView::Base.full_sanitizer.sanitize(body).size > @max_length
         end
 end

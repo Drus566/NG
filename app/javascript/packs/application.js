@@ -7,4 +7,3 @@ require("@rails/actiontext")
 require("custom/chat")
 
 import "controllers"
-import "controllers"

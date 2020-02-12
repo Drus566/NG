@@ -83,6 +83,9 @@
     .trix-content {
         resize: none;
         border: none;
+        width: 325px;
+        max-height: 2em;
+        overflow: auto;
         border-bottom: 1px solid rgb(219, 217, 217);
         word-wrap: break-word;
         color: black;

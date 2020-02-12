@@ -1,6 +1,7 @@
 <%= form_with model: [comment.commentable, comment], 
               class: "comment-form",
               data: { 
+                  :controller => "trix-no-upload-plugin",
                   :action => "ajax:success->#{ content_for?(:form_controller_action) ? yield(:form_controller_action) : "post#createComment" }
                               ajax:error->#{(comment.parent_id.nil? && comment.id.nil?) ? (comment.commentable.class.to_s.downcase + "#addCommentError") : "comment#addError" }",
                   :type => 'html'
@@ -14,7 +15,6 @@
     >
     <trix-editor id="comment_content"
                  class="trix-content"
-                 data-controller="trix-no-upload-plugin"
                  placeholder="<%= f.object.parent_id.nil? ? 'Напишите комментарий...' : 'Напишите ответ...' %>"
                  input="<%= f.object.commentable.class.to_s.downcase %>-<%= f.object.commentable.id %><%= f.object.parent_id.nil? ? '-new' : "-parent-#{f.object.parent_id}" %>"
     >
