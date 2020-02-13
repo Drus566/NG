@@ -1,0 +1,125 @@
+// Place all the styles related to the Catalogs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#catalog-items-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 25px;
+    margin-bottom: 30px;
+    width: 700px;
+}
+
+// Preview 
+
+.catalog-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(219, 217, 217);
+    border-radius: 10px;
+    margin: 10px;
+    width: 280px;
+    min-height: 100px;
+    border-left: 30px solid rgb(230, 81, 50);
+    color: rgb(29, 45, 53);
+}
+
+// View 
+
+.view-catalog-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+
+    .item {
+        padding: 5px;
+    }
+}
+
+// Preview
+
+.preview-catalog-item-name {
+    cursor: pointer;
+    padding: 5px;
+    font-size: 20px;
+}
+
+.preview-catalog-item-address {
+    padding: 5px;
+    font-size: 15px;
+}
+
+// View
+
+.catalog-item-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.catalog-item-close {
+    cursor: pointer;
+}
+
+.catalog-item-name {
+    padding: 5px;
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.catalog-item-address {
+    font-size: 15px;
+}
+
+.catalog-addit-info {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.catalog-item-date {
+    font-size: 13px;
+    color: rgb(135, 116, 110);
+    margin-top: 10px;
+}
+
+.catalog-item-label {
+    font-size: 14px;
+    color: rgb(230, 81, 50);
+}
+
+// Blocks
+
+.catalog-info-block {
+    display: none;
+}
+
+.preview-catalog-item-block {
+    display: none;
+}
+
+// Catalog colors
+
+.catalog-1 {
+    border-left-color: rgb(27, 106, 207);
+}
+
+.catalog-2 {
+    border-left-color: rgb(255, 224, 0);
+}
+
+.catalog-3 {
+    border-left-color: rgb(93, 73, 152);
+}
+
+.catalog-4 {
+    border-left-color: rgb(49, 155, 92);
+}

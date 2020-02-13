@@ -1,0 +1,17 @@
+<div class="catalog-item <%= catalog_item.catalogs.any? ? "catalog-#{catalog_item.catalogs.first.id}" : nil %>" data-controller="catalog-item" id="catalog-item-<%= catalog_item.id %>">
+    <div class="preview-catalog-item" data-target="catalog-item.preview">
+        <div class="preview-catalog-item-name" data-action='click->catalog-item#view'><%= catalog_item.name %></div>
+        <div class="preview-catalog-item-address"><%= catalog_item.address %></div>
+    </div>
+    <div class="catalog-info-block catalog-addit-info" data-target="catalog-item.view">
+        <div class="catalog-item-top">
+            <div class="catalog-item-name"><%= catalog_item.name %></div>
+            <div class="catalog-item-close" data-action="click->catalog-item#close">✖</div>
+        </div>
+        <%= render partial: 'catalog_items/attributes', object: catalog_item.attributes, as: :attributes %>
+        <div class="catalog-item-date">
+            <span class="catalog-item-label">Создана: </span><%= catalog_item.created_at %>
+            <span class="catalog-item-label">Обновлена: </span><%= catalog_item.updated_at %>
+       </div>
+    </div>
+</div>

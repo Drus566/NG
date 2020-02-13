@@ -1,0 +1,9 @@
+<div id="catalog-items-wrapper">
+    <% if @catalog_items.any? %>
+        <%= render partial: 'catalog_items/catalog_item', collection: @catalog_items, as: :catalog_item %>
+    <% else %>
+        <div class="message">Нет данных</div>
+    <% end %>
+</div>
+
+

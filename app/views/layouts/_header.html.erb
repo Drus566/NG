@@ -4,8 +4,8 @@
         <nav id="navigation">
             <%= link_to "Главная" %>
             <%# <%= link_to "Новости", controller: 'articles', action: 'index' %> 
-            <%= link_to "Записи", controller: 'posts', action: 'index' %>
-            <%= link_to "Справочник" %>
+            <%= link_to "Записи", posts_path %>
+            <%= link_to "Справочник", catalogs_path %>
         </nav>
         <div id="add-section">
             <div><%= link_to 'Новая запись', new_post_path, remote: true %></div>

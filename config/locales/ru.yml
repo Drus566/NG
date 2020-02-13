@@ -3,6 +3,7 @@ ru:
     models: 
       user: 'Пользователь'
       post: 'Пост'
+      catalog_item: 'Карточка'
     attributes:
       user:
         name: 'Имя'
@@ -10,6 +11,13 @@ ru:
         email: 'Почта'
       post:
         content: 'Поле'
+      catalog_item: 
+        address: 'адрес'
+        phone: 'телефон'
+        shedule: 'время работы'
+        info: 'дополнительная информация'
+        site: 'сайт'
+        email: 'почта'
     errors:
       models: 
         user:

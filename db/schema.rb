@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_29_110730) do
+ActiveRecord::Schema.define(version: 2020_02_13_125750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,17 @@ ActiveRecord::Schema.define(version: 2020_01_29_110730) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "articles", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "image"
+    t.index ["user_id", "created_at"], name: "index_articles_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
   create_table "catalog_items", force: :cascade do |t|
     t.string "name", null: false
     t.string "address"
@@ -54,6 +65,8 @@ ActiveRecord::Schema.define(version: 2020_01_29_110730) do
     t.text "info"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "email"
+    t.string "site"
   end
 
   create_table "catalog_items_catalogs", id: false, force: :cascade do |t|
@@ -130,6 +143,7 @@ ActiveRecord::Schema.define(version: 2020_01_29_110730) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "articles", "users"
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "users"
   add_foreign_key "messages", "users"

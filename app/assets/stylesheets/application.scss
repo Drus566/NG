@@ -179,13 +179,21 @@ body.overflow {
 #notify {
 
     .notify-active {
-        height: 80px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        min-height: 80px;
         width: 300px;
         top: 70px;
         right: 5%;
-        position: fixed;
         background-color: rgb(114, 94, 173);
+        border: 1px solid rgb(93, 73, 152);
+        border-radius: 5px;
         color: white;
+        font-weight: bold;
+        text-align: center;
         z-index: 1;
     }
 }

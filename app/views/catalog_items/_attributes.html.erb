@@ -1,0 +1,23 @@
+<% attributes.each do |key, value| %>
+    <% unless (key == 'id' || key == 'name' || key == 'created_at' || key == 'updated_at') %> 
+        <% if value %>
+            <div class="catalog-item-<%= key %> item">
+                <span class="catalog-item-label">
+                <% if key == 'address' %>
+                    адрес
+                <% elsif key == 'phone'%>
+                    телефон
+                <% elsif key == 'shedule' %>
+                    время работы
+                <% elsif key == 'info' %>
+                    дополнительная информация
+                <% elsif key == 'site' %>
+                    сайт
+                <% elsif key == 'email' %>
+                    почта 
+                <% end %>
+                </span>: <%= value %>
+            </div>
+        <% end %>
+    <% end %>
+<% end %>

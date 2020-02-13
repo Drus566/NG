@@ -32,6 +32,8 @@ Rails.application.routes.draw do
 
   resources :sections
   resources :messages
+  resources :catalogs
+  resources :catalog_items
 
   # get '/handbook', to: 'welcome#handbook'
 
