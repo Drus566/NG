@@ -1,9 +1,11 @@
 <%= form_with model: [comment.commentable, comment], 
               class: "comment-form",
               data: { 
-                  :controller => "trix-no-upload-plugin",
+                  :controller => "trix-no-upload-plugin chat-form",
                   :action => "ajax:success->#{ content_for?(:form_controller_action) ? yield(:form_controller_action) : "post#createComment" }
+                              ajax:success->chat-form#clearText
                               ajax:error->#{(comment.parent_id.nil? && comment.id.nil?) ? (comment.commentable.class.to_s.downcase + "#addCommentError") : "comment#addError" }",
+                  :chat_form_dropdown_smiles => 'close',
                   :type => 'html'
               }, 
               remote: true do |f| 
@@ -15,21 +17,43 @@
     >
     <trix-editor id="comment_content"
                  class="trix-content"
+                 data-target="chat-form.editor"
+                 data-action="trix-change->chat-form#convert
+                              trix-change->chat-form#showCountSymbols
+                              keydown->chat-form#inputKeyword"
                  placeholder="<%= f.object.parent_id.nil? ? 'Напишите комментарий...' : 'Напишите ответ...' %>"
                  input="<%= f.object.commentable.class.to_s.downcase %>-<%= f.object.commentable.id %><%= f.object.parent_id.nil? ? '-new' : "-parent-#{f.object.parent_id}" %>"
     >
     </trix-editor>
-    <div class="comment-options">
-        <%= f.submit class: 'comment-btn', 
-                     data: { disable_with: 'Загрузка' }, 
-                     value: content_for?(:edit_btn_text) ? yield(:edit_btn_text) : (f.object.parent_id.nil? ? 'Отправить' : 'Ответить')
-        %>
-        <span <% if f.object.parent_id.nil? && f.object.id.nil? %>
-                    data-action="click-><%= comment.commentable.class.to_s.downcase %>#deleteCommentForm">
+    <div class="form-comment-options">
+        <div class="form-comment-options-left">
+                <span class="comment-smiles-btn" data-action="click->chat-form#dropSmiles">☺</span>
+                <div class="chat-smiles-dropdown" data-target="chat-form.smilesDropdown">
+                    <div class="comment-smiles-active">
+                        <div class="smile" data-code=":smiley:" data-action="click->chat-form#setSmile">😀</div>
+                        <div class="smile" data-code=":stuck_out_tongue_winking_eye:" data-action="click->chat-form#setSmile">😜</div>
+                        <div class="smile" data-code=":bowtie:" data-action="click->chat-form#setSmile">🤵</div>
+                    </div>
+                </div>
+            
+            <span <% if f.object.parent_id.nil? && f.object.id.nil? %>
+                    data-action="click-><%= comment.commentable.class.to_s.downcase %>#deleteCommentForm"
                 <% else %>
-                    data-action="click->comment#deleteCommentForm">
+                    data-action="click->comment#deleteCommentForm"
                 <% end %>
-        ✖</span>
+                class="close-btn">
+            ✖</span>
+        </div>
+        <div class="form-comment-options-right">
+            <span class="form-comment-options-count" data-target="chat-form.countSymbols">0/250</span>
+            <%= f.submit class: 'comment-btn', 
+                        data: { 
+                            disable_with: 'Загрузка',
+                            target: 'chat-form.sendBtn' 
+                        }, 
+                        value: content_for?(:edit_btn_text) ? yield(:edit_btn_text) : (f.object.parent_id.nil? ? 'Отправить' : 'Ответить')
+            %>
+        </div> 
     </div>
 <% end %>
 

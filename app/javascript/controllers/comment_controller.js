@@ -73,7 +73,7 @@ export default class extends Controller {
         let [data, status, xhr] = event.detail
         console.log(status)
         // Если это ошибка 401, то отправляем
-        if (status == '400' || status.toLowerCase() == 'bad request') {
+        if (status == '400' || status == '403' || status.toLowerCase() == 'bad request') {
             console.log('Send')
             let customEvent = new CustomEvent('notify', { detail: xhr.response })
             document.dispatchEvent(customEvent)

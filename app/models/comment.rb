@@ -16,7 +16,7 @@ class Comment < ApplicationRecord
         end
 
         def content_length 
-            @max_length = 255
-            errors.add(:content, 'Комментарий длиннее 255 символов') if ActionView::Base.full_sanitizer.sanitize(content).size > @max_length
+            @max_length = 250
+            errors.add(:content, 'Комментарий длиннее 250 символов') if ActionView::Base.full_sanitizer.sanitize(content).size > @max_length
         end
 end

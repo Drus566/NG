@@ -10,7 +10,7 @@ const PATTERN = new RegExp(Object.keys(CODES).join("|"))
 
 export default class extends Controller {
     
-    static targets = ["editor", "countSymbols", "smilesDropdown"]
+    static targets = ["editor", "countSymbols", "smilesDropdown", "sendBtn"]
 
     convert() {
         this.text.replace(PATTERN, (code, offset) => {
@@ -20,17 +20,17 @@ export default class extends Controller {
     }
 
     showCountSymbols() {
-        this.countSymbolsTarget.innerText = `${this.countSymbols}/200`
+        this.countSymbolsTarget.innerText = `${this.countSymbols}/${this.maxCountSymbols}`
     }
 
     inputKeyword(event) {
         if ((event.keyCode === 13 || event.key == "Enter") && !event.shiftKey) {
-            (this.countSymbols <= 200) ? this.sendForm() : this.showError(event, 'Слишком длинное сообщение')
+            (this.countSymbols <= this.maxCountSymbols) ? this.sendForm() : this.showError(event, 'Слишком длинное сообщение')
         }    
     }
 
     sendForm() {
-        document.querySelector('#chat-btn').click()
+        this.sendBtnTarget.click()
         this.clearText()
     }
 
@@ -41,21 +41,20 @@ export default class extends Controller {
 
     showError(event, error) {
         event.preventDefault()
-        console.log(error)
     }
 
     dropSmiles() {
         if (this.data.get('dropdown-smiles') == 'close') {
             this.data.set('dropdown-smiles', 'open')
-            this.smilesDropdownTarget.classList.add('chat-smiles-active')
+            // (this.commentForm ? : null)
+            this.smilesDropdownTarget.classList.add('chat-smiles-dropdown-open')
         } else {
             this.data.set('dropdown-smiles', 'close')
-            this.smilesDropdownTarget.classList.remove('chat-smiles-active')
+            this.smilesDropdownTarget.classList.remove('chat-smiles-dropdown-open')
         }
     }
 
     setSmile(event) {
-        console.log('setsmile')
         let smileCode = event.target.dataset.code
         this.editor.insertString(smileCode)
         this.dropSmiles()
@@ -71,5 +70,13 @@ export default class extends Controller {
 
     get text() {
         return this.editor.getDocument().toString()
+    }
+
+    get commentForm() {
+        return this.element.className == 'comment-form'
+    }
+
+    get maxCountSymbols() {
+        return this.commentForm ? 250 : 200
     }
 }

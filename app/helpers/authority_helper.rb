@@ -12,8 +12,9 @@ module AuthorityHelper
     def valid_resource(owner_resource)
         unless user_admin?
             unless current_user?(owner_resource)
-                flash[:warning] = "Нельзя совершить операцию"
-                redirect_to root_url
+                respond_to do |format| 
+                    format.js { render partial: 'sessions/notify_js', locals: { error: 'Недостаточно прав' }, status: 403 } 
+                end
             end
         end
     end

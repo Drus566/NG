@@ -3,7 +3,7 @@
         <div class="post-info-section-wrapper">
             <div class="post-info-wrapper">Ⓐ <%= link_to post.user.name, post.user, class: "post-user" %>, <%= time_ago_in_words(post.created_at) %> назад</div> 
             <% unless post.section.nil? %>
-                <div class="post-section"><%= link_to "#{post.section.name}", section_path(post.section) %></div>
+                <div class="post-section"><%= link_to "#{post.section.name}", section_path(post.section), class: "section-#{post.section.id}" %></div>
             <% end %> 
         </div>
         <div class="post-content-wrapper"><%= run_rinku(post.content) %></div>

@@ -69,7 +69,6 @@
 }
 
 .comment-form {
-    padding-right: 5px;
     border: 0.1em solid rgb(236, 236, 236);
     border-radius: 0.2em;
 
@@ -85,9 +84,11 @@
         min-height: 1.6em;
     }
 
-    span {
+    .close-btn {
         cursor: pointer;
         color: #1D2D35;
+        padding: 5px;
+        font-size: 20px;
     }
 
     .comment-btn {
@@ -99,5 +100,58 @@
         font-weight: bold;
     }
 }
+
+.form-comment-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.form-comment-options-left {
+    display: flex;
+    flex-direction: row
+}
+
+.form-comment-options-count {
+    margin-right: 10px;
+    cursor: auto;
+}
+
+.comment-smiles-btn {
+    cursor: pointer;
+    font-size: 20px;
+    padding: 5px;
+}
+
+.chat-smiles-dropdown {
+    display: none;
+}
+
+.chat-smiles-dropdown-open {
+    display: block;
+    position: absolute;
+}
+
+.comment-smiles-active {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    overflow: auto;
+    flex-wrap: wrap;
+    max-width: 200px;
+    max-height: 150px;
+    bottom: 30px;
+    background-color: white;
+    border: 1px solid rgb(219, 217, 217);
+
+    .smile {
+        position: relative;
+        cursor: pointer;
+        padding: 5px;
+    }  
+}
+
+
 
 

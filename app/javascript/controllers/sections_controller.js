@@ -16,12 +16,13 @@ export default class extends Controller {
 
     setSection(event) {
         let sectionName = event.target.innerText
+        let sectionId = event.target.dataset.sectionId
+
         if (this.hasBtnTarget) {
             this.btnTarget.innerText = sectionName
-            this.btnTarget.className = 'selected'
+            this.btnTarget.className = `section-btn selected section-${sectionId}`
         }
 
-        let sectionId = event.target.dataset.sectionId
         if (this.hasIdTarget) {
             this.idTarget.setAttribute('value', sectionId)
         }
@@ -33,7 +34,7 @@ export default class extends Controller {
     removeSection(event) {
         if (this.hasBtnTarget) {
             this.btnTarget.innerText = 'Раздел'
-            this.btnTarget.className = ''
+            this.btnTarget.className = 'section-btn'
         }
 
         if (this.hasIdTarget) {

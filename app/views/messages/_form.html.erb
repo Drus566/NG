@@ -24,12 +24,14 @@
         <div class="smiles">
             <span id="chat-smiles-btn" data-action="click->chat-form#dropSmiles">☺</span>
             <div class="chat-smiles-dropdown" data-target="chat-form.smilesDropdown">
-                <div class="smile" data-code=":smiley:" data-action="click->chat-form#setSmile">😀</div>
-                <div class="smile" data-code=":stuck_out_tongue_winking_eye:" data-action="click->chat-form#setSmile">😜</div>
-                <div class="smile" data-code=":bowtie:" data-action="click->chat-form#setSmile">🤵</div>
+                <div class="chat-smiles-active">
+                    <div class="smile" data-code=":smiley:" data-action="click->chat-form#setSmile">😀</div>
+                    <div class="smile" data-code=":stuck_out_tongue_winking_eye:" data-action="click->chat-form#setSmile">😜</div>
+                    <div class="smile" data-code=":bowtie:" data-action="click->chat-form#setSmile">🤵</div>
+                </div>
             </div>
         </div>
         <div class="message-info" data-target="chat-form.countSymbols">0/200</div>
-        <%= f.submit "Отправить", class: 'chat-btn', id: 'chat-btn'%>
+        <%= f.submit "Отправить", class: 'chat-btn', data: {target: 'chat-form.sendBtn'}, id: 'chat-btn'%>
     </div>
 <% end %>   

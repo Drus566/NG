@@ -5,7 +5,7 @@
     },
     remote: true do |f| %>
     <div data-controller='sections' class='post-sections'>
-        <span data-action='click->sections#change' data-open='false' data-target="sections.btn">Раздел</span>
+        <span class="section-btn" data-action='click->sections#change' data-open='false' data-target="sections.btn">Раздел</span>
         <div class='sections-dropdown' data-target='sections.menu'>
             <ul>
                 <li data-action="click->sections#removeSection">Без раздела</li>
