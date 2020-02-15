@@ -1,7 +1,14 @@
 <div class="post-wrapper" data-controller="post" id="post-<%= post.id %>">
     <div class="post-main-wrapper">
         <div class="post-info-section-wrapper">
-            <div class="post-info-wrapper">Ⓐ <%= link_to post.user.name, post.user, class: "post-user" %>, <%= time_ago_in_words(post.created_at) %> назад</div> 
+            <div class="post-info-wrapper">
+                <% if post.user.avatar.attached? %>
+                    <%= image_tag post.user.avatar.variant(resize: "40x40!"), class: 'post-avatar' %>
+                <% else %>
+                    <div class="post-avatar">Ⓐ</div>
+                <% end %>
+                <%= link_to post.user.name, post.user, class: "post-user" %>, <%= time_ago_in_words(post.created_at) %> назад
+            </div> 
             <% unless post.section.nil? %>
                 <div class="post-section"><%= link_to "#{post.section.name}", section_path(post.section), class: "section-#{post.section.id}" %></div>
             <% end %> 

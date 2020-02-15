@@ -37,7 +37,7 @@ class Post < ApplicationRecord
             if @attachments.any?
                 errors.add(:content, 'Нельзя загружать более 4 изображений') if @attachments.size > 4
                 @attachments.each do |attach|
-                    errors.add(:content, 'Размер') if attach.byte_size > @max_byte_size
+                    errors.add(:content, 'Недопустимый вес файла') if attach.byte_size > @max_byte_size
                     errors.add(:content, 'Можно загружать только изображения') unless attach.image? 
                     errors.add(:content, 'Недопустимый формат изображения') unless attach.content_type == 'image/jpeg' || attach.content_type == 'image/png'
                 end

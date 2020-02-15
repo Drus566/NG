@@ -1,6 +1,8 @@
 class User < ApplicationRecord
     has_secure_password
 
+    has_one_attached :avatar
+
     has_many :posts
     has_many :comments, dependent: :destroy
     has_many :likes, dependent: :destroy
@@ -13,6 +15,8 @@ class User < ApplicationRecord
                       format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i, message: 'Неверная почта' }, 
                       uniqueness: { case_sensitive: false, message: 'Такая почта существует' }
     validates :password, presence: { message: 'Пароль не может быть пустым'}, length: { minimum: 6, message: 'Минимальная длинна пароля 6 символов' }
+    validate :avatar_content_type
+    validate :avatar_byte_size
 
     attr_accessor :remember_token
 
@@ -44,4 +48,20 @@ class User < ApplicationRecord
         # Стирает запись хэша токена из БД
         update_attribute(:remember_digest, nil)
     end
+
+    private 
+        
+        def avatar_content_type 
+            if user.avatar.attached? 
+                errors.add(:user, 'Недопустимый формат изображения') unless user.avatar.content_type == 'image/jpeg' || attach.content_type == 'image/png'
+            end
+        end
+
+        def avatar_byte_size
+            @max_byte_size = 10485760 # 10 mB
+
+            if user.avatar.attached? 
+                errors.add(:user, 'Недопустимый вес файла') if user.avatar.byte_size > @max_byte_size
+            end
+        end
 end

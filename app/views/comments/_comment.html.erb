@@ -1,6 +1,13 @@
 <div class="comment-tree" id="comment-<%= comment.id %>" data-controller="comment">
     <div class="comment-body">
-        <div class="comment-info">Ⓐ <%= link_to comment.user.name, comment.user, class: "comment-user" %> <%= time_ago_in_words(comment.created_at) %> назад</div>
+        <div class="comment-info">
+            <% if comment.user.avatar.attached? %>
+                <%= image_tag comment.user.avatar.variant(resize: "35x35!"), class: 'comment-avatar' %>
+            <% else %>
+                <div class="comment-avatar">Ⓐ</div>
+            <% end %>
+            <%= link_to comment.user.name, comment.user, class: "comment-user" %>, <%= time_ago_in_words(comment.created_at) %> назад
+        </div>
         <div class="comment-content"><%= run_rinku(sanitize(comment.content)) %></div>     
         <div class="comment-options">
             <%= link_to 'Ⓟ', 

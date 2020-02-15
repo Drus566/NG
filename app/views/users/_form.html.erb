@@ -10,6 +10,17 @@
             <div class="description">Регистрация на NG</div>
             <span class="close-form" data-action="click->popup#clear">×</span>
         </div>
+        <div class="user-new-avatar-wrapper" data-controller="avatar-uploader">
+            <img class="template-avatar" src="" data-target="avatar-uploader.template"/>
+            <label for="user_avatar" class="upload-btn"><span>ЗАГРУЗИТЬ</span></label>
+            <%= f.file_field :avatar, 
+                accept: 'image/png,image/jpeg', 
+                class: 'user-avatar-upload',
+                data: {
+                    action: 'change->avatar-uploader#processFile'
+                }
+            %>
+        </div>
         <div data-target="popup.errors"></div>
         <div class="form-data">
             <%= f.text_field :name, placeholder: 'Имя' %>
@@ -17,13 +28,7 @@
             <%= f.password_field :password, placeholder: 'Пароль' %>
             <%= f.password_field :password_confirmation, placeholder: 'Подтверждение пароля' %>
         </div>
-        <div class="form-options">
-            <div class="checkbox">
-                <%= label_tag "Запомнить?" %>
-                <%= check_box_tag 'remember' %>
-            </div>
-            <%= link_to 'Забыли пароль?' %>
-        </div>
+
         <%= f.submit yield(:button_text), class: 'user-form-btn' %>
     </div>
 <% end %>

@@ -22,6 +22,7 @@ class UsersController < ApplicationController
 
     def create
         @user = User.new(user_params)
+        params[:user][:avatar].nil? ? nil : @user.avatar.attach(params[:user][:avatar])
         if @user.save
             log_in @user
             redirect_to posts_path

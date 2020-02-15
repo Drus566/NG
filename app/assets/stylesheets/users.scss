@@ -176,4 +176,37 @@
 
 
 // NEW
+// Upload Avatar
+.user-new-avatar-wrapper {
+    position: relative;
+    height: 160px;
+    width: 160px;
+    margin: auto;
+    border-radius: 10px;
+    overflow: hidden;
+    border: none;
 
+    .template-avatar {
+        height: 100%;
+        width: 100%;
+        background-color: white;
+        border: none;
+    }
+   
+    &:hover .upload-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0; left: 0;
+        height: 100%; 
+        width: 100%;
+        cursor: pointer;
+        border: none;
+        background-color: rgb(236, 122, 60);
+    }
+
+    .user-avatar-upload {
+        display: none;
+    }
+}

@@ -14,8 +14,17 @@
 }
 
 .comment-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     font-size: 0.95rem;
     color: rgb(135, 116, 110);
+}
+
+.comment-avatar {
+    border-radius: 5px;
+    margin-right: 7px;
+    font-size: 20px;    
 }
 
 .comment-content {
