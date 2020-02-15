@@ -11,13 +11,23 @@
             <span class="close-form" data-action="click->popup#clear">×</span>
         </div>
         <div class="user-new-avatar-wrapper" data-controller="avatar-uploader">
-            <img class="template-avatar" src="" data-target="avatar-uploader.template"/>
-            <label for="user_avatar" class="upload-btn"><span>ЗАГРУЗИТЬ</span></label>
+            <img class="template-avatar" 
+                 src="" 
+                 data-target="avatar-uploader.template"
+                 data-action="drop->avatar-uploader#fileDrop
+                              dragenter->avatar-uploader#enterDrag
+                              dragover->avatar-uploader#overDrag"
+            />
+            <label for="user_avatar" class="upload-btn">
+                <span class="user-avatar-remove" data-action="click->avatar-uploader#removeAvatar">✖</span>
+                <span>ЗАГРУЗИТЬ</span>
+            </label>
             <%= f.file_field :avatar, 
                 accept: 'image/png,image/jpeg', 
                 class: 'user-avatar-upload',
                 data: {
-                    action: 'change->avatar-uploader#processFile'
+                    action: 'change->avatar-uploader#processFile',
+                    target: 'avatar-uploader.select'
                 }
             %>
         </div>

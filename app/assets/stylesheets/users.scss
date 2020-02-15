@@ -204,9 +204,23 @@
         cursor: pointer;
         border: none;
         background-color: rgb(236, 122, 60);
+        opacity: 0.9;
     }
 
     .user-avatar-upload {
         display: none;
+    }
+
+    .user-avatar-remove {
+        position: absolute;
+        right: 0; top: 0;
+        padding: 5px;
+        font-size: 20px;
+        opacity: 0.1;
+        z-index: 3;
+    }
+
+    &:hover .user-avatar-remove {
+        opacity: 1;
     }
 }

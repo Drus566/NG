@@ -52,16 +52,16 @@ class User < ApplicationRecord
     private 
         
         def avatar_content_type 
-            if user.avatar.attached? 
-                errors.add(:user, 'Недопустимый формат изображения') unless user.avatar.content_type == 'image/jpeg' || attach.content_type == 'image/png'
+            if avatar.attached? 
+                errors.add(:user, 'Недопустимый формат изображения') unless avatar.content_type == 'image/jpeg' || avatar.content_type == 'image/png'
             end
         end
 
         def avatar_byte_size
             @max_byte_size = 10485760 # 10 mB
 
-            if user.avatar.attached? 
-                errors.add(:user, 'Недопустимый вес файла') if user.avatar.byte_size > @max_byte_size
+            if avatar.attached? 
+                errors.add(:user, 'Недопустимый вес файла') if avatar.byte_size > @max_byte_size
             end
         end
 end
