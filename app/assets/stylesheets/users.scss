@@ -101,7 +101,8 @@
 
 #user-account-info {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    margin-bottom: 10px;
 }
 
 #user-account-menu-actions {
@@ -121,6 +122,18 @@
     }
 }
 
+.user-account-info-avatar {
+    border-radius: 5px;
+    border: 1px solid rgb(202, 202, 202);
+}
+
+.user-account-name-timestamp {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    justify-content: flex-start;
+}
+
 .user-account-info-name { 
     font-size: 20px;
     font-weight: bold;
@@ -138,7 +151,7 @@
     border-top: 1px solid rgb(219, 217, 217);
 
     ul { 
-        margin-top: 3px;    
+        margin-top: 7px;    
     }
 
     li {
@@ -213,7 +226,7 @@
 
     .user-avatar-remove {
         position: absolute;
-        right: 0; top: 0;
+        right: 5px; top: 5px;
         padding: 5px;
         font-size: 20px;
         opacity: 0.1;
@@ -221,6 +234,9 @@
     }
 
     &:hover .user-avatar-remove {
+        border-radius: 50%;
+        border: 1px solid black;
+        background-color: white;
         opacity: 1;
     }
 }

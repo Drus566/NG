@@ -1,8 +1,17 @@
 <div id="user-account-wrapper" data-controller="user-account-content">
     <div id="user-account-main-wrapper"> 
         <div id="user-account-info">
-            <div class="user-account-info-name"><%= @user.name %></div>
-            <div class="user-account-info-created"> Аккаунт создан <%= time_ago_in_words(@user.created_at) %> назад </div>
+            <div class="user-account-info-avatar-wrapper">
+                <% if @user.avatar.attached? %>
+                    <%= image_tag @user.avatar.variant(resize: "140x140!"), class: 'user-account-info-avatar' %>
+                <% else %>
+                    <div class="user-account-info-avatar">Ⓐ</div>
+                <% end %>
+            </div>
+            <div class="user-account-name-timestamp">
+                <div class="user-account-info-name"><%= @user.name %></div>
+                <div class="user-account-info-created"> Аккаунт создан <%= time_ago_in_words(@user.created_at) %> назад </div>            
+            </div>
         </div>
         <div id="user-account-menu-actions">
             <ul>

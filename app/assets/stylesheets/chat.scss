@@ -16,6 +16,7 @@
     max-width:  346px;
 
     .message {
+
         background-color: rgb(255, 255, 255);
         border: 1px solid rgb(219, 217, 217);
         border-radius: 10px;
@@ -23,15 +24,24 @@
         padding: 5px;
         margin-left: 0;
         margin-right: 0;
+    }
 
-        span {
-            font-size: 13px;
-            color: rgb(135, 116, 110);
+    .message-info {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-size: 13px;
+        color: rgb(135, 116, 110);
 
-            a {
-                color: rgb(230, 81, 50);
-            }
+        a {
+            color: rgb(230, 81, 50);
         }
+    }
+
+    .message-avatar {
+        border-radius: 5px;
+        margin-right: 5px;
+        font-size: 16px;
     }
 
     .message-body {
