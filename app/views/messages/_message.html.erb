@@ -1,10 +1,5 @@
 <div class="message" id="message-<%= message.id %>">
     <div class="message-info">
-        <% if message.user.avatar.attached? %>
-            <%= image_tag message.user.avatar.variant(resize: "35x35!"), class: 'message-avatar' %>
-        <% else %>
-            <div class="message-avatar">Ⓐ</div>
-        <% end %>
         <%= link_to message.user.name, message.user %>: <%= message.timestamp %>    
     </div>
     <div class="message-body"><%= sanitize(message.body) %></div>
