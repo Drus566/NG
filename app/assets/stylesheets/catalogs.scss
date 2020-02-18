@@ -160,3 +160,18 @@
 .cat-9 {
     border-left: 10px solid rgb(196, 79, 133);
 }
+
+// New catalog item
+.new-catalog-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border: 2px dashed rgb(219, 217, 217);
+    border-radius: 10px;
+    margin: 10px;
+    width: 310px;
+    min-height: 100px;
+    color: rgb(29, 45, 53);
+}

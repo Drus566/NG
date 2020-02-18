@@ -1,0 +1,32 @@
+<%= form_with model: @catalog_item,
+    class: 'catalog-item-form',
+    data: {
+        type: 'html'
+    },
+    remote: true do |f|
+%>
+    <div class='upper'>
+        <div class='description'>Создание карточки</div>
+        <div class='close'>✖</div>
+    </div>
+    <%= f.text_field :name, placeholder: 'Имя' %>
+    <%= f.text_field :phone, placeholder: 'Телефон' %>
+    <%= f.text_field :shedule, placeholder: 'Время работы' %>
+    <%= f.text_field :email, placeholder: 'Почта' %>
+    <%= f.text_field :site, placeholder: 'Сайт' %>
+    <%= f.text_field :info, placeholder: 'Дополнительная информация' %>
+    <%= f.file_field :images,
+        accept: 'image/png,image/jpeg',
+        class: 'images-upload',
+        data: {
+            action: 'change->image-uploader#selectFile',
+            target: 'image-uploader.select'
+        } 
+    %>
+    <%= f.submit class: 'catalog-item-btn',
+        value: 'Создать',
+        data: {
+            disable_with: 'Загрузка'
+        }
+    %>
+<% end %>

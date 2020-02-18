@@ -1,6 +1,17 @@
 <div id="catalog-items-wrapper">
     <% if @catalog_items.any? %>
-        <%= render partial: 'catalog_items/catalog_item', collection: @catalog_items, as: :catalog_item %>
+        <div class="new-catalog-item" data-controller="new-catalog-item">
+            <%= link_to 'Создать карточку', new_catalog_item_path,
+                data: {
+                    action: "ajax:success->new-catalog-item#show
+                             ajax:error->new-catalog-item#addError"
+                }  
+            %>
+        </div>
+        <%= render partial: 'catalog_items/catalog_item', 
+            collection: @catalog_items, 
+            as: :catalog_item 
+        %>
     <% else %>
         <div class="message">Нет данных</div>
     <% end %>
