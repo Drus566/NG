@@ -1,24 +1,26 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-    static targets = ['newBtn']
+    static targets = ['newBtn', 'newForm']
 
     show(event) {
-        this.event.target.classList.add('display-none')
         let [data, status, xhr] = event.detail
-        
-        this.catalogWrapper.insertAdjacentElement('afterbegin', xhr.response)
+        this.element.innerHTML += xhr.response
+        this.newBtnTarget.classList.add('display-none')
+        console.log('show')
     }
 
     create() {
-        
+        console.log('create')
     }
 
     addError() {
         console.log('error')
     }
 
-    get catalogWrapper() {
-        return document.querySelector('#catalog-items-wrapper')
+    close() {
+        console.log('close')
+        this.newBtnTarget.className="new-catalog-item-btn"
+        this.newFormTarget.remove()
     }
 }

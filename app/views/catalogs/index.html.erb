@@ -1,12 +1,15 @@
 <div id="catalog-items-wrapper">
     <% if @catalog_items.any? %>
-        <div class="new-catalog-item" data-controller="new-catalog-item">
-            <%= link_to 'Создать карточку', new_catalog_item_path,
-                data: {
-                    action: "ajax:success->new-catalog-item#show
-                             ajax:error->new-catalog-item#addError"
-                }  
-            %>
+        <div data-controller="new-catalog-item" >
+            <div class="new-catalog-item-btn" data-target="new-catalog-item.newBtn">
+                <%= link_to 'Создать карточку', new_catalog_item_path,
+                    data: {
+                        action: "ajax:success->new-catalog-item#show
+                                ajax:error->new-catalog-item#addError"
+                    },
+                    remote: true
+                %>
+            </div>
         </div>
         <%= render partial: 'catalog_items/catalog_item', 
             collection: @catalog_items, 
